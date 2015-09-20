@@ -343,7 +343,7 @@
         	include('process.php');
        
         	$conn1 = connect();
-
+        	
         	$result = viewSuppliers($conn1);
         	        	
         	if(isset($_POST['add'])){

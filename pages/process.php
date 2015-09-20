@@ -15,7 +15,7 @@ function addSuppliers($conn, $name, $shortname, $website, $currency, $bank, $cre
 
 function viewSuppliers($conn){
 	$sql="SELECT * FROM supplier";
-	$result=mysqli_query($conn);
+	$result=mysqli_query($conn, $sql);
 	return $result;
 }
 
