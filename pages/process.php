@@ -12,10 +12,21 @@ function addSuppliers($conn, $name, $shortname, $website, $currency, $bank, $cre
 		return $result;
 }
 
+function saveEditSuppliers($conn, $name, $shortname, $website, $currency, $bank, $credit_limit, $email, $address, $memo, $status, $phone, $fax, $id){
+		$sql="UPDATE supplier SET name='$name', short_name='$shortname', website='$website', currency='$currency', bank='$bank', credit_limit='$credit_limit', email='$email', address='$address', memo='$memo', status='$status', phone='$phone', fax='$fax' WHERE id=$id";
+		$result=mysqli_query($conn, $sql);
+		return $result;
+}
+
 function viewSuppliers($conn){
 	$sql="SELECT * FROM supplier";
 	$result=mysqli_query($conn, $sql);
 	return $result;
+}
+
+function editSuppliers($conn, $id){
+	$sql="SELECT * FROM supplier WHERE id = $id";
+	return mysqli_query($conn, $sql);
 }
 
 
