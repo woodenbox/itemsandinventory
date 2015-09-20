@@ -425,7 +425,7 @@
         
         
         
-         <legend><label>Basic Supplier Information</label></legend>    	
+         <legend><label>Sure Ka ba?</label></legend>    	
         
          <form method="POST">
         
