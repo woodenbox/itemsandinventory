@@ -271,58 +271,58 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         
-                    			 <li>
-                           			<a href="suppliers.php"><i class="fa-fw"></i> Suppliers</a>
-                        		</li>
-                  				             
+                                 <li>
+                                    <a href="suppliers.php"><i class="fa-fw"></i> Suppliers</a>
+                                </li>
+                                             
                                 <li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Transactions <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="inventory_locations.php">Inventory Location Transfers</a></li>
-            								<li><a href="inventory_adjustments.php">Iventory Adjustments</a></li>
-          								</ul>
-        						</li>
-        					
-        						
-        						<li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Inquiries and Reports <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="inventory_movements.php">Inventory Item Movements</a></li>
-            								<li><a href="inventory_status.php">Inventory Item Status</a></li>
-            								<li><a href="#">Inventory Reports</a></li>
-          								</ul>
-        						</li>
-        						
-        						
-        						<li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Maintencance <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="items.php">Items</a></li>
-            								<li><a href="#">Foreign Item Codes</a></li>
-            								<li><a href="#">Sales Kits</a></li>
-            								<li><a href="#">Item Categories</a></li>
-            								<li><a href="#">Inventory Locations</a></li>
-            								<li><a href="#">Inventory Movement Types</a></li>
-            								<li><a href="#">Reorder Levels</a></li>
-            								<li><a href="currency.php">Currencies</a></li>
-          								</ul>
-        						</li>
-        						
-        						
-        						<li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Pricing and Costs <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="#">Sales Pricing</a></li>
-            								<li><a href="#">Purchasing Pricing</a></li>
-            								<li><a href="#">Standard Costs</a></li>
-          								</ul>
-        						</li>
-        						
-        						<li>
-                           			<a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
-                        		</li>
-        						
-        					
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Transactions <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="inventory_locations.php">Inventory Location Transfers</a></li>
+                                            <li><a href="inventory_adjustments.php">Iventory Adjustments</a></li>
+                                        </ul>
+                                </li>
+                            
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Inquiries and Reports <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="inventory_movements.php">Inventory Item Movements</a></li>
+                                            <li><a href="inventory_status.php">Inventory Item Status</a></li>
+                                            <li><a href="#">Inventory Reports</a></li>
+                                        </ul>
+                                </li>
+                                
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Maintencance <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="items.php">Items</a></li>
+                                            <li><a href="#">Foreign Item Codes</a></li>
+                                            <li><a href="#">Sales Kits</a></li>
+                                            <li><a href="#">Item Categories</a></li>
+                                            <li><a href="#">Inventory Locations</a></li>
+                                            <li><a href="#">Inventory Movement Types</a></li>
+                                            <li><a href="#">Reorder Levels</a></li>
+                                            <li><a href="currency.php">Currencies</a></li>
+                                        </ul>
+                                </li>
+                                
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Pricing and Costs <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Sales Pricing</a></li>
+                                            <li><a href="#">Purchasing Pricing</a></li>
+                                            <li><a href="#">Standard Costs</a></li>
+                                        </ul>
+                                </li>
+                                
+                                <li>
+                                    <a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
+                                </li>
+                                
+                            
                                 
                             </ul>
                         </li>
@@ -343,39 +343,39 @@
         
         
         <?php
-        	
-        	include('process.php');
+            
+            include('process.php');
        
-        	$conn1 = connect();
-        	
-        	$result = viewSuppliers($conn1);
-        	$result2 = viewCurrencies($conn1);
-        	        	
-        	if(isset($_POST['add'])){
-	        	
-	        	
-	        	$name = $_POST['name'];
-	        	$shortname = $_POST['shortname'];
-	        	$website = $_POST['website'];
-	        	$currency = $_POST['currency'];
-	        	$bank = $_POST['bank'];
-	        	$credit_limit = $_POST['credit_limit'];
-	        	$email = $_POST['email'];	
-	        	$address = $_POST['address'];
-	        	$memo = $_POST['memo'];
-	        	$status = $_POST['status'];
-	        	$phone = $_POST['phone'];
-	        	$fax = $_POST['fax'];
-	        	
-	        	$addSuppliers = addSuppliers($conn1, $name, $shortname, $website, $currency, $bank, $credit_limit, $email, $address, $memo, $status, $phone, $fax);
-	        	
-	        	if($addSuppliers){
-		        	echo "Supplier Added!";
-	        	}else{
-		        	echo "Failed to Add!";
-	        	}
-	        	
-        	}
+            $conn1 = connect();
+            
+            $result = viewSuppliers($conn1);
+            $result2 = viewCurrencies($conn1);
+                        
+            if(isset($_POST['add'])){
+                
+                
+                $name = $_POST['name'];
+                $shortname = $_POST['shortname'];
+                $website = $_POST['website'];
+                $currency = $_POST['currency'];
+                $bank = $_POST['bank'];
+                $credit_limit = $_POST['credit_limit'];
+                $email = $_POST['email'];   
+                $address = $_POST['address'];
+                $memo = $_POST['memo'];
+                $status = $_POST['status'];
+                $phone = $_POST['phone'];
+                $fax = $_POST['fax'];
+                
+                $addSuppliers = addSuppliers($conn1, $name, $shortname, $website, $currency, $bank, $credit_limit, $email, $address, $memo, $status, $phone, $fax);
+                
+                if($addSuppliers){
+                    echo "Supplier Added!";
+                }else{
+                    echo "Failed to Add!";
+                }
+                
+            }
         
         
         ?>
@@ -386,53 +386,53 @@
        
         
          <div class="table-responsive">
-         	<table class="table">
-         		<tr>
-         			<td>Name</td>
-         			<td>Short name</td>
-         			<td>Website</td>
-         			<td>Currency</td>
-         			<td>Bank</td>
-         			<td>Credit limit</td>
-         			<td>Email</td>
-         			<td>Address</td>
-         			<td>Memo</td>
-         			<td>Status</td>
-         			<td>Phone</td>
-         			<td>Fax</td>
+            <table class="table">
+                <tr>
+                    <td>Name</td>
+                    <td>Short name</td>
+                    <td>Website</td>
+                    <td>Currency</td>
+                    <td>Bank</td>
+                    <td>Credit limit</td>
+                    <td>Email</td>
+                    <td>Address</td>
+                    <td>Memo</td>
+                    <td>Status</td>
+                    <td>Phone</td>
+                    <td>Fax</td>
                     <td>Edit</td>
-         		</tr>
-         		
-         		<?php
-         			while($row=mysqli_fetch_assoc($result)){
-         		?>
-         		
-         		<tr>
-         			<td><?=$row['name']?></td>
-         			<td><?=$row['short_name']?></td>
-         			<td><?=$row['website']?></td>
-         			<td><?=$row['currency']?></td>
-         			<td><?=$row['bank']?></td>
-         			<td><?=$row['credit_limit']?></td>
-         			<td><?=$row['email']?></td>
-         			<td><?=$row['address']?></td>
-         			<td><?=$row['memo']?></td>
-         			<td><?=$row['status']?></td>
-         			<td><?=$row['phone']?></td>
-         			<td><?=$row['fax']?></td>
-                    <td><a href="suppliersedit.php"><img src="../images/edit.png" width="100%"></a></td>
-         		</tr>
-         		
-         		<?php
-     				}
-         		?>
-         		
-         	</table>
+                </tr>
+                
+                <?php
+                    while($row=mysqli_fetch_assoc($result)){
+                ?>
+                
+                <tr>
+                    <td><?=$row['name']?></td>
+                    <td><?=$row['short_name']?></td>
+                    <td><?=$row['website']?></td>
+                    <td><?=$row['currency']?></td>
+                    <td><?=$row['bank']?></td>
+                    <td><?=$row['credit_limit']?></td>
+                    <td><?=$row['email']?></td>
+                    <td><?=$row['address']?></td>
+                    <td><?=$row['memo']?></td>
+                    <td><?=$row['status']?></td>
+                    <td><?=$row['phone']?></td>
+                    <td><?=$row['fax']?></td>
+                    <td><img src="../images/edit.png" width="100%"></td>
+                </tr>
+                
+                <?php
+                    }
+                ?>
+                
+            </table>
          </div>
         
         
         
-         <legend><label>Supplier Information</label></legend>    	
+         <legend><label>Edit Supplier Information</label></legend>       
         
          <form method="POST">
         
@@ -453,13 +453,13 @@
          <input type="text" class="form-control" name="address">
        
        <label>Currency</label>
-   		<select class="form-control" name="currency">
-  		  <?php
-  		  while($row=mysqli_fetch_assoc($result2)){
-	  		  ?>
-   		       <option value="<?=$row['id']?>"><?=$row['id']?> - <?=$row['name']?></option>
-    	   <?php    
-	       } ?>
+        <select class="form-control" name="currency">
+          <?php
+          while($row=mysqli_fetch_assoc($result2)){
+              ?>
+               <option value="<?=$row['id']?>"><?=$row['id']?> - <?=$row['name']?></option>
+           <?php    
+           } ?>
         </select> 
         
         
@@ -475,9 +475,9 @@
          <input type="text" class="form-control" name="credit_limit">
         
         <label>Status</label>
-  		<select class="form-control" name="status">
-   		       <option>1</option>
-    	       <option>2</option>
+        <select class="form-control" name="status">
+               <option>1</option>
+               <option>2</option>
         </select> 
          
          
