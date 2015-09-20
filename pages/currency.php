@@ -338,8 +338,29 @@
         
         
   		<?php
+  			
+  			include('process.php');
   		
-  		
+  			$conn1 = connect();
+  			
+  			$result = viewCurrencies($conn1);
+  			
+  			if(isset($_POST['add'])){
+	  			
+	  			$name = $_POST['name'];
+	  			$short_name = $_POST['short_name'];	
+	  			$rate = $_POST['rate'];
+	  			
+	  			$addCurrency = addCurrency($conn1, $name, $short_name, $rate);
+	  			
+	  			if($addCurrency){
+		  			echo "New currency added!";
+	  			}else{
+		  			echo "Failed to add!";
+	  			}
+	  			
+  			}
+  			
   		?>
         
         
@@ -364,7 +385,25 @@
          </form>
         
          
-        
+        <table class="table table-sttripped">
+        	<tr>
+        		<td>Name</td>
+        		<td>Short name</td>
+        		<td>Rate</td>
+        	</tr>
+        	
+        	<?php
+                while($row=mysqli_fetch_assoc($result)){
+            ?>
+        	
+        	<tr>
+        		<td><?=$row['name']?></td>
+        		<td><?=$row['short_name']?></td>
+        		<td><?=$row['rate']?></td>
+        	</tr>
+    		<?php
+    		}
+    		?>
 
         
         

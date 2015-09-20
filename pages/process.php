@@ -26,9 +26,9 @@ function addCurrency($conn, $name, $short_name, $rate){
 	return $result;	
 }
 
-function viewCurrency($conn){
+function viewCurrencies($conn){
 	$sql="SELECT * FROM opt_currency";
-	$result=mysqli_query($conn);
+	$result=mysqli_query($conn, $sql);
 	return $result;	
 }
 

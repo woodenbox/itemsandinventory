@@ -304,6 +304,7 @@
             								<li><a href="#">Iventory Locations</a></li>
             								<li><a href="#">Iventory Movement Types</a></li>
             								<li><a href="#">Reorder Levels</a></li>
+            								<li><a href="currency.php">Currencies</a></li>
           								</ul>
         						</li>
         						
@@ -340,9 +341,11 @@
         <?php
         	
         	include('process.php');
-        
+       
         	$conn1 = connect();
-        	
+
+        	$result = viewSuppliers($conn1);
+        	        	
         	if(isset($_POST['add'])){
 	        	
 	        	
@@ -377,6 +380,50 @@
         <div id="page-wrapper">
        
         
+         <div class="table-responsive">
+         	<table class="table">
+         		<tr>
+         			<td>Name</td>
+         			<td>Short name</td>
+         			<td>Website</td>
+         			<td>Currency</td>
+         			<td>Bank</td>
+         			<td>Credit limit</td>
+         			<td>Email</td>
+         			<td>Address</td>
+         			<td>Memo</td>
+         			<td>Status</td>
+         			<td>Phone</td>
+         			<td>Fax</td>
+         		</tr>
+         		
+         		<?php
+         			while($row=mysqli_fetch_assoc($result)){
+         		?>
+         		
+         		<tr>
+         			<td><?=$row['name']?><td>
+         			<td><?=$row['short_name']?></td>
+         			<td><?=$row['website']?></td>
+         			<td><?=$row['currency']?></td>
+         			<td><?=$row['bank']?></td>
+         			<td><?=$row['credit_limit']?></td>
+         			<td><?=$row['email']?></td>
+         			<td><?=$row['address']?></td>
+         			<td><?=$row['memo']?></td>
+         			<td><?=$row['status']?></td>
+         			<td><?=$row['phone']?></td>
+         			<td><?=$row['fax']?></td>
+         		</tr>
+         		
+         		<?php
+     				}
+         		?>
+         		
+         	</table>
+         </div>
+        
+        
         
          <legend><label>Basic Supplier Information</label></legend>    	
         
@@ -400,10 +447,9 @@
        
        <label>Currency</label>
   		<select class="form-control" name="currency">
-   		       <option>1</option>
-    	       <option>2</option>
-   		       <option>3</option>
-    	       <option>4</option>
+   		       <option value="1">Dollar</option>
+    	       <option value="2">Peso</option>
+   		       <option value="3">Darham</option>
         </select> 
         
               
@@ -419,8 +465,8 @@
         
         <label>Status</label>
   		<select class="form-control" name="status">
-   		       <option value="1">Enabled</option>
-    	       <option value="2">Disabled</option>
+   		       <option>1</option>
+    	       <option>2</option>
         </select> 
          
          
@@ -440,10 +486,12 @@
         
          
          <input type="submit" class="btn btn-success" value="Add" name="add">
-                  
-            
         
         </form>
+        
+        
+        
+        </table>
         
         
 
