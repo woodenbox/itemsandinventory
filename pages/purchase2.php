@@ -1,4 +1,29 @@
+        <?php
 
+        session_start();
+        
+        echo "<script type='text/javascript'>alert('".$_SESSION['supplier']."');</script>";
+        
+        include('process.php');
+        $conn1 = connect();
+        $result = viewItems($conn1);
+        
+        if(isset($_POST['add'])){
+	        
+	      $addPurchaseOrderEntry = addPurchaseOrderEntry($conn1, $_SESSION['supplier'], $_SESSION['order_date'], $_SESSION['currency'], $_SESSION['receive_into'],$_SESSION['deliver_to'], $_SESSION['order_status']);
+	        $getID=mysqli_fetch_assoc(getID($conn1));
+	        
+	        
+	        $items=$_POST['item'];
+	        $getIDD=$getID['id'];
+	        addItemsPOE($conn1, $items, $getIDD);
+	        
+
+	        
+        }
+        
+        ?>
+        
 <!DOCTYPE html>
 
 
@@ -347,40 +372,7 @@
         </nav>
         
         
-        <?php
 
-        
-        include('process.php');
-        $conn1 = connect();
-        $result = viewItems($conn1);
-        
-        if(isset($_POST['add'])){
-
-	        
-	        $_SESSION['supplier'] = $supplier;
-	        $_SESSION['order_date'] = $order_date;
-	        $_SESSION['currency'] = $currency;
-	        $_SESSION['receive_into'] = $receive_into;
-	        $_SESSION['deliver_to'] = $deliver_to;
-	        $_SESSION['order_status'] = $order_status;
-	        
-	        $addPurchaseOrderEntry = addPurchaseOrderEntry($conn1, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status);
-	        $getID=mysqli_fetch_assoc(getID($conn1));
-	        
-	        $getIDD=$getID['id'];
-	        addItemsPOE($conn1, $items, $getIDD);
-	        
-	        if($addPurchaseOrderEntry){
-		        echo "New Purchase Order Entry added!";
-	        }else{
-		        echo "Failed to add!";
-	        }
-
-	        
-        }
-        
-        ?>
-        
         
 
         <div id="page-wrapper">
@@ -403,13 +395,13 @@
         </select> 
         
         <label>Quantity</label>
-         <input type="date" class="form-control" name="quantity">
+         <input type="text" class="form-control" name="quantity">
          
          <label>Order Date</label>
-         <input type="text" class="form-control" name="date">
+         <input type="date" class="form-control" name="date">
          
          <label>Price</label>
-         <input type="date" class="form-control" name="price">
+         <input type="text" class="form-control" name="price">
       
         
         <input type="submit" class="btn btn-success" value="Add" name="add">

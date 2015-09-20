@@ -1,6 +1,28 @@
 <?php
         session_start();
-?>
+        
+        include('process.php');
+        $conn1 = connect();
+        $result = viewCurrencies($conn1);
+        $result2 = viewPurchaseOrderEntry($conn1);
+      
+        if(isset($_POST['add'])){
+	        
+	        $_SESSION['supplier'] = $_POST['supplier'];
+	        $_SESSION['order_date'] = $_POST['order_date'];
+	        $_SESSION['currency'] = $_POST['currency'];
+	        $_SESSION['receive_into'] = $_POST['receive_into'];
+	        $_SESSION['deliver_to'] = $_POST['deliver_to'];
+	        $_SESSION['order_status'] = $_POST['order_status'];
+	       
+	        header('Location: purchase2.php');
+
+
+	        
+        }
+        
+        ?>
+        
 
 <!DOCTYPE html>
 
@@ -350,43 +372,7 @@
         </nav>
         
         
-        <?php
 
-        
-        include('process.php');
-        $conn1 = connect();
-        $result = viewCurrencies($conn1);
-        $result2 = viewPurchaseOrderEntry($conn1);
-      
-        if(isset($_POST['add'])){
-	        $supplier = $_POST['supplier'];
-	        $order_date = $_POST['order_date'];
-	        $currency = $_POST['currency'];
-	        $receive_into = $_POST['receive_into'];
-	        $deliver_to = $_POST['deliver_to'];
-	        $order_status = $_POST['order_status'];
-	        
-	        $_SESSION['supplier'] = $supplier;
-	        $_SESSION['order_date'] = $order_date;
-	        $_SESSION['currency'] = $currency;
-	        $_SESSION['receive_into'] = $receive_into;
-	        $_SESSION['deliver_to'] = $deliver_to;
-	        $_SESSION['order_status'] = $order_status;
-	        
-	        $addPurchaseOrderEntry = addPurchaseOrderEntry($conn1, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status);
-	        
-	        if($addPurchaseOrderEntry){
-		        echo "New Purchase Order Entry added!";
-		        header("Location : purchase2.php");
-	        }else{
-		        echo "Failed to add!";
-	        }
-
-	        
-        }
-        
-        ?>
-        
         
 
         <div id="page-wrapper">
@@ -398,10 +384,10 @@
     
         <label>Suppplier</label>
   		<select class="form-control" name="supplier">
-   		       <option>a</option>
-    	       <option>b</option>
-    	       <option>c</option>
-    	       <option>d</option>
+   		       <option value="1">a</option>
+    	       <option value="2">b</option>
+    	       <option value="3">c</option>
+    	       <option value="4">d</option>
         </select> 
         
         <label>Order Date</label>
@@ -440,7 +426,7 @@
              $familylover = $row['id'];
 	        }
         ?>
-        <a href="purchase2.php" name="add">Process to Step 2</a>
+        <input type="submit" name="add" value="Proceed to Step 2">
         
         
     </form>

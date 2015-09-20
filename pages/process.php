@@ -60,6 +60,7 @@ function addPurchaseOrderEntry($conn, $supplier, $order_date, $currency, $receiv
 	return $result;	
 }
 
+
 function addItemsPOE($conn, $item_id, $id){
 	$sql="INSERT INTO list_order_items VALUES ('',  '$item_id',  '',  '',  '',  '',  '$id')";
 	$result=mysqli_query($conn, $sql);
