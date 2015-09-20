@@ -297,13 +297,14 @@
         						<li class="dropdown">
         							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Maintencance <span class="caret"></span></a>
           								<ul class="dropdown-menu">
-            								<li><a href="#">Items</a></li>
+            								<li><a href="items.php">Items</a></li>
             								<li><a href="#">Foreign Item Codes</a></li>
             								<li><a href="#">Sales Kits</a></li>
             								<li><a href="#">Item Categories</a></li>
             								<li><a href="#">Iventory Locations</a></li>
             								<li><a href="#">Iventory Movement Types</a></li>
             								<li><a href="#">Reorder Levels</a></li>
+            								<li><a href="currency.php">Currencies</a></li>
           								</ul>
         						</li>
         						
@@ -316,6 +317,9 @@
             								<li><a href="#">Standard Costs</a></li>
           								</ul>
         						</li>
+        						<li>
+                           			<a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
+                        		</li>
         						
         					
                                 

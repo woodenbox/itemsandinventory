@@ -1,6 +1,5 @@
 <?php
 
-
 function connect(){
 	include('db_config.php');
 	$conn = mysqli_connect($host, $username, $password, $dbname);
@@ -30,6 +29,30 @@ function viewCurrencies($conn){
 	$sql="SELECT * FROM opt_currency";
 	$result=mysqli_query($conn, $sql);
 	return $result;	
+}
+
+function addItems($conn, $item_code, $name, $description, $category, $tax_type, $item_type, $unit_measure, $dimension, $item_status){
+	$sql="INSERT INTO item VALUES('', '$item_code', '$name', '$description', '$category', '$tax_type', '$item_type', '$unit_measure', '$dimension', '', '$item_status')";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function viewItems($conn){
+	$sql="SELECT * FROM item";
+	$result=mysqli_query($conn, $sql);
+	return $result;	
+}
+
+function addPurchaseOrderEntry($conn, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status){
+	$sql="INSERT INTO purchase_order_entry VALUES('', '$supplier', '$order_date', '$currency', '$receive_into', '$deliver_to', '$order_status')";
+	$result=mysqli_query($conn, $sql);
+	return $result;	
+}
+
+function viewPurchaseOrderEntry($conn){
+	$sql="SELECT * FROM purchase_order_entry";
+	$result=mysqli_query($conn, $sql);
+	return $result;
 }
 
 

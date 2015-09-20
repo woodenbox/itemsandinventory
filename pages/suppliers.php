@@ -297,12 +297,12 @@
         						<li class="dropdown">
         							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Maintencance <span class="caret"></span></a>
           								<ul class="dropdown-menu">
-            								<li><a href="#">Items</a></li>
+            								<li><a href="items.php">Items</a></li>
             								<li><a href="#">Foreign Item Codes</a></li>
             								<li><a href="#">Sales Kits</a></li>
             								<li><a href="#">Item Categories</a></li>
-            								<li><a href="#">Iventory Locations</a></li>
-            								<li><a href="#">Iventory Movement Types</a></li>
+            								<li><a href="#">Inventory Locations</a></li>
+            								<li><a href="#">Inventory Movement Types</a></li>
             								<li><a href="#">Reorder Levels</a></li>
             								<li><a href="currency.php">Currencies</a></li>
           								</ul>
@@ -317,6 +317,10 @@
             								<li><a href="#">Standard Costs</a></li>
           								</ul>
         						</li>
+        						
+        						<li>
+                           			<a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
+                        		</li>
         						
         					
                                 
@@ -345,6 +349,7 @@
         	$conn1 = connect();
         	
         	$result = viewSuppliers($conn1);
+        	$result2 = viewCurrencies($conn1);
         	        	
         	if(isset($_POST['add'])){
 	        	
@@ -402,7 +407,7 @@
          		?>
          		
          		<tr>
-         			<td><?=$row['name']?><td>
+         			<td><?=$row['name']?></td>
          			<td><?=$row['short_name']?></td>
          			<td><?=$row['website']?></td>
          			<td><?=$row['currency']?></td>
@@ -446,11 +451,15 @@
          <input type="text" class="form-control" name="address">
        
        <label>Currency</label>
-  		<select class="form-control" name="currency">
-   		       <option value="1">Dollar</option>
-    	       <option value="2">Peso</option>
-   		       <option value="3">Darham</option>
+   		<select class="form-control" name="currency">
+  		  <?php
+  		  while($row=mysqli_fetch_assoc($result2)){
+	  		  ?>
+   		       <option value="<?=$row['id']?>"><?=$row['id']?> - <?=$row['name']?></option>
+    	   <?php    
+	       } ?>
         </select> 
+        
         
               
        <div>
