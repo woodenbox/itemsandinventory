@@ -419,8 +419,8 @@
         
         <label>Status</label>
   		<select class="form-control" name="status">
-   		       <option>1</option>
-    	       <option>2</option>
+   		       <option value="1">Enabled</option>
+    	       <option value="2">Disabled</option>
         </select> 
          
          
