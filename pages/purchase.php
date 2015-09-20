@@ -356,7 +356,8 @@
         include('process.php');
         $conn1 = connect();
         $result = viewCurrencies($conn1);
-        
+        $result2 = viewPurchaseOrderEntry($conn1);
+      
         if(isset($_POST['add'])){
 	        $supplier = $_POST['supplier'];
 	        $order_date = $_POST['order_date'];
@@ -376,6 +377,7 @@
 	        
 	        if($addPurchaseOrderEntry){
 		        echo "New Purchase Order Entry added!";
+		        header("Location : purchase2.php");
 	        }else{
 		        echo "Failed to add!";
 	        }
@@ -411,7 +413,7 @@
   		  while($row=mysqli_fetch_assoc($result)){
 	  		  ?>
    		       <option value="<?=$row['id']?>"><?=$row['id']?> - <?=$row['name']?></option>
-    	   <?php    
+    	   <?php  
 	       } ?>
         </select> 
         
@@ -432,8 +434,13 @@
    		       <option value="1">a</option>
     	       <option value="2">b</option>
         </select>
-        
-        <input type="submit" class="btn btn-success" value="Add" name="add">
+        <hr>
+        <?php
+        while($row=mysqli_fetch_assoc($result2)){
+             $familylover = $row['id'];
+	        }
+        ?>
+        <a href="purchase2.php?id=<?=$familylover?>" name="add">Process to Step 2</a>
         
         
     </form>

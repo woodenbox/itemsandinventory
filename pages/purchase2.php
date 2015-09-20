@@ -352,7 +352,7 @@
         
         include('process.php');
         $conn1 = connect();
-        $result = viewCurrencies($conn1);
+        $result = viewItems($conn1);
         
         if(isset($_POST['add'])){
 	        $supplier = $_POST['supplier'];
@@ -389,48 +389,31 @@
         
     <form method="POST">    
         
-    	<legend><label>Purchase Order Entry</label></legend>
-    
-        <label>Suppplier</label>
-  		<select class="form-control" name="supplier">
-   		       <option>a</option>
-    	       <option>b</option>
-    	       <option>c</option>
-    	       <option>d</option>
-        </select> 
-        
-        <label>Order Date</label>
-         <input type="date" class="form-control" name="order_date">
-        
-        <label>Currency</label>
-  		<select class="form-control" name="currency">
-  		  <?php
-  		  while($row=mysqli_fetch_assoc($result)){
-	  		  ?>
-   		       <option value="<?=$row['id']?>"><?=$row['id']?> - <?=$row['name']?></option>
-    	   <?php    
-	       } ?>
-        </select> 
+    	<legend><label>Purchase Order Entry : Step 2</label></legend>
         
         
-        <label>Receive into</label>
-  		<select class="form-control" name="receive_into">
-   		       <option value="1">a</option>
-    	       <option value="2">b</option>
-    	       <option value="3">c</option>
-    	       <option value="4">d</option>
-        </select> 
-        
-        <label>Deliver To</label>
-         <input type="text" class="form-control" name="deliver_to">
          
-        <label>Order Status</label>
-  		<select class="form-control" name="order_status">
-   		       <option value="1">a</option>
-    	       <option value="2">b</option>
-        </select>
+        <label>Item/Components</label>
+  		<select class="form-control" name="item">
+  		<?php
+  		while($row=mysqli_fetch_assoc($result)){
+  		?>
+   		       <option value="<?=$row['name']?>">[<?=$row['item_code']?>] - <?=$row['name']?></option>
+    	 <?php } 
+    	       ?>
+        </select> 
         
-        <input type="submit" class="btn btn-success" value="Add" name="add">
+        <label>Quantity</label>
+         <input type="date" class="form-control" name="quantity">
+         
+         <label>Order Date</label>
+         <input type="text" class="form-control" name="date">
+         
+         <label>Price</label>
+         <input type="date" class="form-control" name="price">
+      
+        
+        <input type="text" class="btn btn-success" value="Add" name="add">
         
         
     </form>
