@@ -440,7 +440,7 @@
              $familylover = $row['id'];
 	        }
         ?>
-        <a href="purchase2.php?id=<?=$familylover?>" name="add">Process to Step 2</a>
+        <a href="purchase2.php" name="add">Process to Step 2</a>
         
         
     </form>

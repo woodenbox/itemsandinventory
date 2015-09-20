@@ -60,6 +60,20 @@ function addPurchaseOrderEntry($conn, $supplier, $order_date, $currency, $receiv
 	return $result;	
 }
 
+function addItemsPOE($conn, $item_id, $id){
+	$sql="INSERT INTO list_order_items VALUES ('',  '$item_id',  '',  '',  '',  '',  '$id')";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+	
+	}
+	
+	function getID($conn){
+	$sql="SELECT id FROM purchase_order_entry WHERE ID=(SELECT MAX(ID) FROM purchase_order_entry)";
+	$result=mysqli_query($conn,$sql);
+	return $result;	
+		}
+	
+
 function viewPurchaseOrderEntry($conn){
 	$sql="SELECT * FROM purchase_order_entry";
 	$result=mysqli_query($conn, $sql);

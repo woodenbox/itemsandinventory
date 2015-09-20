@@ -355,12 +355,7 @@
         $result = viewItems($conn1);
         
         if(isset($_POST['add'])){
-	        $supplier = $_POST['supplier'];
-	        $order_date = $_POST['order_date'];
-	        $currency = $_POST['currency'];
-	        $receive_into = $_POST['receive_into'];
-	        $deliver_to = $_POST['deliver_to'];
-	        $order_status = $_POST['order_status'];
+
 	        
 	        $_SESSION['supplier'] = $supplier;
 	        $_SESSION['order_date'] = $order_date;
@@ -370,6 +365,10 @@
 	        $_SESSION['order_status'] = $order_status;
 	        
 	        $addPurchaseOrderEntry = addPurchaseOrderEntry($conn1, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status);
+	        $getID=mysqli_fetch_assoc(getID($conn1));
+	        
+	        $getIDD=$getID['id'];
+	        addItemsPOE($conn1, $items, $getIDD);
 	        
 	        if($addPurchaseOrderEntry){
 		        echo "New Purchase Order Entry added!";
@@ -413,7 +412,7 @@
          <input type="date" class="form-control" name="price">
       
         
-        <input type="text" class="btn btn-success" value="Add" name="add">
+        <input type="submit" class="btn btn-success" value="Add" name="add">
         
         
     </form>
