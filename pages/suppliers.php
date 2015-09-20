@@ -400,6 +400,7 @@
          			<td>Status</td>
          			<td>Phone</td>
          			<td>Fax</td>
+                    <td>Edit</td>
          		</tr>
          		
          		<?php
@@ -419,6 +420,7 @@
          			<td><?=$row['status']?></td>
          			<td><?=$row['phone']?></td>
          			<td><?=$row['fax']?></td>
+                    <td><img src="../images/edit.png" width="100%"></td>
          		</tr>
          		
          		<?php
@@ -430,7 +432,7 @@
         
         
         
-         <legend><label>Sure Ka ba?</label></legend>    	
+         <legend><label>Supplier Information</label></legend>    	
         
          <form method="POST">
         
