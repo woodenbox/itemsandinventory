@@ -1,3 +1,29 @@
+  		<?php
+  			
+  			include('process.php');
+  		
+  			$conn1 = connect();
+  			
+  			$result = viewCurrencies($conn1);
+  			
+  			if(isset($_POST['add'])){
+	  			
+	  			$name = $_POST['name'];
+	  			$short_name = $_POST['short_name'];	
+	  			$rate = $_POST['rate'];
+	  			
+	  			$addCurrency = addCurrency($conn1, $name, $short_name, $rate);
+	  			
+	  			if($addCurrency){
+		  			echo "New currency added!";
+                    header('Location: currency.php');
+	  			}else{
+		  			echo "Failed to add!";
+	  			}
+	  			
+  			}
+  			
+  		?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -271,57 +297,57 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         
-                    			 <li>
-                           			<a href="suppliers.php"><i class="fa-fw"></i> Suppliers</a>
-                        		</li>
-                  				             
+                                 <li>
+                                    <a href="suppliers.php"><i class="fa-fw"></i> Suppliers</a>
+                                </li>
+                                             
                                 <li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Transactions <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="inventory_locations.php">Inventory Location Transfers</a></li>
-            								<li><a href="inventory_adjustments.php">Iventory Adjustments</a></li>
-          								</ul>
-        						</li>
-        					
-        						
-        						<li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Inquiries and Reports <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="inventory_movements.php">Inventory Item Movements</a></li>
-            								<li><a href="inventory_status.php">Inventory Item Status</a></li>
-            								<li><a href="#">Inventory Reports</a></li>
-          								</ul>
-        						</li>
-        						
-        						
-        						<li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Maintencance <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="items.php">Items</a></li>
-            								<li><a href="#">Foreign Item Codes</a></li>
-            								<li><a href="#">Sales Kits</a></li>
-            								<li><a href="#">Item Categories</a></li>
-            								<li><a href="#">Iventory Locations</a></li>
-            								<li><a href="#">Iventory Movement Types</a></li>
-            								<li><a href="#">Reorder Levels</a></li>
-            								<li><a href="currency.php">Currencies</a></li>
-          								</ul>
-        						</li>
-        						
-        						
-        						<li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Pricing and Costs <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="#">Sales Pricing</a></li>
-            								<li><a href="#">Purchasing Pricing</a></li>
-            								<li><a href="#">Standard Costs</a></li>
-          								</ul>
-        						</li>
-        						<li>
-                           			<a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
-                        		</li>
-        						
-        					
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Transactions <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="inventory_locations.php">Inventory Location Transfers</a></li>
+                                            <li><a href="inventory_adjustments.php">Iventory Adjustments</a></li>
+                                        </ul>
+                                </li>
+                            
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Inquiries and Reports <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="inventory_movements.php">Inventory Item Movements</a></li>
+                                            <li><a href="inventory_status.php">Inventory Item Status</a></li>
+                                            <li><a href="#">Inventory Reports</a></li>
+                                        </ul>
+                                </li>
+                                
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Maintencance <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="items.php">Items</a></li>
+                                            <li><a href="#">Foreign Item Codes</a></li>
+                                            <li><a href="#">Sales Kits</a></li>
+                                            <li><a href="#">Item Categories</a></li>
+                                            <li><a href="#">Iventory Locations</a></li>
+                                            <li><a href="#">Iventory Movement Types</a></li>
+                                            <li><a href="#">Reorder Levels</a></li>
+                                            <li><a href="currency.php">Currencies</a></li>
+                                        </ul>
+                                </li>
+                                
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Pricing and Costs <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Sales Pricing</a></li>
+                                            <li><a href="#">Purchasing Pricing</a></li>
+                                            <li><a href="#">Standard Costs</a></li>
+                                        </ul>
+                                </li>
+                                <li>
+                                    <a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
+                                </li>
+                                
+                            
                                 
                             </ul>
                         </li>
@@ -341,31 +367,6 @@
         </nav>
         
         
-  		<?php
-  			
-  			include('process.php');
-  		
-  			$conn1 = connect();
-  			
-  			$result = viewCurrencies($conn1);
-  			
-  			if(isset($_POST['add'])){
-	  			
-	  			$name = $_POST['name'];
-	  			$short_name = $_POST['short_name'];	
-	  			$rate = $_POST['rate'];
-	  			
-	  			$addCurrency = addCurrency($conn1, $name, $short_name, $rate);
-	  			
-	  			if($addCurrency){
-		  			echo "New currency added!";
-	  			}else{
-		  			echo "Failed to add!";
-	  			}
-	  			
-  			}
-  			
-  		?>
         
         
 
