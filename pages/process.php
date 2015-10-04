@@ -118,6 +118,37 @@ function viewOrderList($conn, $id){
 	return $result;
 }
 
+function viewOPT_STATUS($conn){
+	$sql="SELECT * FROM opt_status";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function addCustomer($conn, $name, $shortname, $mailaddress, $billaddress, $memo, $status){
+	$sql="INSERT INTO customers VALUES ('','$name','$shortname','$mailaddress','$billaddress','$memo','$status')";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function editCustomer($conn, $id){
+	$sql="SELECT * FROM customers WHERE id='$id'";
+	$result=mysqli_query($conn,$sql);
+	return $result;
+}
+
+function listCustomers($conn){
+	$sql="SELECT * FROM customers";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function saveEditCustomer($conn, $name, $shortname, $mailaddress, $billaddress, $memo, $status, $id){
+		$sql="UPDATE customers SET name='$name', shortname='$shortname', mailaddress='$mailaddress', billaddress='$billaddress', memo='$memo', status='$status' WHERE id=$id";
+		$result=mysqli_query($conn, $sql);
+		return $result;
+}
+
+
 
 
 

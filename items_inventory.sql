@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 04, 2015 at 08:13 AM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Host: 127.0.0.1
+-- Generation Time: Oct 04, 2015 at 04:12 PM
+-- Server version: 5.5.39
+-- PHP Version: 5.4.31
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -22,11 +23,35 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customers`
+--
+
+CREATE TABLE IF NOT EXISTS `customers` (
+`id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `shortname` varchar(25) NOT NULL,
+  `mailaddress` varchar(50) NOT NULL,
+  `billaddress` varchar(50) NOT NULL,
+  `memo` varchar(100) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `shortname`, `mailaddress`, `billaddress`, `memo`, `status`) VALUES
+(1, 'name', 'shortname', 'mailaddress', 'billaddress', 'memo', 1),
+(2, 'Michael', 'JM', 'Kalentong', 'Kalentong', 'Memo', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `item`
 --
 
 CREATE TABLE IF NOT EXISTS `item` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+`id` int(10) NOT NULL,
   `item_code` varchar(10) NOT NULL,
   `name` varchar(10) NOT NULL,
   `description` varchar(100) NOT NULL,
@@ -36,8 +61,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `unit_measure` int(1) NOT NULL,
   `dimension` varchar(100) NOT NULL,
   `image` varchar(200) NOT NULL,
-  `item_status` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `item_status` int(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
@@ -55,19 +79,13 @@ INSERT INTO `item` (`id`, `item_code`, `name`, `description`, `category`, `tax_t
 --
 
 CREATE TABLE IF NOT EXISTS `item_status` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `code` int(11) NOT NULL,
   `location` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `value` int(11) NOT NULL,
-  `date` date NOT NULL,
-  PRIMARY KEY (`id`)
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `item_status`
---
-
 
 -- --------------------------------------------------------
 
@@ -76,14 +94,13 @@ CREATE TABLE IF NOT EXISTS `item_status` (
 --
 
 CREATE TABLE IF NOT EXISTS `list_order_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `item_id` int(10) NOT NULL,
   `quantity` int(11) NOT NULL,
   `delivery_date` date NOT NULL,
   `pbt` int(11) NOT NULL,
   `memo` varchar(100) NOT NULL,
-  `p_o_reference` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `p_o_reference` int(11) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
@@ -102,17 +119,11 @@ INSERT INTO `list_order_items` (`id`, `item_id`, `quantity`, `delivery_date`, `p
 --
 
 CREATE TABLE IF NOT EXISTS `opt_category` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
+`id` int(2) NOT NULL,
   `name` varchar(30) NOT NULL,
   `item_tax_type` varchar(30) NOT NULL,
-  `unit_of_measure` int(2) NOT NULL,
-  PRIMARY KEY (`id`)
+  `unit_of_measure` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `opt_category`
---
-
 
 -- --------------------------------------------------------
 
@@ -121,21 +132,20 @@ CREATE TABLE IF NOT EXISTS `opt_category` (
 --
 
 CREATE TABLE IF NOT EXISTS `opt_currency` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
+`id` int(2) NOT NULL,
   `name` varchar(10) NOT NULL,
   `short_name` varchar(3) NOT NULL,
-  `rate` decimal(10,0) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `rate` decimal(10,0) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `opt_currency`
 --
 
 INSERT INTO `opt_currency` (`id`, `name`, `short_name`, `rate`) VALUES
-(1, 'US Dollars', 'USD', 46),
-(2, 'Arab', 'AED', 13),
-(3, 'Peso', 'PHP', 1);
+(1, 'US Dollars', 'USD', '46'),
+(2, 'Arab', 'AED', '13'),
+(3, 'Peso', 'PHP', '1');
 
 -- --------------------------------------------------------
 
@@ -144,7 +154,7 @@ INSERT INTO `opt_currency` (`id`, `name`, `short_name`, `rate`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `opt_inventory_location` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `code` varchar(5) NOT NULL,
   `name` varchar(50) NOT NULL,
   `contact` varchar(50) NOT NULL,
@@ -152,14 +162,8 @@ CREATE TABLE IF NOT EXISTS `opt_inventory_location` (
   `phone` int(20) NOT NULL,
   `phone2` int(20) NOT NULL,
   `fax` int(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `opt_inventory_location`
---
-
 
 -- --------------------------------------------------------
 
@@ -172,11 +176,6 @@ CREATE TABLE IF NOT EXISTS `opt_item_status` (
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `opt_item_status`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -184,15 +183,9 @@ CREATE TABLE IF NOT EXISTS `opt_item_status` (
 --
 
 CREATE TABLE IF NOT EXISTS `opt_item_type` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(2) NOT NULL,
+  `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `opt_item_type`
---
-
 
 -- --------------------------------------------------------
 
@@ -202,14 +195,8 @@ CREATE TABLE IF NOT EXISTS `opt_item_type` (
 
 CREATE TABLE IF NOT EXISTS `opt_order_status` (
   `id` int(2) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `opt_order_status`
---
-
 
 -- --------------------------------------------------------
 
@@ -218,9 +205,8 @@ CREATE TABLE IF NOT EXISTS `opt_order_status` (
 --
 
 CREATE TABLE IF NOT EXISTS `opt_status` (
-  `id` int(1) NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(1) NOT NULL,
+  `name` varchar(10) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -238,15 +224,9 @@ INSERT INTO `opt_status` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `opt_tax_type` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(2) NOT NULL,
+  `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `opt_tax_type`
---
-
 
 -- --------------------------------------------------------
 
@@ -258,14 +238,8 @@ CREATE TABLE IF NOT EXISTS `opt_unit_of_measure` (
   `id` int(1) NOT NULL,
   `name` int(1) NOT NULL,
   `description` varchar(50) NOT NULL,
-  `dp` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `dp` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `opt_unit_of_measure`
---
-
 
 -- --------------------------------------------------------
 
@@ -274,14 +248,13 @@ CREATE TABLE IF NOT EXISTS `opt_unit_of_measure` (
 --
 
 CREATE TABLE IF NOT EXISTS `purchase_order_entry` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `supplier` int(10) NOT NULL,
   `order_date` date NOT NULL,
   `currency` int(2) NOT NULL,
   `receive_into` int(2) NOT NULL,
   `deliver_to` varchar(100) NOT NULL,
-  `order_status` int(2) NOT NULL,
-  PRIMARY KEY (`id`)
+  `order_status` int(2) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=82 ;
 
 --
@@ -299,9 +272,8 @@ INSERT INTO `purchase_order_entry` (`id`, `supplier`, `order_date`, `currency`, 
 --
 
 CREATE TABLE IF NOT EXISTS `sample` (
-  `id` int(2) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `haha` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(2) unsigned zerofill NOT NULL,
+  `haha` varchar(100) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -318,7 +290,7 @@ INSERT INTO `sample` (`id`, `haha`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `supplier` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+`id` int(10) NOT NULL,
   `name` varchar(10) NOT NULL,
   `short_name` varchar(10) NOT NULL,
   `website` varchar(30) NOT NULL,
@@ -330,8 +302,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `memo` varchar(500) NOT NULL,
   `status` int(1) NOT NULL,
   `phone` int(15) NOT NULL,
-  `fax` int(15) NOT NULL,
-  PRIMARY KEY (`id`)
+  `fax` int(15) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
@@ -352,10 +323,9 @@ INSERT INTO `supplier` (`id`, `name`, `short_name`, `website`, `currency`, `bank
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+`id` int(10) NOT NULL,
   `name` varchar(10) NOT NULL,
-  `password` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
+  `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -364,3 +334,181 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `name`, `password`) VALUES
 (1, 'admin', '21232f297a');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `item`
+--
+ALTER TABLE `item`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `item_status`
+--
+ALTER TABLE `item_status`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `list_order_items`
+--
+ALTER TABLE `list_order_items`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `opt_category`
+--
+ALTER TABLE `opt_category`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `opt_currency`
+--
+ALTER TABLE `opt_currency`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `opt_inventory_location`
+--
+ALTER TABLE `opt_inventory_location`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `opt_item_type`
+--
+ALTER TABLE `opt_item_type`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `opt_order_status`
+--
+ALTER TABLE `opt_order_status`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `opt_status`
+--
+ALTER TABLE `opt_status`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `opt_tax_type`
+--
+ALTER TABLE `opt_tax_type`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `opt_unit_of_measure`
+--
+ALTER TABLE `opt_unit_of_measure`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `purchase_order_entry`
+--
+ALTER TABLE `purchase_order_entry`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sample`
+--
+ALTER TABLE `sample`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `item`
+--
+ALTER TABLE `item`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `item_status`
+--
+ALTER TABLE `item_status`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `list_order_items`
+--
+ALTER TABLE `list_order_items`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT for table `opt_category`
+--
+ALTER TABLE `opt_category`
+MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `opt_currency`
+--
+ALTER TABLE `opt_currency`
+MODIFY `id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `opt_inventory_location`
+--
+ALTER TABLE `opt_inventory_location`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `opt_item_type`
+--
+ALTER TABLE `opt_item_type`
+MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `opt_status`
+--
+ALTER TABLE `opt_status`
+MODIFY `id` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `opt_tax_type`
+--
+ALTER TABLE `opt_tax_type`
+MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `purchase_order_entry`
+--
+ALTER TABLE `purchase_order_entry`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=82;
+--
+-- AUTO_INCREMENT for table `sample`
+--
+ALTER TABLE `sample`
+MODIFY `id` int(2) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
