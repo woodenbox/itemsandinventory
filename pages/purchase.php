@@ -1,12 +1,7 @@
 <?php
        
-      
-        
         include('process.php');
         $conn1 = connect();
-        
-        
-        
         
         $result = viewCurrencies($conn1);
         $result2 = viewPurchaseOrderEntry($conn1);

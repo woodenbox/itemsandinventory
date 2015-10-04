@@ -1,9 +1,5 @@
       <?php
 
-    
-        
-       // echo "<script type='text/javascript'>alert('".$_SESSION['supplier']."');</script>";
-        
         include('process.php');
         
         

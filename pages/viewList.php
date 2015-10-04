@@ -1,14 +1,9 @@
 <?php
        
-      
-        
         include('process.php');
         $conn1 = connect();
         
         $viewOrderList=vieworderList($conn1, $_GET["id"]);
-        
-    
-        
         
         ?>
         

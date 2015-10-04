@@ -29,7 +29,6 @@ function editSuppliers($conn, $id){
 	return mysqli_query($conn, $sql);
 }
 
-
 function addCurrency($conn, $name, $short_name, $rate){
 	$sql="INSERT INTO opt_currency VALUES('', '$name', '$short_name', '$rate')";
 	$result=mysqli_query($conn, $sql);
