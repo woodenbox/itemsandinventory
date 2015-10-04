@@ -5,6 +5,11 @@
   			$conn1 = connect();
   			
   			$result = viewCurrencies($conn1);
+
+            if (isset($_GET['id'])) {
+                deletecurrency($conn1, $_GET['id']);
+                header('Location: currency.php');
+            }
   			
   			if(isset($_POST['add'])){
 	  			
@@ -395,6 +400,7 @@
         		<td>Name</td>
         		<td>Short name</td>
         		<td>Rate</td>
+                <td>Delete</td>
         	</tr>
         	
         	<?php
@@ -405,6 +411,7 @@
         		<td><?=$row['name']?></td>
         		<td><?=$row['short_name']?></td>
         		<td><?=$row['rate']?></td>
+                <td><a href='<?php echo "currency.php?id=".$row['id']?>'><img src="../images/delete.png" width="3%"></a></td>
         	</tr>
     		<?php
     		}

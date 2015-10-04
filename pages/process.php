@@ -1,4 +1,5 @@
 <?php
+
 function connect(){
 	include('db_config.php');
 	$conn = mysqli_connect($host, $username, $password, $dbname);
@@ -38,6 +39,12 @@ function viewCurrencies($conn){
 	$sql="SELECT * FROM opt_currency";
 	$result=mysqli_query($conn, $sql);
 	return $result;	
+}
+
+function deletecurrency($conn, $id){
+	$sql="DELETE FROM opt_currency WHERE id=$id";
+	$result=mysqli_query($conn,$sql);
+	return $result;
 }
 
 function addItems($conn, $item_code, $name, $description, $category, $tax_type, $item_type, $unit_measure, $dimension, $item_status){
