@@ -2,7 +2,6 @@
 
         include('process.php');
         
-        
         $conn1 = connect();
         $result = viewItems($conn1);
         

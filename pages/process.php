@@ -1,5 +1,4 @@
 <?php
-
 function connect(){
 	include('db_config.php');
 	$conn = mysqli_connect($host, $username, $password, $dbname);

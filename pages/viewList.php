@@ -1,5 +1,4 @@
 <?php
-       
         include('process.php');
         $conn1 = connect();
         
