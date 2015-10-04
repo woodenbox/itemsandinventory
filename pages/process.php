@@ -54,11 +54,7 @@ function viewItems($conn){
 	return $result;	
 }
 
-function addPurchaseOrderEntry($conn, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status){
-	$sql="INSERT INTO purchase_order_entry VALUES('', '$supplier', '$order_date', '$currency', '$receive_into', '$deliver_to', '$order_status')";
-	$result=mysqli_query($conn, $sql);
-	return $result;	
-}
+
 
 
 function addItemsPOE($conn, $item_id, $id){
@@ -75,11 +71,56 @@ function addItemsPOE($conn, $item_id, $id){
 		}
 	
 
+		
+		
+//Purchase Order Entry		
+		
+function addPurchaseOrderEntry($conn, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status){
+	$sql="INSERT INTO purchase_order_entry VALUES('', '$supplier', '$order_date', '$currency', '$receive_into', '$deliver_to', '$order_status')";
+	$result=mysqli_query($conn, $sql);
+	return $result;	
+}
+
+
+		
 function viewPurchaseOrderEntry($conn){
 	$sql="SELECT * FROM purchase_order_entry";
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }
+
+function getPurchaseId($conn){
+	$sql="SELECT id FROM purchase_order_entry ORDER BY id DESC LIMIT 1";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function addListOrderItems($conn, $item_id, $quantity, $delivery_date, $pbt, $memo, $p_o_reference){
+	$sql="INSERT INTO list_order_items VALUES('', '$item_id', '$quantity', '$delivery_date', '$pbt', '$memo', '$p_o_reference')";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function cancelOrderEntry($conn, $purchaseId){
+	$sql="DELETE FROM purchase_order_entry WHERE id='$purchaseId'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function viewOrderList($conn, $id){
+	$sql="SELECT * FROM list_order_items WHERE p_o_reference='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+
+
+
+
+
+
+
+//////
 
 
 

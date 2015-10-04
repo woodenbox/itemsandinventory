@@ -1,20 +1,33 @@
 <?php
-        session_start();
+       
+      
         
         include('process.php');
         $conn1 = connect();
+        
+        
+        
+        
         $result = viewCurrencies($conn1);
         $result2 = viewPurchaseOrderEntry($conn1);
       
+        
         if(isset($_POST['add'])){
 	        
-	        $_SESSION['supplier'] = $_POST['supplier'];
-	        $_SESSION['order_date'] = $_POST['order_date'];
-	        $_SESSION['currency'] = $_POST['currency'];
-	        $_SESSION['receive_into'] = $_POST['receive_into'];
-	        $_SESSION['deliver_to'] = $_POST['deliver_to'];
-	        $_SESSION['order_status'] = $_POST['order_status'];
 	       
+	   		
+	   		$supplier=$_POST["supplier"];
+	    	$order_date=$_POST["order_date"];
+	    	$currency=$_POST["currency"];
+	    	$receive_into=$_POST["receive_into"];
+	    	$deliver_to=$_POST["deliver_to"];
+	    	$order_status=$_POST["order_status"];
+	    	
+	       
+	    	$addPurchaseOrderEntry=addPurchaseOrderEntry($conn1, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status);
+	    	
+	    	
+	    	
 	        header('Location: purchase2.php');
 
 
@@ -378,10 +391,49 @@
         <div id="page-wrapper">
             	
         
-    <form method="POST">    
+       
         
     	<legend><label>Purchase Order Entry</label></legend>
     
+    	
+    	<div class="table-responsive">
+         	<table class="table">
+         	
+         		<tr>
+         			<td>Supplier</td>
+         			<td>Order Date</td>
+         			<td>Currency</td>
+         			<td>Receive into</td>
+         			<td>Deliver to</td>
+         			<td>Order Status</td>
+         		</tr>
+         	
+         		<?php
+         			while($row=mysqli_fetch_assoc($result2)){
+         		?>
+         		
+         		<tr>
+         			<td><a href="viewList.php?id=<?=$row['id']?>"><?=$row['supplier']?></a></td>
+         			<td><?=$row['order_date']?></td>
+         			<td><?=$row['currency']?></td>
+         			<td><?=$row['receive_into']?></td>
+         			<td><?=$row['deliver_to']?></td>
+         			<td><?=$row['order_status']?></td>
+         		</tr>
+					
+         		<?php
+     			}
+         		
+         		?>         		
+         	
+         	</table>
+         </div>
+    	
+         
+         
+         
+    	<form method="POST"> 
+    	
         <label>Suppplier</label>
   		<select class="form-control" name="supplier">
    		       <option value="1">a</option>
@@ -395,12 +447,14 @@
         
         <label>Currency</label>
   		<select class="form-control" name="currency">
+  		
   		  <?php
   		  while($row=mysqli_fetch_assoc($result)){
 	  		  ?>
-   		       <option value="<?=$row['id']?>"><?=$row['id']?> - <?=$row['name']?></option>
+   		       <option value="<?=$row['id']?>"> <?=$row['id']?> - <?=$row['name']?></option>
     	   <?php  
 	       } ?>
+	       
         </select> 
         
         
@@ -421,12 +475,12 @@
     	       <option value="2">b</option>
         </select>
         <hr>
-        <?php
-        while($row=mysqli_fetch_assoc($result2)){
-             $familylover = $row['id'];
-	        }
-        ?>
+        
+        
+   
+        
         <input type="submit" name="add" value="Proceed to Step 2">
+        
         
         
     </form>
