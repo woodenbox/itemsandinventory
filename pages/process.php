@@ -84,7 +84,8 @@ function getSuppliers($conn){
 	$sql="SELECT * FROM supplier";
 	$result=mysqli_query($conn, $sql);
 	return $result;
-}		
+}
+		
 function addPurchaseOrderEntry($conn, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status){
 	$sql="INSERT INTO purchase_order_entry VALUES('', '$supplier', '$order_date', '$currency', '$receive_into', '$deliver_to', '$order_status')";
 	$result=mysqli_query($conn, $sql);
@@ -144,6 +145,28 @@ function removePurchaseOrder($conn, $id){
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }
+
+function showOrderItemsDuringInput($conn){
+	$sql="SELECT id FROM purchase_order_entry ORDER BY id DESC LIMIT 1";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function showList($conn, $id){
+	$sql="SELECT * FROM list_order_items WHERE p_o_reference='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;	
+}
+
+function getItems($conn){
+	$sql="SELECT * FROM item";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+
+
+
 
 //fetchtesting
 
