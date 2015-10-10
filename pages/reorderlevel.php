@@ -5,7 +5,12 @@
     $connect = connect();
        	
     if(isset($_POST['add'])){
-    	addreorderlevel($connect, $_POST['reorder']);
+        $checkorderlevel = mysqli_fetch_assoc(checkorderlevel($connect, $_POST['reorder']['item'], $_POST['reorder']['location']));
+        if($checkorderlevel['1']==1){
+            echo "<script>alert('Item and location is already set');</script>";
+        } else {
+            addreorderlevel($connect, $_POST['reorder']);
+        }
         echo "<script>window.location = 'reorderlevel.php'</script>";
     }
 ?>

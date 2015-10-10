@@ -10,6 +10,11 @@ function addreorderlevel($connect, $test){
 	return mysqli_query($connect, $sql);
 }
 
+function checkorderlevel($connect, $item, $location){
+	$sql="SELECT 1 FROM reorder_level WHERE item = '$item' && location='$location'";
+	return mysqli_query($connect, $sql);
+}
+
 function connect(){
 	include('db_config.php');
 	$conn = mysqli_connect($host, $username, $password, $dbname);
