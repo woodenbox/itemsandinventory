@@ -1,5 +1,20 @@
 <?php
 
+function listreorderlevels($connect){
+	$sql="SELECT * FROM reorder_level";
+	return mysqli_query($connect, $sql);
+}
+
+function addreorderlevel($connect, $test){
+	$sql="INSERT INTO reorder_level VALUES ('s','".implode("','", $test)."')";
+	return mysqli_query($connect, $sql);
+}
+
+function checkorderlevel($connect, $item, $location){
+	$sql="SELECT 1 FROM reorder_level WHERE item = '$item' && location='$location'";
+	return mysqli_query($connect, $sql);
+}
+
 function connect(){
 	include('db_config.php');
 	$conn = mysqli_connect($host, $username, $password, $dbname);
