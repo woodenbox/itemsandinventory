@@ -247,6 +247,31 @@ function editItemCategory($conn, $id, $name, $tax_type, $unit_measure){
     return $result;
 }
 
+function viewInventoryLocation($conn){
+    $sql="SELECT * FROM opt_inventory_location";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+function viewSpecificInventoryLocation($conn, $id){
+    $sql="SELECT * FROM opt_inventory_location where id='$id'";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+
+function addInventoryLocation($conn, $code, $name, $contact, $address, $phone1, $phone2, $fax, $email){
+	$sql="INSERT INTO opt_inventory_location VALUES('', '$code', '$name', '$contact', '$address', '$phone1', '$phone2', '$fax', '$email')";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function editInventoryLocation($conn, $id, $name, $contact, $address, $phone1, $phone2, $fax, $email){
+    $sql="UPDATE opt_inventory_location set name='$name', contact='$contact', address='$address', phone='$phone1', phone2='$phone2', fax='$fax', email='$email' where id='$id'";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+    }
+
 
 
 

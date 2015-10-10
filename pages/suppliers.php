@@ -87,7 +87,7 @@
          	</table>
          </div>
         
-        
+         <hr>
         
          <legend><label>Supplier Information</label></legend>    	
         
@@ -153,7 +153,7 @@
          <input type="text" class="form-control" name="fax">
         
          
-         <input type="submit" class="btn btn-success" value="Add" name="add">
+         <input type="submit" class="btn btn-success" value="Add Supplier" name="add">
         
         </form>
         

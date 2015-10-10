@@ -83,7 +83,7 @@
                     <td><?=$row['status']?></td>
                     <td><?=$row['phone']?></td>
                     <td><?=$row['fax']?></td>
-                     <td><a href="<?php echo "suppliersedit.php?id=".$row['id']?>"><img src="../images/edit.png" width="100%"></a></td>
+                     <td><a href="<?php echo "suppliersedit.php?id=".$row['id']?>"><img src="../images/edit.png" width="25%"></a></td>
                 </tr>
                 
                 <?php
