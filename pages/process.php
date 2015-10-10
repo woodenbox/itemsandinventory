@@ -1,12 +1,27 @@
 <?php
 
+function checkfic($connect, $ean){
+	$sql="SELECT 1 FROM foreign_item_codes WHERE ean = '$ean'";
+	return mysqli_query($connect, $sql);
+}
+
+function addfic($connect, $fic){
+	$sql="INSERT INTO foreign_item_codes VALUES ('', '".implode("','", $fic)."')";
+	return mysqli_query($connect, $sql);
+}
+
+function listitems($connect){
+	$sql="SELECT * FROM item";
+	return mysqli_query($connect, $sql);
+}
+
 function listreorderlevels($connect){
 	$sql="SELECT * FROM reorder_level";
 	return mysqli_query($connect, $sql);
 }
 
 function addreorderlevel($connect, $test){
-	$sql="INSERT INTO reorder_level VALUES ('s','".implode("','", $test)."')";
+	$sql="INSERT INTO reorder_level VALUES ('','".implode("','", $test)."')";
 	return mysqli_query($connect, $sql);
 }
 
