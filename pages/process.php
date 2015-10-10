@@ -145,6 +145,8 @@ function removePurchaseOrder($conn, $id){
 	return $result;
 }
 
+//fetchtesting
+
 //purchase pricing
 
 function addPurchasePricing($conn, $item_code, $supplier, $price, $supplier_unit_measure, $conversion_factor, $supplier_code){
