@@ -1,4 +1,40 @@
 <?php
+function removeskitem($connect, $id){
+	$sql="DELETE FROM sales_kit_items WHERE id = $id";
+	return mysqli_query($connect, $sql);
+}
+function listski($connect, $id){
+	$sql="SELECT * FROM sales_kit_items WHERE reference = $id";
+	return mysqli_query($connect, $sql);
+}
+function addski($connect, $item, $id){
+	$sql="INSERT INTO sales_kit_items VALUES ('','".implode("','", $item)."','".$id."')";
+	return mysqli_query($connect, $sql);
+}
+
+function getskid($connect){
+	$sql="SELECT id FROM sales_kits ORDER BY id DESC LIMIT 1";
+	return mysqli_query($connect, $sql);
+}
+function checkski($connect, $name, $reference){
+	$sql="SELECT 1 FROM sales_kit_items WHERE item = '$name' && reference = '$reference'";
+	return mysqli_query($connect, $sql);
+}
+
+function checksk($connect, $name){
+	$sql="SELECT 1 FROM sales_kits WHERE name = '$name'";
+	return mysqli_query($connect, $sql);
+}
+
+function addsk($connect, $sk){
+	$sql="INSERT INTO sales_kits VALUES ('','".implode("','", $sk)."')";
+	return mysqli_query($connect, $sql);
+}
+
+function listsaleskits($connect){
+	$sql="SELECT * FROM sales_kits";
+	return mysqli_query($connect, $sql);
+}
 
 function checkfic($connect, $ean){
 	$sql="SELECT 1 FROM foreign_item_codes WHERE ean = '$ean'";
