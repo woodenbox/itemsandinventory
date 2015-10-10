@@ -309,6 +309,7 @@
             								<li><a href="#">Inventory Movement Types</a></li>
             								<li><a href="#">Reorder Levels</a></li>
             								<li><a href="currency.php">Currencies</a></li>
+            								<li><a href="unitofmeasure.php">Unit of Measure</a></li>
           								</ul>
         						</li>
         						

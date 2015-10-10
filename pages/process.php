@@ -295,6 +295,29 @@ function editInventoryLocation($conn, $id, $name, $contact, $address, $phone1, $
     return $result;
     }
 
+function viewUnitOfMeasure($conn){
+    $sql="SELECT * FROM opt_unit_of_measure";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+function viewSpecificUnitOfMeasure($conn, $id){
+    $sql="SELECT * FROM opt_unit_of_measure where id='$id'";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+function addUnitOfMeasure($conn, $name, $description, $dp){
+    $sql="INSERT INTO opt_unit_of_measure VALUES('', '$name', '$description', '$dp')";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+function editUnitOfMeasure($conn, $id, $name, $description, $dp){
+    $sql="UPDATE opt_unit_of_measure set name='$name', description='$description', dp='$dp' where id='$id'";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
 
 
 

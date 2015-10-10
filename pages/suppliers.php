@@ -77,7 +77,7 @@
          			<td><?=$row['status']?></td>
          			<td><?=$row['phone']?></td>
          			<td><?=$row['fax']?></td>
-                    <td><a href="<?php echo "suppliersedit.php?id=".$row['id']?>"><img src="../images/edit.png" width="25%"></a></td>
+                    <td><a class="glyphicon glyphicon-pencil" href="<?php echo "suppliersedit.php?id=".$row['id']?>"></a></td>
          		</tr>
          		
          		<?php

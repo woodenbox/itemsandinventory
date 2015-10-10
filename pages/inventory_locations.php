@@ -43,15 +43,15 @@
       <div class="table-responsive">
          	<table class="table table-hover"  width="100%" style="margin:auto">
          		<tr>
-         			<td>Location Code</td>
-         			<td>Location Name</td>
-         			<td>Contact Person</td>
-         			<td>Address</td>
-         			<td>Phone</td>
-         			<td>Secondary Phone</td>
-         			<td>Fax Number</td>
-         			<td>E-Mail</td>
-                    <td>Edit</td>
+         			<th>Location Code</th>
+         			<th>Location Name</th>
+         			<th>Contact Person</th>
+         			<th>Address</th>
+         			<th>Phone</th>
+         			<th>Secondary Phone</th>
+         			<th>Fax Number</th>
+         			<th>E-Mail</th>
+                    <th>Edit</th>
          		</tr>
          		
          		<?php
@@ -67,7 +67,7 @@
          			<td><?=$row['phone2']?></td>
          			<td><?=$row['fax']?></td>
          			<td><?=$row['email']?></td>
-                    <td><a href="<?php echo "edit_inventory_location.php?id=".$row['id']?>"><img src="../images/edit.png" width="25%"></a></td>
+                    <td><a class="glyphicon glyphicon-pencil" href="<?php echo "edit_inventory_location.php?id=".$row['id']?>"></a></td>
          		</tr>
          		
          		<?php

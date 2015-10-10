@@ -1,6 +1,7 @@
 <?php
         include('process.php');
         $conn1 = connect();
+        $result2=viewUnitOfMeasure($conn1);
         
         if(isset($_POST['add'])){
 	        
@@ -8,15 +9,12 @@
 	        $taxtype=$_POST['taxtype'];
 	        $unit=$_POST['unit'];
 	        
-	       if((int)$unit){
 	    	addItemCategory($conn1, $name, $taxtype, $unit);
 	    	echo "<script>alert('New Category Added');</script>"; 
 	            
 	    	header('Location: inventory_categories.php');
-    	   }
-    	   else{
-	    	echo "<script>alert('Please Enter an Integer Value in Unit of Measure');</script>";     
-    	   } 
+
+
         }
         include('header.php');
         
@@ -35,22 +33,30 @@
          <input type="text" class="form-control" name="name">
         </div> 
         
+
         <label>Item Tax Type</label>
         <select class="form-control" name="taxtype">
-   		       <option value="VAT 5%">VAT 5%</option>
-    	       <option value="VAT 14%">VAT 14%</option>
-    	       <option value="VAT 20%">VAT 20%</option>
-    	       <option value="No Tax/Duty Free">No Tax/Duty Free</option>
+   		  <option value="a">Wala pa to</option>
         </select> 
-        
+
+
         <div class="form-group">
          <label>Unit of Measure(Grams)</label>
-         <input type="text" class="form-control" name="unit">
+          <select class="form-control" name="unit">
+      <?php
+       while($row2=mysqli_fetch_assoc($result2)){
+      ?>
+         <option value="<?=$row2['id']?>"> [<?=$row2['id']?>] - <?=$row2['name']?> - <?=$row2['description']?> </option>
+      <?php
+       }
+      ?>   
+         </select>
         </div> 
+  
         
 
     	
-        <input type="submit" name="add" value="Add New Category">
+        <input type="submit" name="add" value="Add New Item Category">
     	
         </form>
         
