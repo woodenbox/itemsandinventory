@@ -2,10 +2,23 @@
         include('process.php');
         $conn1 = connect();
         
+        $viewPurchaseOrderEntry = viewPurchaseOrderEntry($conn1);
+        echo "<script>alert('".$_GET['id']."');</script>";  
+        $processPurchaseOrder=mysqli_fetch_assoc(processPurchaseOrder($conn1, $_GET['id']));
         $viewOrderList=vieworderList($conn1, $_GET["id"]);
+
+
         
-        $viewSupplier = viewSupplier($conn1, $_GET["id"]);
-        $supplier = mysqli_fetch_assoc($viewSupplier);
+
+            $removePurchaseOrder=removePurchaseOrder($conn1, $_GET["id"]);       
+
+            if($removePurchaseOrder){
+                echo "Removed!";
+            }
+
+        
+
+        
         ?>
         
 
@@ -336,9 +349,11 @@
         						<li>
                            			<a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
                         		</li>
-        						<li>
+                        		
+                        		<li>
                            			<a href="outstanding.php"><i class="fa-fw"></i> View Outstanding Purchase Orders</a>
                         		</li>
+        						
         					
                                 
                             </ul>
@@ -367,44 +382,49 @@
         
        
         
-    	<legend><label>List Order Items <?=$supplier['supplier']?></label></legend>
-    	
-    	<label>Supplier: <?=$supplier['supplier']?></label>
-    
-    	
-    	<div class="table-responsive">
-         	<table class="table">
-         	
-         		<tr>
-         			<td>Item Id</td>
-         			<td>Quantity</td>
-         			<td>Delivery Date</td>
-         			<td>Price</td>
-         			<td>Memo</td>
-         		</tr>
-         	
-         		<?php
-         			while($row=mysqli_fetch_assoc($viewOrderList)){
-         		?>
-         		
-         		<tr>
-         			<td><?=$row['item_id']?></td>
-         			<td><?=$row['quantity']?></td>
-         			<td><?=$row['delivery_date']?></td>
-         			<td><?=$row['pbt']?></td>
-         			<td><?=$row['memo']?></td>
-         		</tr>
-					
-         		<?php
-     			}
-         		
-         		?>         		
-         	
-         	</table>
-         </div>
-    	
-         
-         
+    	<legend><label>Process Purchase Orders</label></legend>  
+        <form method="POST">
+            <label>Supplier:  </label><label><?=$processPurchaseOrder['supplier']?></label></br>
+            <label>Date of Order:</label><label><?=$processPurchaseOrder['order_date']?></label></br>
+            <label>Order Curreny: </label><label><?=$processPurchaseOrder['currency']?></label></br>
+            <label>Receive Into:</label><label><?=$processPurchaseOrder['receive_into']?></label></br>
+            <label>Receive To: </label><label><?=$processPurchaseOrder['deliver_to']?></label></br>
+            <label>Status: </label><label><?=$processPurchaseOrder['order_status']?></label></br>
+            <div class="table-responsive">
+                <table class="table">
+                
+                    <tr>
+                        <td>Item Id</td>
+                        <td>Quantity</td>
+                        <td>Delivery Date</td>
+                        <td>Price</td>
+                        <td>Memo</td>
+                        <td>Remove</td>
+                    </tr>
+                
+                    <?php
+                        while($row=mysqli_fetch_assoc($viewOrderList)){
+                    ?>
+                    
+                    <tr>
+                        <td><?=$row['item_id']?></td>
+                        <td><?=$row['quantity']?></td>
+                        <td><?=$row['delivery_date']?></td>
+                        <td><?=$row['pbt']?></td>
+                        <td><?=$row['memo']?></td>
+                        <td><a href="viewpurchaseorder.php?id=<?=$row["id"]?>">Delete</a></td>
+                    </tr>
+                        
+                    <?php
+                    }
+                    
+                    ?>              
+                
+                </table>
+             </div>
+        
+            <input type="submit" class="btn btn-success" value="Save" name="save">
+        </form>
          
     	
         

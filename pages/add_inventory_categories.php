@@ -2,10 +2,30 @@
         include('process.php');
         $conn1 = connect();
         
-        $viewOrderList=vieworderList($conn1, $_GET["id"]);
+        if(isset($_POST['add'])){
+	        
+	        $name=$_POST['name'];
+	        $taxtype=$_POST['taxtype'];
+	        $unit=$_POST['unit'];
+	        
+	       if((int)$unit){
+	    	addItemCategory($conn1, $name, $taxtype, $unit);
+	    	echo "<script>alert('New Category Added');</script>"; 
+	            
+	    	header('Location: inventory_categories.php');
+    	   }
+    	   else{
+	    	echo "<script>alert('Please Enter an Integer Value in Unit of Measure');</script>";     
+    	   }
+	    	
+	    	
+	    	
+
+
+
+	        
+        }
         
-        $viewSupplier = viewSupplier($conn1, $_GET["id"]);
-        $supplier = mysqli_fetch_assoc($viewSupplier);
         ?>
         
 
@@ -336,9 +356,7 @@
         						<li>
                            			<a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
                         		</li>
-        						<li>
-                           			<a href="outstanding.php"><i class="fa-fw"></i> View Outstanding Purchase Orders</a>
-                        		</li>
+        						
         					
                                 
                             </ul>
@@ -367,46 +385,32 @@
         
        
         
-    	<legend><label>List Order Items <?=$supplier['supplier']?></label></legend>
+    	<legend><label>Inventory Categories</label></legend>
+    	<form method="POST"> 
     	
-    	<label>Supplier: <?=$supplier['supplier']?></label>
-    
+        <div class="form-group">
+         <label>Category Name</label>
+         <input type="text" class="form-control" name="name">
+        </div> 
+        
+        <label>Item Tax Type</label>
+        <select class="form-control" name="taxtype">
+   		       <option value="VAT 5%">VAT 5%</option>
+    	       <option value="VAT 14%">VAT 14%</option>
+    	       <option value="VAT 20%">VAT 20%</option>
+    	       <option value="No Tax/Duty Free">No Tax/Duty Free</option>
+        </select> 
+        
+        <div class="form-group">
+         <label>Unit of Measure(Grams)</label>
+         <input type="text" class="form-control" name="unit">
+        </div> 
+        
+
     	
-    	<div class="table-responsive">
-         	<table class="table">
-         	
-         		<tr>
-         			<td>Item Id</td>
-         			<td>Quantity</td>
-         			<td>Delivery Date</td>
-         			<td>Price</td>
-         			<td>Memo</td>
-         		</tr>
-         	
-         		<?php
-         			while($row=mysqli_fetch_assoc($viewOrderList)){
-         		?>
-         		
-         		<tr>
-         			<td><?=$row['item_id']?></td>
-         			<td><?=$row['quantity']?></td>
-         			<td><?=$row['delivery_date']?></td>
-         			<td><?=$row['pbt']?></td>
-         			<td><?=$row['memo']?></td>
-         		</tr>
-					
-         		<?php
-     			}
-         		
-         		?>         		
-         	
-         	</table>
-         </div>
+        <input type="submit" name="add" value="Add New Category">
     	
-         
-         
-         
-    	
+        </form>
         
         <!-- /#page-wrapper -->
 

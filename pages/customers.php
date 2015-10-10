@@ -274,6 +274,9 @@
                     			 <li>
                            			<a href="suppliers.php"><i class="fa-fw"></i> Suppliers</a>
                         		</li>
+                                <li>
+                                    <a href="customers.php"><i class="fa-fw"></i> Customers</a>
+                                </li>
                   				             
                                 <li class="dropdown">
         							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Transactions <span class="caret"></span></a>
@@ -340,7 +343,6 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        
         
         <?php
         	

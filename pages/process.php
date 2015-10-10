@@ -80,13 +80,28 @@ function addItemsPOE($conn, $item_id, $id){
 		
 //Purchase Order Entry		
 		
+function getSuppliers($conn){
+	$sql="SELECT * FROM supplier";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}		
 function addPurchaseOrderEntry($conn, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status){
 	$sql="INSERT INTO purchase_order_entry VALUES('', '$supplier', '$order_date', '$currency', '$receive_into', '$deliver_to', '$order_status')";
 	$result=mysqli_query($conn, $sql);
 	return $result;	
 }
 
+function processPurchaseOrder($conn, $id){
+	$sql="SELECT * FROM purchase_order_entry WHERE id=$id";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
 
+function getPOSupplier($conn, $id){
+	$sql="SELECT name FROM supplier WHERE id=$id";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
 		
 function viewPurchaseOrderEntry($conn){
 	$sql="SELECT * FROM purchase_order_entry";
@@ -118,6 +133,26 @@ function viewOrderList($conn, $id){
 	return $result;
 }
 
+function viewSupplier($conn, $id){
+	$sql="SELECT supplier FROM purchase_order_entry WHERE id='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function removePurchaseOrder($conn, $id){
+	$sql="DELETE FROM list_order_list WHERE id='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+
+
+
+
+
+
+
+
 function viewOPT_STATUS($conn){
 	$sql="SELECT * FROM opt_status";
 	$result=mysqli_query($conn, $sql);
@@ -147,6 +182,32 @@ function saveEditCustomer($conn, $name, $shortname, $mailaddress, $billaddress, 
 		$result=mysqli_query($conn, $sql);
 		return $result;
 }
+
+function addItemCategory($conn, $name, $tax_type, $unit_measure){
+    $sql="INSERT INTO opt_category VALUES('', '$name', '$tax_type', '$unit_measure')";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+function viewItemCategory($conn){
+    $sql="SELECT * FROM opt_category";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+function viewSpecificItemCategory($conn, $id){
+    $sql="SELECT * FROM opt_category where id='$id'";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+function editItemCategory($conn, $id, $name, $tax_type, $unit_measure){
+    $sql="UPDATE opt_category SET name='$name', item_tax_type='$tax_type', unit_of_measure='$unit_measure' WHERE id='$id'";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+
 
 
 

@@ -358,6 +358,10 @@
         						<li>
                            			<a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
                         		</li>
+                        		
+                        		<li>
+                           			<a href="outstanding.php"><i class="fa-fw"></i> View Outstanding Purchase Orders</a>
+                        		</li>
         						
         					
                                 
@@ -390,51 +394,20 @@
     	<legend><label>Purchase Order Entry</label></legend>
     
     	
-    	<div class="table-responsive">
-         	<table class="table">
-         	
-         		<tr>
-         			<td>Supplier</td>
-         			<td>Order Date</td>
-         			<td>Currency</td>
-         			<td>Receive into</td>
-         			<td>Deliver to</td>
-         			<td>Order Status</td>
-         		</tr>
-         	
-         		<?php
-         			while($row=mysqli_fetch_assoc($result2)){
-         		?>
-         		
-         		<tr>
-         			<td><a href="viewList.php?id=<?=$row['id']?>"><?=$row['supplier']?></a></td>
-         			<td><?=$row['order_date']?></td>
-         			<td><?=$row['currency']?></td>
-         			<td><?=$row['receive_into']?></td>
-         			<td><?=$row['deliver_to']?></td>
-         			<td><?=$row['order_status']?></td>
-         		</tr>
-					
-         		<?php
-     			}
-         		
-         		?>         		
-         	
-         	</table>
-         </div>
-    	
-         
-         
          
     	<form method="POST"> 
     	
         <label>Suppplier</label>
+        <?php $getSuppliers=getSuppliers($conn1);?>
   		<select class="form-control" name="supplier">
-   		       <option value="1">a</option>
-    	       <option value="2">b</option>
-    	       <option value="3">c</option>
-    	       <option value="4">d</option>
-        </select> 
+        <?php
+            while($row=mysqli_fetch_assoc($getSuppliers)){
+        ?>
+            <option value="<?=$row['name']?>"><?=$row['name']?></option>
+        <?php 
+            }
+        ?>
+   		 </select> 
         
         <label>Order Date</label>
          <input type="date" class="form-control" name="order_date">

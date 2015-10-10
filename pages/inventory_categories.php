@@ -1,11 +1,13 @@
 <?php
         include('process.php');
         $conn1 = connect();
+        $result=viewItemCategory($conn1);
         
-        $viewOrderList=vieworderList($conn1, $_GET["id"]);
+        if(isset($_POST['add'])){
+	     header('Location: add_inventory_categories.php');
+        }
         
-        $viewSupplier = viewSupplier($conn1, $_GET["id"]);
-        $supplier = mysqli_fetch_assoc($viewSupplier);
+        
         ?>
         
 
@@ -336,9 +338,7 @@
         						<li>
                            			<a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
                         		</li>
-        						<li>
-                           			<a href="outstanding.php"><i class="fa-fw"></i> View Outstanding Purchase Orders</a>
-                        		</li>
+        						
         					
                                 
                             </ul>
@@ -367,46 +367,35 @@
         
        
         
-    	<legend><label>List Order Items <?=$supplier['supplier']?></label></legend>
+    	<legend><label>Inventory Categories</label></legend>
+    	<form method="POST"> 
     	
-    	<label>Supplier: <?=$supplier['supplier']?></label>
-    
+    	<div>
+    	 <table border="1">
+    	  <tr>
+    	   <th>Category Name</th>
+    	   <th>Type of Tax</th>
+    	   <th>Unit of Measure(Grams)</th>
+    	   <th>Edit</th>
+    	  </tr>
+    	  
+      <?php
+       while($row=mysqli_fetch_assoc($result)){
+       ?>
+    	<tr>
+    	 <td><?=$row['name']?></td>
+    	 <td><?=$row['item_tax_type']?></td>
+    	 <td><?=$row['unit_of_measure']?></td>
+    	 <td><a href="edit_inventory_categories.php?id=<?=$row['id']?>" class="btn btn-primary glyphicon glyphicon-pencil" method="GET"></a></td>
+    	</tr>
+       <?php
+	   }
+       ?>
+    	 </table>
+    	</div>
+        <input type="submit" name="add" value="Add New Category">
     	
-    	<div class="table-responsive">
-         	<table class="table">
-         	
-         		<tr>
-         			<td>Item Id</td>
-         			<td>Quantity</td>
-         			<td>Delivery Date</td>
-         			<td>Price</td>
-         			<td>Memo</td>
-         		</tr>
-         	
-         		<?php
-         			while($row=mysqli_fetch_assoc($viewOrderList)){
-         		?>
-         		
-         		<tr>
-         			<td><?=$row['item_id']?></td>
-         			<td><?=$row['quantity']?></td>
-         			<td><?=$row['delivery_date']?></td>
-         			<td><?=$row['pbt']?></td>
-         			<td><?=$row['memo']?></td>
-         		</tr>
-					
-         		<?php
-     			}
-         		
-         		?>         		
-         	
-         	</table>
-         </div>
-    	
-         
-         
-         
-    	
+        </form>
         
         <!-- /#page-wrapper -->
 

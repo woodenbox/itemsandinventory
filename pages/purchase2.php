@@ -407,7 +407,7 @@
   		<?php
   		while($row=mysqli_fetch_assoc($result)){
   		?>
-   		       <option value="<?=$row['name']?>">[<?=$row['item_code']?>] - <?=$row['name']?></option>
+   		       <option value="<?=$row['id']?>">[<?=$row['item_code']?>] - <?=$row['name']?></option>
     	 <?php } 
     	       ?>
         </select> 
