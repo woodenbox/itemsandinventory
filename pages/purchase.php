@@ -53,7 +53,7 @@
    		 </select> 
         
         <label>Order Date</label>
-         <input type="date" class="form-control" name="order_date">
+         <input type="date" class="form-control" name="order_date" required>
         
         <label>Currency</label>
   		<select class="form-control" name="currency">
