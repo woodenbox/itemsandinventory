@@ -15,7 +15,7 @@
 	    	$currency=$_POST["currency"];
 	    	$receive_into=$_POST["receive_into"];
 	    	$deliver_to=$_POST["deliver_to"];
-	    	$order_status=$_POST["order_status"];
+	    	$order_status=1;
 	    	
 	       
 	    	$addPurchaseOrderEntry=addPurchaseOrderEntry($conn1, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status);
@@ -52,7 +52,7 @@
         ?>
    		 </select> 
         
-        <label>Order Date</label>
+        <label>Delivery Date</label>
          <input type="date" class="form-control" name="order_date" required>
         
         <label>Currency</label>
@@ -66,24 +66,14 @@
 	       } ?>
 	       
         </select> 
+<label>Receive into</label>
+        <select name="receive_into" class="form-control" >
+<?php $listlocations=listlocations($conn1); while($row=mysqli_fetch_assoc($listlocations)){ ?>   
+        <option value="<?=$row['name']?>"><?=$row['name']?></option>
+<?php } ?>
+    </select>
         
-        
-        <label>Receive into</label>
-  		<select class="form-control" name="receive_into">
-   		       <option value="1">a</option>
-    	       <option value="2">b</option>
-    	       <option value="3">c</option>
-    	       <option value="4">d</option>
-        </select> 
-        
-        <label>Deliver To</label>
-         <input type="text" class="form-control" name="deliver_to">
-         
-        <label>Order Status</label>
-  		<select class="form-control" name="order_status">
-   		       <option value="1">a</option>
-    	       <option value="2">b</option>
-        </select>
+         <input type="hidden" class="form-control" name="deliver_to">
         <hr>
         
         

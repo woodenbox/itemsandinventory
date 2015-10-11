@@ -1,4 +1,17 @@
 <?php
+function viewItemsstatus($connect){
+	$sql="SELECT * FROM item_status";
+	return mysqli_query($connect, $sql);
+}
+function getreorderlevel($connect, $name){
+	$sql="SELECT reorder_level FROM reorder_level WHERE item = '$name'";
+	return mysqli_query($connect, $sql);
+}
+function listlocations($connect){
+	$sql="SELECT * FROM opt_inventory_location";
+	return mysqli_query($connect, $sql);
+}
+
 function checksc($connect, $name){
 	$sql="SELECT 1 FROM standard_cost WHERE item_code = '$name'";
 	return mysqli_query($connect, $sql);	

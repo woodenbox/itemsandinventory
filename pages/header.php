@@ -137,7 +137,7 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Inquiries and Reports <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="inventory_movements.php">Inventory Item Movements</a></li>
-                                            <li><a href="inventory_status.php">Inventory Item Status</a></li>
+                                            <li><a href="itemstatus.php">Item Status</a></li>
                                             <li><a href="#">Inventory Reports</a></li>
                                         </ul>
                                 </li>
