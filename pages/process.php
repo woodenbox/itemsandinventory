@@ -171,7 +171,7 @@ function getPOSupplier($conn, $id){
 }
 		
 function viewPurchaseOrderEntry($conn){
-	$sql="SELECT * FROM purchase_order_entry";
+	$sql="SELECT * FROM purchase_order_entry WHERE order_status = 1";
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }
@@ -207,7 +207,7 @@ function viewSupplier($conn, $id){
 }
 
 function removePurchaseOrder($conn, $id){
-	$sql="DELETE FROM list_order_list WHERE id='$id'";
+	$sql="DELETE FROM list_order_items WHERE id='$id'";
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }
@@ -228,6 +228,21 @@ function getItems($conn){
 	$sql="SELECT * FROM item";
 	$result=mysqli_query($conn, $sql);
 	return $result;
+}
+
+function receiveItems($conn1, $item_id, $receive_into, $quantity, $date){
+	$sql="INSERT INTO item_status VALUES ('','$item_id','$receive_into','','$quantity','$date')";
+	return mysqli_query($conn1, $sql);
+}
+
+function receivePO($conn1, $id){
+	$sql="UPDATE purchase_order_entry SET order_status = 2 WHERE id = $id";
+	return mysqli_query($conn1, $sql);
+}
+
+function cancelPO($connect, $id){
+	$sql="UPDATE purchase_order_entry SET order_status = 0 WHERE id = $id";
+	return mysqli_query($connect, $sql);
 }
 
 
