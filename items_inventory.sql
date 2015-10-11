@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 10, 2015 at 12:00 PM
+-- Generation Time: Oct 11, 2015 at 01:39 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `opt_currency` (
   `short_name` varchar(3) NOT NULL,
   `rate` decimal(10,0) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `opt_currency`
@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `opt_tax_type` (
 
 CREATE TABLE IF NOT EXISTS `opt_unit_of_measure` (
   `id` int(1) NOT NULL,
-  `name` int(1) NOT NULL,
+  `name` varchar(20) NOT NULL,
   `description` varchar(50) NOT NULL,
   `dp` int(1) NOT NULL,
   PRIMARY KEY (`id`)
@@ -296,6 +296,8 @@ CREATE TABLE IF NOT EXISTS `opt_unit_of_measure` (
 -- Dumping data for table `opt_unit_of_measure`
 --
 
+INSERT INTO `opt_unit_of_measure` (`id`, `name`, `description`, `dp`) VALUES
+(0, 'kg', 'lala', 9);
 
 -- --------------------------------------------------------
 
@@ -328,6 +330,55 @@ INSERT INTO `purchase_order_entry` (`id`, `supplier`, `order_date`, `currency`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `purchase_pricing`
+--
+
+CREATE TABLE IF NOT EXISTS `purchase_pricing` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `item_code` varchar(100) NOT NULL,
+  `supplier` varchar(100) NOT NULL,
+  `price` int(10) NOT NULL,
+  `supplier_unit_measure` varchar(10) NOT NULL,
+  `conversion_factor` int(10) NOT NULL,
+  `supplier_code` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `price` (`price`),
+  UNIQUE KEY `price_2` (`price`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `purchase_pricing`
+--
+
+INSERT INTO `purchase_pricing` (`id`, `item_code`, `supplier`, `price`, `supplier_unit_measure`, `conversion_factor`, `supplier_code`) VALUES
+(2, 'Wallet', 'Samsung', 100, 'kg', 46, '60'),
+(3, 'Wallet', 'Samsung', 45, 'kg', 10, '10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_pricing`
+--
+
+CREATE TABLE IF NOT EXISTS `sales_pricing` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `item_code` varchar(20) NOT NULL,
+  `currency` int(20) NOT NULL,
+  `sale_type` varchar(20) NOT NULL,
+  `price` int(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `sales_pricing`
+--
+
+INSERT INTO `sales_pricing` (`id`, `item_code`, `currency`, `sale_type`, `price`) VALUES
+(1, 'Wallet', 0, 'Wholesale', 23);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sample`
 --
 
@@ -343,6 +394,29 @@ CREATE TABLE IF NOT EXISTS `sample` (
 
 INSERT INTO `sample` (`id`, `haha`) VALUES
 (01, 'haha');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `standard_cost`
+--
+
+CREATE TABLE IF NOT EXISTS `standard_cost` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `item_code` char(50) NOT NULL,
+  `standard_cost_per_unit` int(10) NOT NULL,
+  `labor_cost_per_unit` int(10) NOT NULL,
+  `overhead_cost_per_unit` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `standard_cost`
+--
+
+INSERT INTO `standard_cost` (`id`, `item_code`, `standard_cost_per_unit`, `labor_cost_per_unit`, `overhead_cost_per_unit`) VALUES
+(9, 'Wallet', 2147483647, 1234, 12312),
+(10, 'Charger', 222, 222, 222);
 
 -- --------------------------------------------------------
 
