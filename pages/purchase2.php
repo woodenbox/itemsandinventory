@@ -35,7 +35,8 @@
 	    	
 	    	$addListOrderItems=addListOrderItems($conn1, $item_id, $quantity, $delivery_date, $pbt, $memo, $p_o_reference);
 	    	echo "<script>widow.location = 'purchase2.php';</script>";
-	    	//header('Location: purchase.php');
+	    	
+	    	header('Location: purchase2.php');
 	        
         }
         

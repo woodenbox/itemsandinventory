@@ -21,7 +21,16 @@
 	        
 	        $addSalesOrderItems=addSalesOrderItems($conn1, $item_code, $quantity, $price, $discount, $sales_order_id);
 	        
+	        header('Location: salesorderentry2.php');
 	    	
+        }
+        
+        if(isset($_POST['cancel'])){
+	        
+	        $removeSalesOrderEntry=removeSalesOrderEntry($conn1, $getSOEid['id']);
+	        
+	        header('Location: salesorderentry.php');
+	        
         }
 	        
         include('header.php');

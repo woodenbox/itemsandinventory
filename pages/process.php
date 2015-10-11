@@ -544,6 +544,12 @@ function showSalesOrderItems($conn, $id){
 	return $result;
 }
 
+function removeSalesOrderEntry($conn, $id){
+	$sql="DELETE FROM sales_order_entry WHERE id='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;	
+}
+
 
 
 
