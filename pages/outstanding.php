@@ -12,7 +12,7 @@ include('header.php');
         
        
         
-    	<legend><label>Outstanding Ilong Orders</label></legend>
+    	<legend><label>Outstanding Purchase Orders</label></legend>
     
     	<div class="table-responsive">
          	<table class="table">
