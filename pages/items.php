@@ -53,7 +53,7 @@
          			<td>Category</td>
          			<td>Tax Type</td>
          			<td>Item Type</td>
-         			<td>Unit Measure</td>
+         			<td>Unit of Measure</td>
          			<td>Dimension</td>
          			<td>Image</td>
          			<td>Item Status</td>
@@ -158,10 +158,7 @@
              
          
         <label>Dimenstion</label>
-  		<select class="form-control" name="dimension">
-   		       <option>Support</option>
-    	       <option>Development</option>
-        </select>
+        <input type="text" class="form-control" name="dimension">
         
         <label>Item Status</label>
   		<select class="form-control" name="item_status">

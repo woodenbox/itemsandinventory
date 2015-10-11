@@ -457,7 +457,35 @@ function viewItemType($conn){
    return $result;
 }
 
+function viewTransferType($conn){
+   $sql="SELECT * FROM opt_transfer_type";
+   $result=mysqli_query($conn, $sql);
+   return $result;
+}
 
+function viewInventoryLocationTransfer($conn){
+   $sql="SELECT * FROM inventory_location_transfers";
+   $result=mysqli_query($conn, $sql);
+   return $result;
+}
+
+function addInventoryLocationTransfer($conn, $item, $from, $to, $date, $transfer_type){
+   $sql="INSERT INTO inventory_location_transfers VALUES ('', '$item', '$from', '$to', '$date', '$transfer_type')";
+   $result=mysqli_query($conn, $sql);
+   return $result;
+}
+
+function checkInventory($conn, $item){
+   $sql="SELECT * FROM inventory_location_transfers where item='$item'";
+   $result=mysqli_query($conn, $sql);
+   return $result;
+}
+
+function checkInventoryDate($conn, $date){
+   $sql="SELECT datediff('$date', curdate()) as 'Difference'";
+   $result=mysqli_query($conn, $sql);
+   return $result;
+}
 
 
 

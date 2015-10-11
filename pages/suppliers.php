@@ -48,11 +48,11 @@
          	<table class="table">
          		<tr>
          			<td>Name</td>
-         			<td>Short name</td>
+         			<td>Short Name</td>
          			<td>Website</td>
          			<td>Currency</td>
          			<td>Bank</td>
-         			<td>Credit limit</td>
+         			<td>Credit Limit</td>
          			<td>Email</td>
          			<td>Address</td>
          			<td>Memo</td>
@@ -70,7 +70,7 @@
          			<td><?=$row['name']?></td>
          			<td><?=$row['short_name']?></td>
          			<td><?=$row['website']?></td>
-         			<td><?=$row['currency']?></td>
+                    <td><?=$row['currency']?></td>
          			<td><?=$row['bank']?></td>
          			<td><?=$row['credit_limit']?></td>
          			<td><?=$row['email']?></td>
