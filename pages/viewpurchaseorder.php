@@ -17,7 +17,7 @@
     if(isset($_POST['receive'])){
         $viewOrderList=vieworderList($conn1, $id);
         while($row=mysqli_fetch_assoc($viewOrderList)){
-            receiveItems($conn1, $row['item_id'], $processPurchaseOrder['receive_into'], $row['quantity'], $date);
+            receiveItems($conn1, $row['item_id'], $processPurchaseOrder['receive_into'], $row['quantity'], $date, $id);
             receivePO($conn1, $id);
             echo "<script>window.location = 'outstanding.php'</script>";
         }

@@ -1,6 +1,10 @@
 <?php 
-$printoutdate="09/19/2015";
-$printouttime="12:00 pm";
+	include ('process.php');
+    date_default_timezone_set("Asia/Manila");
+    $date=date("Y/m/d");
+    $connect = connect();
+$printoutdate=date("Y/m/d");
+$printouttime=date("h:i:sa");
 $periodstart="09/19/2015";
 $periodend="09/20/2015";
 $category="All";
@@ -13,18 +17,13 @@ $date="09/14/2015";
 $suppliername="Junk Beer ApS";
 $quantity="10";
 $unitprice="0.30";
-$totalunitprice="2.99";
-$total="2.99";
+$result=listpurchases($connect);
+$total =0;
 ?>
 
 <div>
 	<a style="font-weight: bold; font-size: 30;">Inventory Purchasing Report</a></br>
 	<a>Print Out Date:</a><a style="margin-left: 30px"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
-	<a>Period:</a><a style="margin-left: 82px"> <?php echo $periodstart?>-<?php echo $periodend?></a></br>
-	<a>Category:</a><a style="margin-left: 66px"> <?php echo $category?></a></br>
-	<a>Location:</a><a style="margin-left: 66px"> <?php echo $location?></a></br>
-	<a>Supplier:</a><a style="margin-left: 69px"> <?php echo $supplier?></a></br>
-	<a>Item:</a><a style="margin-left: 93px"> <?php echo $item?></a></br>
 </div>
 
 
@@ -39,15 +38,17 @@ $total="2.99";
 	<th>Unit Price</th>
 	<th>Total</th>
 </tr>
+<?php 	while($row=mysqli_fetch_assoc($result)){ ?>
 <tr style="text-align: center">
-	<td><?php echo $categoryname?></td>
-	<td><?php echo $description?></td>
-	<td><?php echo $date?></td>
-	<td><?php echo $suppliername?></td>
-	<td><?php echo $quantity?></td>
-	<td><?php echo $unitprice?></td>
-	<td><?php echo $totalunitprice?></td>
+	<td><?php $getitemlist=mysqli_fetch_assoc(getitemlist($connect, $row['code'])); echo $getitemlist['category'];?></td>
+	<td><?php echo $getitemlist['description'];?></td>
+	<td><?php $getpoitem=mysqli_fetch_assoc(getpoitem($connect,$row['poid'])); echo $getpoitem['order_date'];?></td>
+	<td><?php echo $getpoitem['supplier'];?></td>
+	<td><?php $glofpo=mysqli_fetch_assoc(glofpo($connect, $row['poid'])); echo $glofpo['quantity']; ?></td>
+	<td><?php $getunitprice=mysqli_fetch_assoc(getunitprice($connect, $getpoitem['supplier'], $row['code'])); echo $getunitprice['price']; ?></td>
+	<td><?php echo $sum = $glofpo['quantity']*$getunitprice['price']; $total=$total+$sum;?></td>
 </tr>
+<?php } ?>
 </table>
 </div>
 
@@ -65,4 +66,5 @@ $total="2.99";
     		window.print();
 		});
 	});
+	window.location ='pageinventoryvaluation.php';
 </script>

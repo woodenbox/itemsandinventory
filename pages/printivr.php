@@ -2,6 +2,7 @@
     include ('process.php');
     date_default_timezone_set("Asia/Manila");
     $date=date("Y/m/d");
+    $connect = connect();
 $printoutdate=date("Y/m/d");
 $printouttime=date("h:i:sa");
 /*$enddate="09/19/2015";
@@ -14,40 +15,9 @@ $quantity="2";
 $unitcost="100.00";
 $value="120.00";
 $total="120.00";
+$result=listitems($connect);
+
 ?>
-
-         <div class="table-responsive">
-         	<table class="table">
-         		<tr>
-         			<td>Item Code</td>
-         			<td>Standard Cost</td>
-         			<td>Labor Cost</td>
-         			<td>Over Head Cost</td>
-         			<td></td>
-         		</tr>
-         		
-         		<?php
-         			while($row=mysqli_fetch_assoc($result)){
-         		?>
-         		
-         		<tr>
-         			<td><?=$row['item_code']?></td>
-         			<td><?=$row['standard_cost_per_unit']?></td>
-         			<td><?=$row['labor_cost_per_unit']?></td>
-         			<td><?=$row['overhead_cost_per_unit']?></td>
-        	
-                    <td><a href="<?php echo "standardcostedit.php?id=".$row['id']?>"><img src="../images/edit.png" width="3%"></a></td>
-         		</tr>
-         		
-         		<?php
-     				}
-         		?>
-         		
-         	</table>
-         </div>
-
-
-
 
 <div>
 	<a style="font-weight: bold; font-size: 30;">Inventory Valuation Report</a></br>
@@ -66,14 +36,17 @@ $total="120.00";
 	<th>Unit Cost</th>
 	<th>Value</th>
 </tr>
+<?php 	while($row=mysqli_fetch_assoc($result)){ ?>
 <tr style="text-align: center">
-	<td><?php echo $productcode?></th>
-	<td><?php echo $productname?></th>
-	<td><?php echo $uom?></th>
+	<td><?=$row['item_code']?></th>
+	<td><?=$row['name']?></th>
 	<td><?php echo $quantity?></th>
-	<td><?php echo $unitcost?></th>
-	<td><?php echo $value?></th>
+	<td><?php $getquan=mysqli_fetch_assoc(getquan($connect, $row['name'])); echo $getquan['value'];?></th>
+	<td><?php $getcost=mysqli_fetch_assoc(getcost($connect, $row['name'])); echo $getcost['standard_cost_per_unit'];?></th>
+	<td><?php echo $sum = $getquan['value']*$getcost['standard_cost_per_unit']; $total = $total +$sum;?>  </th>
 </tr>
+<?php } ?>
+
 </table></div>
 
 

@@ -15,27 +15,8 @@
        <legend><label>Inventory Planning Report</label></legend>    	
          
         <form>
-        
-        <label>Inventory Category:</label>
-        <select class="form-control" name="inventory_category">
-  		  		  <?php
-  		  while($row=mysqli_fetch_assoc($result1)){
-	  		  ?>
-   		      <option value="<?=$row['name']?>"><?=$row['id']?> - <?=$row['name']?></option>
-<?php    
-} ?>
-        </select> 
-        
-         <label>Location</label>
-        <select class="form-control" name="location">
-  		  		  <?php
-  		  while($row=mysqli_fetch_assoc($result2)){
-	  		  ?>
-   		       <option value="<?=$row['name']?>"><?=$row['id']?> - <?=$row['name']?></option>
-<?php    
-} ?><br><br>
 
-	<input type="button" value="Display:Inventory Planning Report" onclick="parent.location='printip.php'">
+	<input type="button" value="Print:Inventory Planning Report" onclick="parent.location='printip.php'">
         </select> 
 
         

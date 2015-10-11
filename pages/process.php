@@ -1,4 +1,39 @@
 <?php
+function getunitprice($connect, $supplier, $item){
+	$sql="SELECT * FROM purchase_pricing WHERE item_code='$item' && supplier = '$supplier'";
+	return mysqli_query($connect, $sql);
+}
+function glofpo($connect, $id){
+	$sql="SELECT * FROM list_order_items WHERE p_o_reference = $id";
+	return mysqli_query($connect, $sql);
+}
+
+function getpoitem($connect, $id){
+	$sql="SELECT * FROM purchase_order_entry WHERE id = $id";
+	return mysqli_query($connect, $sql);
+}
+function getitemlist($connect, $id){
+	$sql="SELECT * FROM item WHERE name='$id'";
+	return mysqli_query($connect, $sql);
+}
+function listpurchases($connect){
+	$sql="SELECT * FROM item_status";
+	return mysqli_query($connect, $sql);
+}
+function getsupplierorder($connect, $name){
+	$sql="SELECT SUM(quantity) as quantity FROM list_order_items WHERE item_id = '$name'";
+	$result=mysqli_query($connect, $sql);
+	return $result;
+}
+function getcost($connect, $name){
+	$sql="SELECT * FROM standard_cost WHERE item_code = '$name'";
+	return mysqli_query($connect, $sql);
+}
+function getquan($connect, $name){
+	$sql="SELECT * FROM item_status WHERE code = '$name'";
+	return mysqli_query($connect, $sql);
+}
+
 function viewItemsstatus($connect){
 	$sql="SELECT * FROM item_status";
 	return mysqli_query($connect, $sql);
@@ -276,8 +311,8 @@ function getItems($conn){
 	return $result;
 }
 
-function receiveItems($conn1, $item_id, $receive_into, $quantity, $date){
-	$sql="INSERT INTO item_status VALUES ('','$item_id','$receive_into','','$quantity','$date')";
+function receiveItems($conn1, $item_id, $receive_into, $quantity, $date, $id){
+	$sql="INSERT INTO item_status VALUES ('','$item_id','$receive_into','','$quantity','$date', '$id')";
 	return mysqli_query($conn1, $sql);
 }
 

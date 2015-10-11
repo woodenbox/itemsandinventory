@@ -36,7 +36,7 @@
          <input type="text" class="form-control" name="" value="<?=$getitem['item_code']?>" disabled>
         
          <label>Item Name</label>
-         <input type="text" class="form-control" name="ei[name]" value="<?=$getitem['name']?>">
+         <input type="text" class="form-control" name="ei[name]" value="<?=$getitem['name']?>" disabled>
         
         
          <label>Description</label>

@@ -1,6 +1,10 @@
 <?php 
-$printoutdate="09/19/2015";
-$printouttime="12:00 pm";
+    include ('process.php');
+    date_default_timezone_set("Asia/Manila");
+    $date=date("Y/m/d");
+    $connect = connect();
+$printoutdate=date("Y/m/d");
+$printouttime=date("h:i:sa");
 $category="All";
 $location="All";
 $productcode="101";
@@ -8,13 +12,13 @@ $productname="Electric Fan";
 $customerorder="each";
 $supplierorder="2";
 $total="120.00";
+$result=listitems($connect);
+
 ?>
 
 <div>
 	<a style="font-weight: bold; font-size: 30;">Inventory Planning Report</a></br>
 	<a>Print Out Date:</a><a style="margin-left: 30px"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
-	<a>Category:</a><a style="margin-left: 66px"> <?php echo $category?></a></br>
-	<a>Location:</a><a style="margin-left: 66px"> <?php echo $location?></a></br>
 </div>
 <div>
 <table style="width:100%;">
@@ -24,13 +28,14 @@ $total="120.00";
 	<th>Customer Order</th>
 	<th>Supplier Order</th>
 	
-</tr>
+</tr><?php 	while($row=mysqli_fetch_assoc($result)){ ?>
 <tr style="text-align: center">
-	<td><?php echo $productcode?></th>
-	<td><?php echo $productname?></th>
+	<td><?=$row['item_code']?></th>
+	<td><?=$row['name']?></th>
 	<td><?php echo $customerorder?></th>
-	<td><?php echo $supplierorder?></th>
+	<td><?php $getsupplierorder=mysqli_fetch_assoc(getsupplierorder($connect, $row['name'])); echo $getsupplierorder['quantity'];?></th>
 	</tr>
+	<?php } ?>
 </table></div>
 
 
@@ -43,4 +48,5 @@ $total="120.00";
     		window.print();
 		});
 	});
+		window.location ='pageinventoryplanning.php';
 </script>
