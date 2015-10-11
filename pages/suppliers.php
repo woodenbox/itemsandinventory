@@ -8,7 +8,7 @@
         	$result = viewSuppliers($conn1);
         	$result2 = viewCurrencies($conn1);
         	$result3 = viewStatusType($conn1);
-        	$row3=mysqli_fetch_assoc($result3);
+
         	        	
         	if(isset($_POST['add'])){
 	        	
@@ -136,9 +136,9 @@
         <label>Status</label>
   		<select class="form-control" name="status">
   		<?php
-  		  while($row=mysqli_fetch_assoc($result3)){
+  		  while($row4=mysqli_fetch_assoc($result3)){
 	     ?>
-   		       <option value="<?=$row['id']?>"><?=$row['id']?> - <?=$row['name']?></option>
+   		       <option value="<?=$row4['id']?>"> <?=$row4['id']?> - <?=$row4['name']?> </option>
     	<?php    
 	       } 
 	    ?>

@@ -8,6 +8,11 @@
         $conn1 = connect();
         
         $result = viewItems($conn1);
+        $result2 = viewItemCategory($conn1);
+        $result3 = viewTaxType($conn1);
+        $result4 = viewItemType($conn1);
+        $result5 = viewUnitOfMeasure($conn1);
+        $result6 = viewStatusType($conn1);
         
         if(isset($_POST['add'])){
 	        
@@ -106,32 +111,50 @@
          
         <label>Category</label>
   		<select class="form-control" name="category">
-   		       <option value="1">Components</option>
-    	       <option value="2">Charges</option>
-    	       <option value="3">Systems</option>
-    	       <option value="4">Services</option>
+  		<?php
+  		 while($row=mysqli_fetch_assoc($result2)){
+  		?>
+   		       <option value="<?=$row['id']?>"> <?=$row['id']?> - <?=$row['name']?></option>
+   		<?php
+		 }
+   		?>
         </select> 
         
         
-        <label>Tax Type</label
+        <label>Tax Type</label>
         <select class="form-control" name="tax_type">
-        	<option value="1">Regular</option>
+  		<?php
+  		 while($row=mysqli_fetch_assoc($result3)){
+  		?>
+   		       <option value="<?=$row['id']?>"> <?=$row['id']?> - <?=$row['name']?></option>
+   		<?php
+		 }
+   		?>
         </select>
         
         
         <label>Item Type</label>
   		<select class="form-control" name="item_type">
-   		       <option value="1">Purchased</option>
-    	       <option value="2">Manufactured</option>
-    	       <option value="3">Service</option>
+  		<?php
+  		 while($row=mysqli_fetch_assoc($result4)){
+  		?>
+   		       <option value="<?=$row['id']?>"> <?=$row['id']?> - <?=$row['name']?></option>
+   		<?php
+		 }
+   		?>
         </select> 
         
    
         <label>Unit of Measure</label>
-  		<select class="form-control" name="unit_measure">
-   		       <option value="1">Each</option>
-    	       <option value="2">Hours</option> 	
-        </select> 
+        <select class="form-control" name="unit_measure">
+  		<?php
+  		 while($row=mysqli_fetch_assoc($result5)){
+  		?>
+   		       <option value="<?=$row['id']?>"> <?=$row['id']?> - <?=$row['name']?> - <?=$row['description']?></option>
+   		<?php
+		 }
+   		?>
+   		</select>
              
          
         <label>Dimenstion</label>
@@ -142,8 +165,13 @@
         
         <label>Item Status</label>
   		<select class="form-control" name="item_status">
-   		       <option value="1">Active</option>
-    	       <option value="2">Inactive</option>
+  		<?php
+  		 while($row=mysqli_fetch_assoc($result6)){
+  		?>
+   		       <option value="<?=$row['id']?>"> <?=$row['id']?> - <?=$row['name']?></option>
+   		<?php
+		 }
+   		?>
         </select>  
         
         <input type="submit" class="btn btn-success" value="Add" name="add">

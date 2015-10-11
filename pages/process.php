@@ -436,6 +436,12 @@ function viewStatusType($conn){
    return $result;
 }
 
+function viewItemType($conn){
+   $sql="SELECT * FROM opt_item_type";
+   $result=mysqli_query($conn, $sql);
+   return $result;
+}
+
 
 
 
