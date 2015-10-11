@@ -418,6 +418,27 @@ function editUnitOfMeasure($conn, $id, $name, $description, $dp){
     return $result;
 }
 
+function viewTaxType($conn){
+    $sql="SELECT * FROM opt_tax_type";
+    $result=mysqli_query($conn, $sql);
+    return $result;
+}
+
+function viewSpecificTaxType($conn, $id){
+   $sql="SELECT * FROM opt_tax_type where id='$id'";
+   $result=mysqli_query($conn, $sql);
+   return $result;
+}
+
+function viewStatusType($conn){
+   $sql="SELECT * FROM opt_status";
+   $result=mysqli_query($conn, $sql);
+   return $result;
+}
+
+
+
+
 
 
 

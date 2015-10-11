@@ -1,6 +1,7 @@
 <?php
         include('process.php');
         $conn1 = connect();
+        $result3=viewTaxType($conn1);
         $result2=viewUnitOfMeasure($conn1);
         
         if(isset($_POST['add'])){
@@ -36,7 +37,13 @@
 
         <label>Item Tax Type</label>
         <select class="form-control" name="taxtype">
-   		  <option value="a">Wala pa to</option>
+        <?php
+         while($row=mysqli_fetch_assoc($result3)){
+        ?>
+   		  <option value="<?=$row['name']?>"><?=$row['name']?></option>
+   		<?php
+		 }
+   		?>
         </select> 
 
 

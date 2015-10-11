@@ -4,6 +4,8 @@
         $result = viewSpecificItemCategory($conn1, $_GET['id']);
         $row=mysqli_fetch_assoc($result);
         $result2 = viewUnitOfMeasure($conn1);
+        $result3 = viewTaxType($conn1);
+        
 	    	
         if(isset($_POST['edit'])){
 	      $name=$_POST['name'];
@@ -34,7 +36,13 @@
         
         <label>Item Tax Type</label>
         <select class="form-control" name="taxtype">
-   		  <option value="a">Wala pa to</option>
+        <?php
+         while($row3=mysqli_fetch_assoc($result3)){
+        ?>
+   		  <option value="<?=$row3['name']?>" <?php if($row['item_tax_type']==$row3['name']) echo 'selected="selected"';?> > <?=$row3['name']?></option>
+   		<?php
+		 }
+   		?>
         </select> 
 
 
@@ -44,7 +52,7 @@
       <?php
        while($row2=mysqli_fetch_assoc($result2)){
       ?>
-         <option value="<?=$row2['id']?>"> [<?=$row2['id']?>] - <?=$row2['name']?> - <?=$row2['description']?> </option>
+         <option value="<?=$row2['id']?>" <?php if($row['unit_of_measure']==$row2['id']) echo 'selected="selected"';?> > [<?=$row2['id']?>] - <?=$row2['name']?> - <?=$row2['description']?> </option>
       <?php
        }
       ?>   
