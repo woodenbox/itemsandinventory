@@ -2,10 +2,9 @@
         include('process.php');
         $conn1 = connect();
         
-        $viewOrderList=vieworderList($conn1, $_GET["id"]);
-        
-        $viewSupplier = viewSupplier($conn1, $_GET["id"]);
-        $supplier = mysqli_fetch_assoc($viewSupplier);
+        $showSalesOrderItems=showSalesOrderItems($conn1, $_GET['id']);
+        $showCostumer=showCostumer($conn1, $_GET['id']);
+        $costumerName=mysqli_fetch_assoc($showCostumer);
         
         
         include('header.php');
@@ -15,34 +14,33 @@
         <div id="page-wrapper">
             	
         
-       
         
-    	<legend><label>List Order Items <?=$supplier['supplier']?></label></legend>
+    	<legend><label>List Sales Order Items</label></legend>
     	
-    	<label>Supplier: <?=$supplier['supplier']?></label>
+    	
+	    
+    	<label>Costumer: <?=$costumerName['costumer']?></label>
     
     	
     	<div class="table-responsive">
          	<table class="table">
          	
          		<tr>
-         			<td>Item Id</td>
+         			<td>Item </td>
          			<td>Quantity</td>
-         			<td>Delivery Date</td>
          			<td>Price</td>
-         			<td>Memo</td>
+         			<td>Discount</td>
          		</tr>
          	
          		<?php
-         			while($row=mysqli_fetch_assoc($viewOrderList)){
-         		?>
+        			while($row=mysqli_fetch_assoc($showSalesOrderItems)){
+	    		?>
          		
          		<tr>
-         			<td><?=$row['item_id']?></td>
+         			<td><?=$row['item_code']?></td>
          			<td><?=$row['quantity']?></td>
-         			<td><?=$row['delivery_date']?></td>
-         			<td><?=$row['pbt']?></td>
-         			<td><?=$row['memo']?></td>
+         			<td><?=$row['price']?></td>
+         			<td><?=$row['discount']?></td>
          		</tr>
 					
          		<?php

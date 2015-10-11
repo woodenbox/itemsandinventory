@@ -142,8 +142,16 @@
                                         </ul>
                                 </li>
                                 
+                                <li>
+                           			<a href="salesorderentry.php"><i class="fa-fw"></i>Sales Order Entry</a>
+                        		</li>
+                        		
+                        		<li>
+                           			<a href="listsalesorderentry.php"><i class="fa-fw"></i>List Sales Order Entry</a>
+                        		</li>
                                 
-
+                                
+				
                                 
                                 
         						

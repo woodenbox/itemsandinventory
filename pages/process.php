@@ -505,6 +505,46 @@ function viewItemType($conn){
 
 
 
+//Sales Order Entry
+
+
+function addSalesOrderEntry($conn, $costumer, $date, $shipping_charge, $status){
+	$sql="INSERT INTO sales_order_entry VALUES('', '$costumer', '$date', '$shipping_charge', '$status')";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function viewSalesOrderEntry($conn){
+	$sql="SELECT * FROM sales_order_entry";
+	$result=mysqli_query($conn, $sql);
+	return $result;	
+}
+
+function addSalesOrderItems($conn, $item_code, $quantity, $price, $discount, $sales_order_id){
+	$sql="INSERT INTO sales_order_items VALUES('$item_code', '$quantity', '$price', '$discount', '$sales_order_id')";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function getSOEid($conn){
+	$sql="SELECT id FROM sales_order_entry ORDER BY id DESC LIMIT 1";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function showCostumer($conn, $id){
+	$sql="SELECT costumer FROM sales_order_entry WHERE id='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function showSalesOrderItems($conn, $id){
+	$sql="SELECT * FROM sales_order_items WHERE sales_order_id='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+
 
 
 
