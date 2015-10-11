@@ -1,11 +1,14 @@
 <?php 
-$printoutdate="09/19/2015";
-$printouttime="12:00 pm";
-$enddate="09/19/2015";
+    include ('process.php');
+    date_default_timezone_set("Asia/Manila");
+    $date=date("Y/m/d");
+$printoutdate=date("Y/m/d");
+$printouttime=date("h:i:sa");
+/*$enddate="09/19/2015";
 $category="All";
 $location="All";
 $productcode="101";
-$productname="Electric Fan";
+$productname="Electric Fan";*/
 $uom="each";
 $quantity="2";
 $unitcost="100.00";
@@ -13,12 +16,45 @@ $value="120.00";
 $total="120.00";
 ?>
 
+         <div class="table-responsive">
+         	<table class="table">
+         		<tr>
+         			<td>Item Code</td>
+         			<td>Standard Cost</td>
+         			<td>Labor Cost</td>
+         			<td>Over Head Cost</td>
+         			<td></td>
+         		</tr>
+         		
+         		<?php
+         			while($row=mysqli_fetch_assoc($result)){
+         		?>
+         		
+         		<tr>
+         			<td><?=$row['item_code']?></td>
+         			<td><?=$row['standard_cost_per_unit']?></td>
+         			<td><?=$row['labor_cost_per_unit']?></td>
+         			<td><?=$row['overhead_cost_per_unit']?></td>
+        	
+                    <td><a href="<?php echo "standardcostedit.php?id=".$row['id']?>"><img src="../images/edit.png" width="3%"></a></td>
+         		</tr>
+         		
+         		<?php
+     				}
+         		?>
+         		
+         	</table>
+         </div>
+
+
+
+
 <div>
 	<a style="font-weight: bold; font-size: 30;">Inventory Valuation Report</a></br>
 	<a>Print Out Date:</a><a style="margin-left: 30px"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
-	<a>End Date:</a><a style="margin-left: 63px"> <?php echo $enddate?></a></br>
-	<a>Category:</a><a style="margin-left: 66px"> <?php echo $category?></a></br>
-	<a>Location:</a><a style="margin-left: 66px"> <?php echo $location?></a></br>
+	<!--<a>End Date:</a><a style="margin-left: 63px"> <?php echo $enddate?></a></br>!-->
+	<!--<a>Category:</a><a style="margin-left: 66px"> <?php echo $category?></a></br>!-->
+	<!--<a>Location:</a><a style="margin-left: 66px"> <?php echo $location?></a></br>!-->
 </div>
 <div>
 <table style="width:100%;">
@@ -56,4 +92,6 @@ $total="120.00";
     		window.print();
 		});
 	});
+
+	window.location ='pageinventoryvaluation.php';
 </script>
