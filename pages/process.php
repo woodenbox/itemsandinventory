@@ -248,14 +248,15 @@ function viewPurchasePricing($conn){
 }
 
 function saveEditPurchasePricing($conn, $item_code, $supplier, $price, $supplier_unit_measure, $conversion_factor, $supplier_code, $id){
-		$sql="UPDATE standard_cost SET item_code='$item_code', supplier='$supplier', price='$price', supplier_unit_measure='$supplier_unit_measure', conversion_factor='$conversion_factor', supplier_code='$supplier_code' WHERE id=$id";
+		$sql="UPDATE purchase_pricing SET item_code='$item_code', supplier='$supplier', price='$price', supplier_unit_measure='$supplier_unit_measure', conversion_factor='$conversion_factor', supplier_code='$supplier_code' WHERE id='$id'";
 		$result=mysqli_query($conn, $sql);
 		return $result;
 }
 
 function editPurchasePricing($conn, $id){
 	$sql="SELECT * FROM purchase_pricing WHERE id = $id";
-	return mysqli_query($conn, $sql);
+	$result=mysqli_query($conn, $sql);
+	return $result;
 }
 
 

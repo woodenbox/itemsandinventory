@@ -18,6 +18,8 @@
 	        	$sale_type = $_POST['sale_type'];
 	        	$price = $_POST['price'];
 	        	
+	        	$id=$_GET['id'];
+	        	
 	        	
 	        	$addSalesPricing = addSalesPricing($conn1, $item_code, $currency, $sale_type, $price);
 	        	
