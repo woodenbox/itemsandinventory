@@ -1,4 +1,13 @@
 <?php
+function addmovementype($connect, $name){
+	$sql="INSERT INTO opt_movement_type VALUES ('','$name')";
+	return mysqli_query($connect, $sql);
+}
+
+function getmovementtypes($connect){
+	$sql="SELECT * FROM opt_movement_type";
+	return mysqli_query($connect, $sql);
+}
 function edititem($conn1, $name, $description,$category,$tax_type, $item_type, $unit_measure,$dimension,$item_status,$id){
 	$sql ="UPDATE item SET name='$name', description='$description', category='$category', tax_type='$tax_type', item_type='$item_type', unit_measure='$unit_measure', dimension='$dimension', item_status='$item_status' WHERE id =$id";
 	return mysqli_query($conn1, $sql);

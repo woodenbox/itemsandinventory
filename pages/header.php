@@ -93,52 +93,29 @@
                     			<li>
                            			<a href="suppliers.php"><i class="fa-fw"></i> Suppliers</a>
                         		</li>
+                                            <li><a href="items.php">Items</a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Items <span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Items Maintenance <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="items.php">Item List</a></li>
                                             <li><a href="foreignitemcodes.php">Foreign Item Codes</a></li>
-                                            <li><a href="saleskits.php">Sales Kits</a></li>
                                             <li><a href="inventory_categories.php">Item Categories</a></li>
+                                            <li><a href="saleskits.php">Sales Kits</a></li>
                                             <li><a href="inventory_locations.php">Inventory Locations</a></li>
-                                            <li><a href="#">Inventory Movement Types</a></li>
-                                            <li><a href="#">Reorder Levels</a></li>
+                                            <li><a href="movementtypes.php">Inventory Movement Types</a></li>
+                                            <li><a href="reorderlevel.php">Reorder Levels</a></li>
                                             <li><a href="currency.php">Currencies</a></li>
                                             <li><a href="unitofmeasure.php">Unit of Measure</a></li>
                                         </ul>
                                 </li>                    
-                  				             
-                                <li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Transactions <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="inventory_location_transfer.php">Inventory Location Transfers</a></li>
-            								<li><a href="inventory_adjustments.php">Inventory Adjustments</a></li>
-          								</ul>
-        						</li>
-        					
         						
         						<li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Inquiries and Reports <span class="caret"></span></a>
+        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Items Pricing and Costs <span class="caret"></span></a>
           								<ul class="dropdown-menu">
-            								<li><a href="inventory_movements.php">Inventory Item Movements</a></li>
-            								<li><a href="inventory_status.php">Inventory Item Status</a></li>
-            								<li><a href="#">Inventory Reports</a></li>
+                								<li><a href="salepricing.php">Sales Pricing</a></li>
+                                                <li><a href="purchasepricing.php">Purchasing Pricing</a></li>
+                								<li><a href="standardcost.php">Standard Costs</a></li>
           								</ul>
         						</li>
-        						
-        						
-
-        						
-        						
-        						<li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Pricing and Costs <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="salepricing.php">Sales Pricing</a></li>
-            								<li><a href="purchasepricing.php">Purchasing Pricing</a></li>
-            								<li><a href="standardcost.php">Standard Costs</a></li>
-          								</ul>
-        						</li>
-        						
         						<li>
                            			<a href="purchase.php"><i class="fa-fw"></i> Purchase Order Entry</a>
                         		</li>
@@ -146,6 +123,29 @@
                         		<li>
                            			<a href="outstanding.php"><i class="fa-fw"></i>Outstanding Purchase</a>
                         		</li>
+                                             
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Transactions <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="inventory_location_transfer.php">Inventory Location Transfers</a></li>
+                                            <li><a href="inventory_adjustments.php">Inventory Adjustments</a></li>
+                                        </ul>
+                                </li>
+                            
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Inquiries and Reports <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="inventory_movements.php">Inventory Item Movements</a></li>
+                                            <li><a href="inventory_status.php">Inventory Item Status</a></li>
+                                            <li><a href="#">Inventory Reports</a></li>
+                                        </ul>
+                                </li>
+                                
+                                
+
+                                
+                                
         						
         					
                                 
