@@ -198,12 +198,10 @@ function getItems($conn){
 
 
 
-//fetchtesting
-
 //purchase pricing
 
-function addPurchasePricing($conn, $item_code, $supplier, $price, $supplier_unit_measure, $conversion_factor, $supplier_code){
-	$sql="INSERT INTO purchase_pricing item VALUES('', '$item_code', '$supplier', '$price', '$supplier_unit_measure', '$conversion_factor', '$supplier_code')";
+function addPurchasePricing($conn, $item_code, $supplier_name, $price, $supplier_unit_measure, $conversion_factor, $supplier_code){
+	$sql="INSERT INTO purchase_pricing VALUES('', '$item_code', '$supplier_name', '$price', '$supplier_unit_measure', '$conversion_factor', '$supplier_code')";
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }
@@ -211,6 +209,17 @@ function viewPurchasePricing($conn){
 	$sql="SELECT * FROM purchase_pricing";
 	$result=mysqli_query($conn, $sql);
 	return $result;
+}
+
+function saveEditPurchasePricing($conn, $item_code, $supplier, $price, $supplier_unit_measure, $conversion_factor, $supplier_code, $id){
+		$sql="UPDATE standard_cost SET item_code='$item_code', supplier='$supplier', price='$price', supplier_unit_measure='$supplier_unit_measure', conversion_factor='$conversion_factor', supplier_code='$supplier_code' WHERE id=$id";
+		$result=mysqli_query($conn, $sql);
+		return $result;
+}
+
+function editPurchasePricing($conn, $id){
+	$sql="SELECT * FROM purchase_pricing WHERE id = $id";
+	return mysqli_query($conn, $sql);
 }
 
 
@@ -227,6 +236,18 @@ function viewStandardCost($conn){
 	return $result;
 }
 
+
+function saveEditStandardCost($conn, $item_code, $standard_cost_per_unit, $labor_cost_per_unit, $overhead_cost_per_unit, $id){
+		$sql="UPDATE standard_cost SET item_code='$item_code', standard_cost_per_unit='$standard_cost_per_unit', labor_cost_per_unit='$labor_cost_per_unit', overhead_cost_per_unit='$overhead_cost_per_unit' WHERE id=$id";
+		$result=mysqli_query($conn, $sql);
+		return $result;
+}
+
+function editStandardCost($conn, $id){
+	$sql="SELECT * FROM standard_cost WHERE id = $id";
+	return mysqli_query($conn, $sql);
+}
+
 //sale pricing
 function addSalesPricing($conn, $item_code, $currency, $sale_type, $price){
 	$sql="INSERT INTO sales_pricing VALUES('',  '$item_code', '$currency', '$sale_type', '$price')";
@@ -237,6 +258,17 @@ function viewSalesPricing($conn){
 	$sql="SELECT * FROM sales_pricing";
 	$result=mysqli_query($conn, $sql);
 	return $result;
+}
+
+function saveEditSalesPricing($conn, $item_code, $currency, $sale_type, $price, $id){
+		$sql="UPDATE sales_pricing SET item_code='$item_code', currency='$currency', sale_type='$sale_type', price='$price' WHERE id=$id";
+		$result=mysqli_query($conn, $sql);
+		return $result;
+}
+
+function editSalesPricing($conn, $id){
+	$sql="SELECT * FROM sales_pricing WHERE id = $id";
+	return mysqli_query($conn, $sql);
 }
 
 

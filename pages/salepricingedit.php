@@ -1,33 +1,35 @@
 
         <?php
-        	include('header.php');
-        	include('process.php');
+            include('header.php');
+            include('process.php');
        
-        	$conn1 = connect();
-        	
-        	$result = viewSalesPricing($conn1);
+            $conn1 = connect();
+            
+         	$result = viewSalesPricing($conn1);
         	$result2 = viewItems($conn1);
         	$result3 = viewCurrencies($conn1);
         	
-        	        	
-        	if(isset($_POST['add'])){
-	        	
-	        	
+            $editSalePricing=mysqli_fetch_assoc(editSalesPricing($conn1, $_GET['id']));
+                        
+            if(isset($_POST['add'])){
+                
+                
+     
 	        	$item_code = $_POST['item_code'];
 	        	$currency = $_POST['currency'];
 	        	$sale_type = $_POST['sale_type'];
 	        	$price = $_POST['price'];
 	        	
-	        	
-	        	$addSalesPricing = addSalesPricing($conn1, $item_code, $currency, $sale_type, $price);
-	        	
-	        	if($addSalesPricing){
-		        	echo "Sales Pricing Added!";
-	        	}else{
-		        	echo "Failed to Add!";
-	        	}
-	        	
-        	}
+	        	$id=$_GET['id'];
+         	$addSalesPricing = saveEditSalesPricing($conn1, $item_code, $currency,$sale_type, $price, $id);
+                if($addSalesPricing){
+                    echo "Sales Pricing Added!";
+                    echo "<script>window.location = 'salepricing.php'</script>";
+                }else{
+                    echo "Failed to Add!";
+                }
+                
+            }
         
         
         ?>
@@ -68,7 +70,7 @@
          </div>
         
         
-        
+       
          <legend><label>Supplier Information</label></legend>    	
         
          <form method="POST">
@@ -76,44 +78,45 @@
          <label>Item Code</label>
        <select class="form-control" name="item_code">
   		  		  <?php
-  		  while($row=mysqli_fetch_assoc($result2)){
-	  		  ?>
-   		       <option value="<?=$row['name']?>"><?=$row['id']?> - <?=$row['name']?></option>
-    	   <?php    
-	       } ?>
+          while($row=mysqli_fetch_assoc($result2)){
+              ?>
+               <option value="<?=$row['id']?>" <?php if($editSalePricing['item_code']==$row['id']) echo "selected";?> ><?=$row['id']?> - <?=$row['name']?></option>
+           <?php    
+           } ?>
         </select> 
         
         
-    <label>Currency</label>
-   		<select class="form-control" name="currency">
-  		  <?php
-  		  while($row=mysqli_fetch_assoc($result3)){
-	  		  ?>
-   		       <option value="<?=$row['id']?>"><?=$row['id']?> - <?=$row['name']?></option>
-    	   <?php    
-	       } ?>
+       
+       <label>Currency</label>
+        <select class="form-control" name="currency">
+          <?php
+          while($row=mysqli_fetch_assoc($result3)){
+              ?>
+               <option value="<?=$row['id']?>" <?php if($editSalePricing['currency']==$row['id']) echo "selected";?> ><?=$row['short_name']?></option>
+           <?php    
+           } ?>
         </select> 
         
         
          <label>Sale Type</label>
          <select class="form-control" name="sale_type">
-  		  		<option value="Retail">Retail</option>
-  		  		<option value="Wholesale">Wholesale</option>
+  		  		 <option <?php if($editSalePricing['sale_type']==1) echo "selected";?>>Retail</option>
+               <option <?php if($editSalePricing['sale_type']==2) echo "selected";?>>Wholesale</option>
         </select> 
        
        
          <label>Price</label>
-         <input type="text" class="form-control" name="price">
-       
+            <input type="text" class="form-control" value="<?=$editSalePricing['price']?>" name="price">
     
          
-         <input type="submit" class="btn btn-success" value="Add" name="add">
+         <input type="submit" class="btn btn-success" value="Save" name="add">
         
         </form>
         
         
         
         </table>
+        
         
         
 

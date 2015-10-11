@@ -129,9 +129,9 @@
         						<li class="dropdown">
         							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Pricing and Costs <span class="caret"></span></a>
           								<ul class="dropdown-menu">
-            								<li><a href="#">Sales Pricing</a></li>
-            								<li><a href="purchase.php">Purchasing Pricing</a></li>
-            								<li><a href="#">Standard Costs</a></li>
+            								<li><a href="salepricing.php">Sales Pricing</a></li>
+            								<li><a href="purchasepricing.php">Purchasing Pricing</a></li>
+            								<li><a href="standardcost.php">Standard Costs</a></li>
           								</ul>
         						</li>
         						
