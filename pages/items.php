@@ -7,7 +7,7 @@
         
         $conn1 = connect();
         
-        $result = viewItems($conn1);
+        $result = listallitems($conn1);
         $result2 = viewItemCategory($conn1);
         $result3 = viewTaxType($conn1);
         $result4 = viewItemType($conn1);
@@ -57,6 +57,7 @@
          			<td>Dimension</td>
          			<td>Image</td>
          			<td>Item Status</td>
+              <td>Edit</td>
          		</tr>
          		<?php
          			while($row=mysqli_fetch_assoc($result)){
@@ -72,6 +73,7 @@
          			<td><?=$row['dimension']?></td>
          			<td></td>
          			<td><?=$row['item_status']?></td>
+              <td><a class="glyphicon glyphicon-pencil" href="<?php echo "itemsedit.php?id=".$row['id']?>"></a></td>
          		</tr>
          		
          		<?php
@@ -85,17 +87,7 @@
             
      
     <form method="POST">    
-        
-        <label>Items/Components</label>
-  		<select class="form-control" name="item">
-   		       <option>a</option>
-    	       <option>b</option>
-    	       <option>c</option>
-    	       <option>d</option>
-        </select> 
-        
-        
-        <legend><label>Item Information</label></legend>
+        <legend><label>Add Item Information</label></legend>
         
         
         <label>Item Code</label>
@@ -157,7 +149,7 @@
    		</select>
              
          
-        <label>Dimenstion</label>
+        <label>Dimension</label>
   		<select class="form-control" name="dimension">
    		       <option>Support</option>
     	       <option>Development</option>

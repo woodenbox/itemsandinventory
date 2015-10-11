@@ -1,4 +1,8 @@
 <?php
+function edititem($conn1, $name, $description,$category,$tax_type, $item_type, $unit_measure,$dimension,$item_status,$id){
+	$sql ="UPDATE item SET name='$name', description='$description', category='$category', tax_type='$tax_type', item_type='$item_type', unit_measure='$unit_measure', dimension='$dimension', item_status='$item_status' WHERE id =$id";
+	return mysqli_query($conn1, $sql);
+}
 function removeskitem($connect, $id){
 	$sql="DELETE FROM sales_kit_items WHERE id = $id";
 	return mysqli_query($connect, $sql);
@@ -120,13 +124,15 @@ function addItems($conn, $item_code, $name, $description, $category, $tax_type, 
 }
 
 function viewItems($conn){
-	$sql="SELECT * FROM item";
+	$sql="SELECT * FROM item WHERE item_status = 1";
 	$result=mysqli_query($conn, $sql);
 	return $result;	
 }
 
-
-
+function listallitems($connect){
+	$sql="SELECT * FROM item";
+	return mysqli_query($connect, $sql);
+}
 
 function addItemsPOE($conn, $item_id, $id){
 	$sql="INSERT INTO list_order_items VALUES ('',  '$item_id',  '',  '',  '',  '',  '$id')";
@@ -150,6 +156,11 @@ function getSuppliers($conn){
 	$sql="SELECT * FROM supplier";
 	$result=mysqli_query($conn, $sql);
 	return $result;
+}
+
+function getitem($connect, $id){
+	$sql="SELECT * FROM item WHERE id = $id";
+	return mysqli_query($connect, $sql);
 }
 		
 function addPurchaseOrderEntry($conn, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status){

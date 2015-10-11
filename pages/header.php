@@ -90,10 +90,23 @@
                     <ul class="nav" id="side-menu">
                         
                     
-                    			 <li>
+                    			<li>
                            			<a href="suppliers.php"><i class="fa-fw"></i> Suppliers</a>
                         		</li>
-                    
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Items <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="items.php">Item List</a></li>
+                                            <li><a href="foreignitemcodes.php">Foreign Item Codes</a></li>
+                                            <li><a href="saleskits.php">Sales Kits</a></li>
+                                            <li><a href="inventory_categories.php">Item Categories</a></li>
+                                            <li><a href="inventory_locations.php">Inventory Locations</a></li>
+                                            <li><a href="#">Inventory Movement Types</a></li>
+                                            <li><a href="#">Reorder Levels</a></li>
+                                            <li><a href="currency.php">Currencies</a></li>
+                                            <li><a href="unitofmeasure.php">Unit of Measure</a></li>
+                                        </ul>
+                                </li>                    
                   				             
                                 <li class="dropdown">
         							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Transactions <span class="caret"></span></a>
@@ -114,20 +127,7 @@
         						</li>
         						
         						
-        						<li class="dropdown">
-        							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Maintencance <span class="caret"></span></a>
-          								<ul class="dropdown-menu">
-            								<li><a href="items.php">Items</a></li>
-            								<li><a href="#">Foreign Item Codes</a></li>
-            								<li><a href="#">Sales Kits</a></li>
-            								<li><a href="inventory_categories.php">Item Categories</a></li>
-            								<li><a href="inventory_locations.php">Inventory Locations</a></li>
-            								<li><a href="#">Inventory Movement Types</a></li>
-            								<li><a href="#">Reorder Levels</a></li>
-            								<li><a href="currency.php">Currencies</a></li>
-            								<li><a href="unitofmeasure.php">Unit of Measure</a></li>
-          								</ul>
-        						</li>
+
         						
         						
         						<li class="dropdown">
