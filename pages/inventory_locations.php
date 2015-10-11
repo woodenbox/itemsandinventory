@@ -19,6 +19,7 @@
 	if((int)$phone2){
      if((int)$fax){
 	  addInventoryLocation($conn1, $code, $name, $contact, $address, $phone1, $phone2, $fax, $email);
+    echo "<script>window.location = 'inventory_locations.php';</script>";
      }
      else{
 	  echo "<script>alert('Please Enter an Integer Value in Facsimile Number');</script>";     

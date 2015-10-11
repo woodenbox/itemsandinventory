@@ -1,4 +1,43 @@
 <?php
+function viewItemsstatus($connect){
+	$sql="SELECT * FROM item_status";
+	return mysqli_query($connect, $sql);
+}
+function getreorderlevel($connect, $name){
+	$sql="SELECT reorder_level FROM reorder_level WHERE item = '$name'";
+	return mysqli_query($connect, $sql);
+}
+function listlocations($connect){
+	$sql="SELECT * FROM opt_inventory_location";
+	return mysqli_query($connect, $sql);
+}
+
+function checksc($connect, $name){
+	$sql="SELECT 1 FROM standard_cost WHERE item_code = '$name'";
+	return mysqli_query($connect, $sql);	
+}
+function checkpp($connect, $name, $supplier){
+	$sql="SELECT 1 FROM purchase_pricing WHERE item_code = '$name' && supplier = '$supplier'";
+	return mysqli_query($connect, $sql);
+}
+function checksp($connect, $name){
+	$sql="SELECT 1 FROM sales_pricing WHERE item_code = '$name'";
+	return mysqli_query($connect, $sql);
+}
+
+function addmovementype($connect, $name){
+	$sql="INSERT INTO opt_movement_type VALUES ('','$name')";
+	return mysqli_query($connect, $sql);
+}
+
+function getmovementtypes($connect){
+	$sql="SELECT * FROM opt_movement_type";
+	return mysqli_query($connect, $sql);
+}
+function edititem($conn1, $name, $description,$category,$tax_type, $item_type, $unit_measure,$dimension,$item_status,$id){
+	$sql ="UPDATE item SET name='$name', description='$description', category='$category', tax_type='$tax_type', item_type='$item_type', unit_measure='$unit_measure', dimension='$dimension', item_status='$item_status' WHERE id =$id";
+	return mysqli_query($conn1, $sql);
+}
 function removeskitem($connect, $id){
 	$sql="DELETE FROM sales_kit_items WHERE id = $id";
 	return mysqli_query($connect, $sql);
@@ -120,13 +159,15 @@ function addItems($conn, $item_code, $name, $description, $category, $tax_type, 
 }
 
 function viewItems($conn){
-	$sql="SELECT * FROM item";
+	$sql="SELECT * FROM item WHERE item_status = 1";
 	$result=mysqli_query($conn, $sql);
 	return $result;	
 }
 
-
-
+function listallitems($connect){
+	$sql="SELECT * FROM item";
+	return mysqli_query($connect, $sql);
+}
 
 function addItemsPOE($conn, $item_id, $id){
 	$sql="INSERT INTO list_order_items VALUES ('',  '$item_id',  '',  '',  '',  '',  '$id')";
@@ -150,6 +191,11 @@ function getSuppliers($conn){
 	$sql="SELECT * FROM supplier";
 	$result=mysqli_query($conn, $sql);
 	return $result;
+}
+
+function getitem($connect, $id){
+	$sql="SELECT * FROM item WHERE id = $id";
+	return mysqli_query($connect, $sql);
 }
 		
 function addPurchaseOrderEntry($conn, $supplier, $order_date, $currency, $receive_into, $deliver_to, $order_status){
@@ -486,6 +532,52 @@ function checkInventoryDate($conn, $date){
    $result=mysqli_query($conn, $sql);
    return $result;
 }
+
+//Sales Order Entry
+
+
+function addSalesOrderEntry($conn, $costumer, $date, $shipping_charge, $status){
+	$sql="INSERT INTO sales_order_entry VALUES('', '$costumer', '$date', '$shipping_charge', '$status')";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function viewSalesOrderEntry($conn){
+	$sql="SELECT * FROM sales_order_entry";
+	$result=mysqli_query($conn, $sql);
+	return $result;	
+}
+
+function addSalesOrderItems($conn, $item_code, $quantity, $price, $discount, $sales_order_id){
+	$sql="INSERT INTO sales_order_items VALUES('$item_code', '$quantity', '$price', '$discount', '$sales_order_id')";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function getSOEid($conn){
+	$sql="SELECT id FROM sales_order_entry ORDER BY id DESC LIMIT 1";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function showCostumer($conn, $id){
+	$sql="SELECT costumer FROM sales_order_entry WHERE id='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function showSalesOrderItems($conn, $id){
+	$sql="SELECT * FROM sales_order_items WHERE sales_order_id='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function removeSalesOrderEntry($conn, $id){
+	$sql="DELETE FROM sales_order_entry WHERE id='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;	
+}
+
 
 
 
