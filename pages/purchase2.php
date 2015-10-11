@@ -15,6 +15,7 @@
         $showOrderItemsDuringInput=showOrderItemsDuringInput($conn1);
         $lastId=mysqli_fetch_assoc($showOrderItemsDuringInput);	
         
+        
         $id=$lastId['id'];
         
         $showList=showList($conn1, $id);

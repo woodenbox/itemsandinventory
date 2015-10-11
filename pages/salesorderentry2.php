@@ -9,6 +9,8 @@
         $getSOEid=mysqli_fetch_assoc($getLastId);
         
         
+        $showSalesOrderItems=showSalesOrderItems($conn1, $getSOEid['id']);
+        
         if(isset($_POST['add'])){
 	     
 	        $item_code=$_POST['item_code'];
@@ -31,7 +33,42 @@
         
         <div id="page-wrapper">
         
-    <form method="POST">    
+        
+        <div class="table-responsive">
+         	<table class="table">
+         	
+         		<tr>
+         			<td>Item</td>
+         			<td>Quantity</td>
+         			<td>Price</td>
+         			<td>Discount</td>
+         		</tr>
+         	
+         		<?php
+         			while($row=mysqli_fetch_assoc($showSalesOrderItems)){
+         		?>
+         		
+         		<tr>
+         			<td><?=$row['item_code']?></td>
+         			<td><?=$row['quantity']?></td>
+         			<td><?=$row['price']?></td>
+         			<td><?=$row['discount']?></td>
+         		</tr>
+					
+         		<?php
+     			}
+         		
+         		?>         		
+         	
+         	</table>
+         </div>
+        
+        
+        
+        
+        
+        
+    	<form method="POST">    
         
     	<legend><label>Purchase Order Entry : Step 2</label></legend>
         
