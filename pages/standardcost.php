@@ -9,8 +9,10 @@
         	$result2 = viewItems($conn1);
         	        	
         	if(isset($_POST['add'])){
-	        	
-	        	
+	        $checksc=mysqli_fetch_assoc(checksc($conn1, $_POST['item_code']));	
+	        if($checksc['1']==1){
+                echo "<script>alert('Standard Cost for item is already set');</script>";
+            } else {
 	        	$item_code = $_POST['item_code'];
 	        	$standard_cost_per_unit = $_POST['standard_cost_per_unit'];
 	        	$labor_cost_per_unit = $_POST['labor_cost_per_unit'];
@@ -18,12 +20,8 @@
 	        	
 	        	
 	        	$addStandardCost = addStandardCost($conn1, $item_code, $standard_cost_per_unit, $labor_cost_per_unit, $overhead_cost_per_unit);
-	        	
-	        	if($addStandardCost){
-		        	echo "Standard Cost Added!";
-	        	}else{
-		        	echo "Failed to Add!";
-	        	}
+                
+            }
 	        	
         	}
         

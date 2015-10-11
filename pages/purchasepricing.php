@@ -12,8 +12,12 @@
         	        	   
   
         	if(isset($_POST['add'])){
-	        	
-	        	
+	        	$checkpp=mysqli_fetch_assoc(checkpp($conn1, $_POST['item_code'], $_POST['supplier']));
+
+                if($checkpp['1']==1){
+                    echo "<script>alert('Price is already set for item and supplier');</script>";
+                } else {
+
 	        	$item_code = $_POST['item_code'];
 	        	$supplier = $_POST['supplier'];
 	        	$price = $_POST['price'];
@@ -22,6 +26,9 @@
 	        	$supplier_code = $_POST['supplier_code'];
 	        	
 	        	$addPurchasePricing = addPurchasePricing($conn1, $item_code, $supplier, $price, $supplier_unit_measure, $conversion_factor, $supplier_code);
+                echo "<script>window.location = 'purchasepricing.php';</script>";
+                }
+                
 	        	
 	        	
 	        	

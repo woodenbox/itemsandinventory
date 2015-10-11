@@ -11,20 +11,19 @@
         	
         	        	
         	if(isset($_POST['add'])){
-	        	
-	        	
+	        	$checksp=mysqli_fetch_assoc(checksp($conn1, $_POST['item_code']));
+                if($checksp['1']==1){
+                    echo "<script>alert('Price is already set for ".$_POST['item_code']."');</script>";
+                } else {
+
 	        	$item_code = $_POST['item_code'];
 	        	$currency = $_POST['currency'];
 	        	$sale_type = $_POST['sale_type'];
 	        	$price = $_POST['price'];
 	     
-	        	$addSalesPricing = addSalesPricing($conn1, $item_code, $currency, $sale_type, $price);
-	        	
-	        	if($addSalesPricing){
-		        	echo "Sales Pricing Added!";
-	        	}else{
-		        	echo "Failed to Add!";
-	        	}
+	        	$addSalesPricing = addSalesPricing($conn1, $item_code, $currency, $sale_type, $price);    
+                echo "<script>windo.location = 'salepricing.php';</script>";
+                }
 	        	
         	}
         

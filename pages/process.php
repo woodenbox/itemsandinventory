@@ -1,4 +1,17 @@
 <?php
+function checksc($connect, $name){
+	$sql="SELECT 1 FROM standard_cost WHERE item_code = '$name'";
+	return mysqli_query($connect, $sql);	
+}
+function checkpp($connect, $name, $supplier){
+	$sql="SELECT 1 FROM purchase_pricing WHERE item_code = '$name' && supplier = '$supplier'";
+	return mysqli_query($connect, $sql);
+}
+function checksp($connect, $name){
+	$sql="SELECT 1 FROM sales_pricing WHERE item_code = '$name'";
+	return mysqli_query($connect, $sql);
+}
+
 function addmovementype($connect, $name){
 	$sql="INSERT INTO opt_movement_type VALUES ('','$name')";
 	return mysqli_query($connect, $sql);
