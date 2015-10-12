@@ -1,6 +1,10 @@
 <?php 
-$printoutdate="09/19/2015";
-$printouttime="12:00 pm";
+    include ('process.php');
+    date_default_timezone_set("Asia/Manila");
+    $date=date("Y/m/d");
+    $connect = connect();
+$printoutdate=date("Y/m/d");
+$printouttime=date("h:i:sa");
 $periodstart="09/19/2015";
 $periodend="09/20/2015";
 $category="All";
@@ -12,36 +16,34 @@ $opening="80";
 $quantityin="10";
 $quantityout="22";
 $balance="82";
+$result=viewInventoryLocationTransfer($connect);
 ?>
 
 <div>
 	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Inventory Movements</a></br>
 	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
-	<a>Period:</a><a style="margin-left: 82px; font-family: Vrinda"> <?php echo $periodstart?>-<?php echo $periodend?></a></br>
-	<a>Category:</a><a style="margin-left: 66px; font-family: Vrinda"> <?php echo $category?></a></br>
-	<a>Location:</a><a style="margin-left: 66px; font-family: Vrinda"> <?php echo $location?></a></br>
 </div>
 
 <div>
-<table style="width:100%; font-family: Vrinda">
+<table style="width:100%; font-family: Vrinda;">
 <tr>
-	<th>Category</th>
-	<th>Description</th>
-	<th>UOM</th>
-	<th>Opening</th>
-	<th>Quantity In</th>
-	<th>Quasntity Out</th>
-	<th>Balance</th>
+	<th>Item</th>
+	<th>From</th>
+	<th>To</th>
+	<th>Date of Transfer</th>
 </tr>
-<tr style="text-align: center; font-family: Vrinda">
-	<td><?php echo $productcode?></td>
-	<td><?php echo $productname?></td>
-	<td><?php echo $uom?></td>
-	<td><?php echo $opening?></td>
-	<td><?php echo $quantityin?></td>
-	<td><?php echo $quantityout?></td>
-	<td><?php echo $balance?></td>
+                <?php
+                    while($row=mysqli_fetch_assoc($result)){
+                ?>
+                
+                
+                <tr style="text-align: center; font-family: Vrinda;">
+                    <td><?=$row['item']?></td>
+                    <td><?=$row['from_location']?></td>
+                    <td><?=$row['to_location']?></td>
+                    <td><?=$row['date']?></td>
 </tr>
+<?php } ?>
 </table>
 </div>
 
