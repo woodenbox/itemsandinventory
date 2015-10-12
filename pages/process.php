@@ -630,6 +630,12 @@ function getCustomers($conn){
 	return $result;
 }
 
+function bawas($conn, $item_code, $quantity){
+	$sql="UPDATE item_status SET value = value - '$quantity' WHERE code LIKE '$item_code'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
 
 
 

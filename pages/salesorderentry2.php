@@ -9,6 +9,8 @@
         $getSOEid=mysqli_fetch_assoc($getLastId);
         
         
+        
+        
         $showSalesOrderItems=showSalesOrderItems($conn1, $getSOEid['id']);
         
         if(isset($_POST['add'])){
@@ -20,6 +22,8 @@
 	        $sales_order_id=$getSOEid['id'];
 	        
 	        $addSalesOrderItems=addSalesOrderItems($conn1, $item_code, $quantity, $price, $discount, $sales_order_id);
+	        
+	        $bawas=bawas($conn1, $item_code, $quantity);
 	        
 	        header('Location: salesorderentry2.php');
 	    	
