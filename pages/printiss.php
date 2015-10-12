@@ -1,14 +1,19 @@
 <?php 
+
+include('process.php');
+$conn1 = connect();
+
+
+
 $printoutdate="09/19/2015";
 $printouttime="12:00 pm";
 $period="09/19/2015";
 $category="All";
-$productcode="101";
-$productname="Electric Fan";
-$quantity="each";
-$unitprice="2";
-$sales="120.00";
-$total="120.00";
+
+
+$all=getItemNameQuantityPrice($conn1);
+
+
 ?>
 
 <div>
@@ -28,20 +33,36 @@ $total="120.00";
 	<th>Sales</th>
 	
 </tr>
+
+<?php
+while($row=mysqli_fetch_assoc($all)){
+	$getProductCode=getProductCode($conn1, $row['item_code']);
+	while($rowf=mysqli_fetch_assoc($getProductCode)){
+?>
+
 <tr style="text-align: center; font-family: Vrinda;">
-	<td><?php echo $productcode?></th>
-	<td><?php echo $productname?></th>
-	<td><?php echo $quantity?></th>
-	<td><?php echo $unitprice?></th>
-	<td><?php echo $sales?></th>
+	<td><?=$rowf['item_code']?></th>
+	<?php
+	}
+	?>
+	<td><?=$row['item_code']?></th>
+	<td><?=$row['quantity']?></th>
+	<td><?=$row['price']?></th>
+	<td>Di ko pa alam</th>
 	</tr>
+	
+<?php
+
+}
+?>
+	
 </table></div>
 
 
 <div>
 </br></br>
 <a>Total:</a>
-<a style="margin-left: 574px; font-family: Vrinda;"><?php echo $total?></a>
+<a style="margin-left: 574px; font-family: Vrinda;"><?php echo "total itu?";?></a>
 </div>
 
 
