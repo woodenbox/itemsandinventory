@@ -9,7 +9,7 @@
 	       $costumer = $_POST['costumer'];
 	       $date = $_POST['date'];
 	       $shipping_charge = $_POST['shipping_charge'];
-	       $status = $_POST['status'];
+	       $status = 1;
 	   		
 	   		$addSalesOrderEntry=addSalesOrderEntry($conn1, $costumer, $date, $shipping_charge, $status);	
 	    	
@@ -49,9 +49,10 @@
         <label>Shipping Charge</label>
         <input type="text" class="form-control" name="shipping_charge" required>
         
+        <!--
         <label>Status</label>
         <input type="text" class="form-control" name="status" required>
-        
+        -->
         
    
         
