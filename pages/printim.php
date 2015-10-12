@@ -54,4 +54,5 @@ $result=viewInventoryLocationTransfer($connect);
     		window.print();
 		});
 	});
+	window.history.back();
 </script>
