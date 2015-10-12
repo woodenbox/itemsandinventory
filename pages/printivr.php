@@ -66,5 +66,5 @@ $result=listitems($connect);
 		});
 	});
 
-	window.location ='pageinventoryvaluation.php';
+	window.history.back();
 </script>

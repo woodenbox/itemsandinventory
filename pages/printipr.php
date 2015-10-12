@@ -66,5 +66,5 @@ $total =0;
     		window.print();
 		});
 	});
-	window.location ='pageinventoryvaluation.php';
+	window.history.back();
 </script>

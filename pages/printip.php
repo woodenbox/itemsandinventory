@@ -48,5 +48,5 @@ $result=listitems($connect);
     		window.print();
 		});
 	});
-		window.location ='pageinventoryplanning.php';
+	window.history.back();
 </script>

@@ -68,7 +68,7 @@
 
         <br><br>
 
-<input type="button" value="Display:Inventory Purchasing Report" onclick="parent.location='printipr.php'">
+<input type="button" value="Print:Inventory Purchasing Report" onclick="parent.location='printipr.php'">
         </select> 
 
         

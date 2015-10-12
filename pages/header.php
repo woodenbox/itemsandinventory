@@ -93,6 +93,7 @@
                     			<li>
                            			<a href="suppliers.php"><i class="fa-fw"></i> Suppliers</a>
                         		</li>
+                                <li><a href="customers.php">Customers</a></li>
                                             <li><a href="items.php">Items</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Items Maintenance <span class="caret"></span></a>
@@ -137,9 +138,9 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Inquiries and Reports <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="itemstatus.php">Item Status</a></li>
-                                            <li><a href="pageinventoryvaluation.php">Inventory Valuation Report</a></li>
-                                            <li><a href="pageinventoryplanning.php">Inventory Planning Reports</a></li>
-                                            <li><a href="pageinventorypurchasing.php">Inventory Purchasing Reports</a></li>
+                                            <li><a href="printivr.php">Inventory Valuation Report</a></li>
+                                            <li><a href="printip.php">Inventory Planning Reports</a></li>
+                                            <li><a href="printipr.php">Print Inventory Purchasing Report</a></li>
                                             
                                         </ul>
                                 </li>
