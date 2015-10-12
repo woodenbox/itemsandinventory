@@ -138,9 +138,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Inquiries and Reports <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="itemstatus.php">Item Status</a></li>
-                                            <li><a href="printivr.php">Inventory Valuation Report</a></li>
-                                            <li><a href="printip.php">Inventory Planning Reports</a></li>
+                                            <li><a href="printivr.php">Print Inventory Valuation Report</a></li>
+                                            <li><a href="printip.php">Print Inventory Planning Reports</a></li>
                                             <li><a href="printipr.php">Print Inventory Purchasing Report</a></li>
+                                            <li><a href="printipr.php">Print Inventory Location Transfer Report</a></li>
                                             
                                         </ul>
                                 </li>
