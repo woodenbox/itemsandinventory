@@ -150,7 +150,7 @@
                         		</li>
                         		
                         		<li>
-                           			<a href="listsalesorderentry.php"><i class="fa-fw"></i>List Sales Order Entry</a>
+                           			<a href="listsalesorderentry.php"><i class="fa-fw"></i>Oustanding Sales Order</a>
                         		</li>
                                 
                                 
