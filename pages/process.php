@@ -643,6 +643,23 @@ function bawas($conn, $item_code, $quantity){
 
 
 
+//Item Sales Summary Report
+
+
+function getProductCode($conn, $itemName){
+	$sql="SELECT item_code FROM item WHERE name='$itemName'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function getItemNameQuantityPrice($conn){
+	$sql="SELECT item_code, quantity, price FROM sales_order_items";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+
+//
 
 
 
