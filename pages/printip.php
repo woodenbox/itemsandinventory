@@ -17,11 +17,11 @@ $result=listitems($connect);
 ?>
 
 <div>
-	<a style="font-weight: bold; font-size: 30;">Inventory Planning Report</a></br>
-	<a>Print Out Date:</a><a style="margin-left: 30px"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
+	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Inventory Planning Report</a></br>
+	<a>Print Out Date:</a><a style="margin-left: 30px font-family: Vrinda;"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
 </div>
 <div>
-<table style="width:100%;">
+<table style="width:100%; font-family: Vrinda;">
 <tr>
 	<th>Product Code</th>
 	<th>Product Name</th>
@@ -29,7 +29,7 @@ $result=listitems($connect);
 	<th>Supplier Order</th>
 	
 </tr><?php 	while($row=mysqli_fetch_assoc($result)){ ?>
-<tr style="text-align: center">
+<tr style="text-align: center; font-family: Vrinda;">
 	<td><?=$row['item_code']?></th>
 	<td><?=$row['name']?></th>
 	<td><?php echo $customerorder?></th>

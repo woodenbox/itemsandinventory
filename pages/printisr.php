@@ -19,16 +19,16 @@ $totalcontribution="3.00";
 ?>
 
 <div>
-	<a style="font-weight: bold; font-size: 30;">Inventory Sales Report</a></br>
-	<a>Print Out Date:</a><a style="margin-left: 30px"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
-	<a>End Date:</a><a style="margin-left: 63px"> <?php echo $enddate?></a></br>
-	<a>Category:</a><a style="margin-left: 66px"> <?php echo $category?></a></br>
-	<a>Location:</a><a style="margin-left: 66px"> <?php echo $location?></a></br>
-	<a>Customer:</a><a style="margin-left: 66px"> <?php echo $customer?></a></br>
+	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Inventory Sales Report</a></br>
+	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda;"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
+	<a>End Date:</a><a style="margin-left: 63px; font-family: Vrinda;"> <?php echo $enddate?></a></br>
+	<a>Category:</a><a style="margin-left: 66px; font-family: Vrinda;"> <?php echo $category?></a></br>
+	<a>Location:</a><a style="margin-left: 66px; font-family: Vrinda;"> <?php echo $location?></a></br>
+	<a>Customer:</a><a style="margin-left: 66px; font-family: Vrinda;"> <?php echo $customer?></a></br>
 </div>
 
 <div>
-<table style="width:100%;">
+<table style="width:100%; font-family: Vrinda;">
 <tr>
 	<th>Category</th>
 	<th>Description</th>
@@ -38,7 +38,7 @@ $totalcontribution="3.00";
 	<th>Cost</th>
 	<th>Contribution</th>
 </tr>
-<tr style="text-align: center">
+<tr style="text-align: center; font-family: Vrinda;">
 	<td><?php echo $categoryname?></td>
 	<td><?php echo $description?></td>
 	<td><?php echo $customer?></td>
@@ -53,9 +53,9 @@ $totalcontribution="3.00";
 <div>
 </br></br>
 <a>Total:</a>
-<a style="margin-left: 408px;"><?php echo $totalsales ?></a>
-<a style="margin-left: 13px;"><?php echo $totalcost?></a>
-<a style="margin-left: 54px;"><?php echo $totalcontribution?></a>
+<a style="margin-left: 408px; font-family: Vrinda;"><?php echo $totalsales ?></a>
+<a style="margin-left: 13px; font-family: Vrinda;"><?php echo $totalcost?></a>
+<a style="margin-left: 54px; font-family: Vrinda;"><?php echo $totalcontribution?></a>
 </div>
 
 <script src="jquery-2.1.3.min.js"></script>

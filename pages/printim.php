@@ -15,15 +15,15 @@ $balance="82";
 ?>
 
 <div>
-	<a style="font-weight: bold; font-size: 30;">Inventory Movements</a></br>
-	<a>Print Out Date:</a><a style="margin-left: 30px"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
-	<a>Period:</a><a style="margin-left: 82px"> <?php echo $periodstart?>-<?php echo $periodend?></a></br>
-	<a>Category:</a><a style="margin-left: 66px"> <?php echo $category?></a></br>
-	<a>Location:</a><a style="margin-left: 66px"> <?php echo $location?></a></br>
+	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Inventory Movements</a></br>
+	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
+	<a>Period:</a><a style="margin-left: 82px; font-family: Vrinda"> <?php echo $periodstart?>-<?php echo $periodend?></a></br>
+	<a>Category:</a><a style="margin-left: 66px; font-family: Vrinda"> <?php echo $category?></a></br>
+	<a>Location:</a><a style="margin-left: 66px; font-family: Vrinda"> <?php echo $location?></a></br>
 </div>
 
 <div>
-<table style="width:100%;">
+<table style="width:100%; font-family: Vrinda">
 <tr>
 	<th>Category</th>
 	<th>Description</th>
@@ -33,7 +33,7 @@ $balance="82";
 	<th>Quasntity Out</th>
 	<th>Balance</th>
 </tr>
-<tr style="text-align: center">
+<tr style="text-align: center; font-family: Vrinda">
 	<td><?php echo $productcode?></td>
 	<td><?php echo $productname?></td>
 	<td><?php echo $uom?></td>

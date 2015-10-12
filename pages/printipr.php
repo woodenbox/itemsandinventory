@@ -22,13 +22,13 @@ $total =0;
 ?>
 
 <div>
-	<a style="font-weight: bold; font-size: 30;">Inventory Purchasing Report</a></br>
-	<a>Print Out Date:</a><a style="margin-left: 30px"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
+	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Inventory Purchasing Report</a></br>
+	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda;"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
 </div>
 
 
 <div>
-<table style="width:100%;">
+<table style="width:100%; font-family: Vrinda;">
 <tr>
 	<th>Category</th>
 	<th>Description</th>
@@ -39,7 +39,7 @@ $total =0;
 	<th>Total</th>
 </tr>
 <?php 	while($row=mysqli_fetch_assoc($result)){ ?>
-<tr style="text-align: center">
+<tr style="text-align: center; font-family: Vrinda;">
 	<td><?php $getitemlist=mysqli_fetch_assoc(getitemlist($connect, $row['code'])); echo $getitemlist['category'];?></td>
 	<td><?php echo $getitemlist['description'];?></td>
 	<td><?php $getpoitem=mysqli_fetch_assoc(getpoitem($connect,$row['poid'])); echo $getpoitem['order_date'];?></td>
@@ -56,7 +56,7 @@ $total =0;
 <div>
 </br></br>
 <a>Total:</a>
-<a style="margin-left: 595px;"><?php echo $total?></a>
+<a style="margin-left: 595px; font-family: Vrinda;"><?php echo $total?></a>
 </div>
 
 <script src="jquery-2.1.3.min.js"></script>

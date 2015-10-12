@@ -12,14 +12,14 @@ $total="120.00";
 ?>
 
 <div>
-	<a style="font-weight: bold; font-size: 30;">Item Sales Summary Report</a></br>
-	<a>Print Out Date:</a><a style="margin-left: 30px"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
-	<a>Period:</a><a style="margin-left: 66px"> <?php echo $period?></a></br>
-	<a>Category:</a><a style="margin-left: 66px"> <?php echo $category?></a></br>
+	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Item Sales Summary Report</a></br>
+	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda;"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
+	<a>Period:</a><a style="margin-left: 66px; font-family: Vrinda;"> <?php echo $period?></a></br>
+	<a>Category:</a><a style="margin-left: 66px; font-family: Vrinda;"> <?php echo $category?></a></br>
 	
 </div>
 <div>
-<table style="width:100%;">
+<table style="width:100%; font-family: Vrinda;">
 <tr>
 	<th>Product Code</th>
 	<th>Product Name</th>
@@ -28,7 +28,7 @@ $total="120.00";
 	<th>Sales</th>
 	
 </tr>
-<tr style="text-align: center">
+<tr style="text-align: center; font-family: Vrinda;">
 	<td><?php echo $productcode?></th>
 	<td><?php echo $productname?></th>
 	<td><?php echo $quantity?></th>
@@ -41,7 +41,7 @@ $total="120.00";
 <div>
 </br></br>
 <a>Total:</a>
-<a style="margin-left: 574px;"><?php echo $total?></a>
+<a style="margin-left: 574px; font-family: Vrinda;"><?php echo $total?></a>
 </div>
 
 

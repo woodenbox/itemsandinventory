@@ -20,14 +20,14 @@ $result=listitems($connect);
 ?>
 
 <div>
-	<a style="font-weight: bold; font-size: 30;">Inventory Valuation Report</a></br>
-	<a>Print Out Date:</a><a style="margin-left: 30px"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
+	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Inventory Valuation Report</a></br>
+	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda;"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
 	<!--<a>End Date:</a><a style="margin-left: 63px"> <?php echo $enddate?></a></br>!-->
 	<!--<a>Category:</a><a style="margin-left: 66px"> <?php echo $category?></a></br>!-->
 	<!--<a>Location:</a><a style="margin-left: 66px"> <?php echo $location?></a></br>!-->
 </div>
 <div>
-<table style="width:100%;">
+<table style="width:100%; font-family: Vrinda;">
 <tr>
 	<th>Product Code</th>
 	<th>Product Name</th>
@@ -37,7 +37,7 @@ $result=listitems($connect);
 	<th>Value</th>
 </tr>
 <?php 	while($row=mysqli_fetch_assoc($result)){ ?>
-<tr style="text-align: center">
+<tr style="text-align: center; font-family: Vrinda;">
 	<td><?=$row['item_code']?></th>
 	<td><?=$row['name']?></th>
 	<td><?php echo $quantity?></th>
@@ -52,8 +52,8 @@ $result=listitems($connect);
 
 <div>
 </br></br>
-<a>Total:</a>
-<a style="margin-left: 574px;"><?php echo $total?></a>
+<a style="font-family: Vrinda">Total:</a>
+<a style="margin-left: 574px;  font-family: Vrinda;"><?php echo $total?></a>
 </div>
 
 
