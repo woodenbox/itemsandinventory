@@ -1,5 +1,5 @@
 <?php
- //include('header.php');
+ include('header.php');
  include('process.php');
  $conn1 = connect();
  $result = viewTransferType($conn1);
