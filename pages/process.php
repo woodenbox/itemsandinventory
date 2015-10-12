@@ -624,6 +624,12 @@ function removeSalesOrderEntry($conn, $id){
 	return $result;	
 }
 
+function getCustomers($conn){
+	$sql="SELECT * FROM customers";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
 
 
 

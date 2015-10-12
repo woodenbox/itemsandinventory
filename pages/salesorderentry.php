@@ -29,9 +29,20 @@
      
     	<form method="POST"> 
     	
+    
         <label>Costumer</label>
-        <input type="text" class="form-control" name="costumer" required>
-        
+        <?php $getCustomers=getCustomers($conn1);?>
+        <select class="form-control" name="costumer">
+        <?php
+            while($row=mysqli_fetch_assoc($getCustomers)){
+        ?>
+            <option value="<?=$row['name']?>"><?=$row['name']?></option>
+        <?php 
+            }
+        ?>
+   		 </select> 
+   		 
+   		 
         <label>Date</label>
          <input type="date" class="form-control" name="date" required>
         
