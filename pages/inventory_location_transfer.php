@@ -13,22 +13,40 @@
   $item=$_POST['item'];
   $from=$_POST['from'];
   $to=$_POST['to'];
-  $date=$_POST['date'];
+  $transferdate = date('Y/m/d', strtotime($_POST['date']));
   $transfer=$_POST['transfer'];
   
-  $checkdate=checkInventoryDate($conn1,$date);
+  date_default_timezone_set("Asia/Manila");
+  $datetoday=date("Y/m/d");
+
+  if($transferdate>=$datetoday){
+      if($from==$to){
+        echo "<script>alert('Current Location Cannot Be Similar with Directed Location');</script>";    
+      }else{
+          $checkilt=mysqli_fetch_assoc(checkilt($conn1, $item, $from));
+        if($checkilt['1']==1){
+          addInventoryLocationTransfer($conn1, $item, $from, $to, $_POST['date'], $transfer);
+          updateInventoryLocation($conn1, $item, $to);
+          echo "<script>alert('Transfer of Location Successfully Initiated');</script>";   
+        } else {
+          echo "<script>alert('No item could be found in that location');</script>";
+        }
+      }
+  } else {
+    echo "<script>alert('Date Could Only Be Either Today or The Coming Days');</script>";  
+  }
+
+  /*$checkdate=checkInventoryDate($conn1,$date);
   while($jason=mysqli_fetch_assoc($checkdate)){
    $earl[0]=$jason['Difference'];	  
   }
-  
+
   if(mysqli_num_rows(checkInventory($conn1,$item))==0){
    if($from==$to){
 	echo "<script>alert('Current Location Cannot Be Similar with Directed Location');</script>";	  
-   }
-   else{
+   } else{
 	if($earl[0]>=0){
    addInventoryLocationTransfer($conn1, $item, $from, $to, $date, $transfer);
-   echo $item;
    updateInventoryLocation($conn1, $item, $to);
      echo "<script>alert('Transfer of Location Successfully Initiated');</script>";	
 	}
@@ -39,37 +57,13 @@
   }
   else if(mysqli_num_rows(checkInventory($conn1,$item))==1){
    echo "<script>alert('Sorry, The Item's Location is Already on Progress');</script>";	   
-  }
+  }*/
   
   
  }
 ?>
      <div id="page-wrapper">
-        
-        <div class="table-responsive">
-         <table class="table table-hover">
-           <tr>
-            <th>Item</th>
-            <th>Previous Location</th>
-            <th>New Directed Location</th>
-            <th>Date Delivery</th>
-            <th>Transfer Type</th>
-           </tr>
-           <?php
-            while($row=mysqli_fetch_assoc($result2)){
-           ?>
-            <tr>
-             <td><?=$row['item']?></td>
-             <td><?=$row['from_location']?></td>
-             <td><?=$row['to_location']?></td>
-             <td><?=$row['date']?></td>
-             <td><?=$row['transfer_type']?></td>
-            </tr>
-           <?php
-            }
-           ?>
-         </table>
-        </div>
+
         <hr>
         
         <form method="POST">
@@ -110,7 +104,6 @@
          
          <label>Date</label>
          <input type="date" class="form-control" name="date">
-         
          <label>Transfer Type</label>
          <select class="form-control" name="transfer">
          <?php
