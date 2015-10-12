@@ -611,7 +611,7 @@ function getSOEid($conn){
 }
 
 function showCostumer($conn, $id){
-	$sql="SELECT costumer FROM sales_order_entry WHERE id='$id'";
+	$sql="SELECT * FROM sales_order_entry WHERE id='$id'";
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }
@@ -639,6 +639,8 @@ function bawas($conn, $item_code, $quantity){
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }
+
+
 
 
 

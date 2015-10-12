@@ -22,6 +22,7 @@
          			<td>Date</td>
          			<td>Shipping Charge</td>
          			<td>Status</td>
+         			<td>Deliver<td>
          		</tr>
          		
          		<?php 
@@ -29,10 +30,11 @@
          		?>
          		
          		<tr>
-         			<td><a href="viewsalesorderitems.php?id=<?=$row['id']?>"><?=$row["costumer"]?></a></td>
+         			<td><?=$row["costumer"]?></td>
          			<td><?=$row["date"]?></td>
          			<td><?=$row["shipping_charge"]?></td>
          			<td><?=$row["status"]?></td>
+         			<td><a class="glyphicon glyphicon-plane" href="viewsalesorderitems.php?id=<?=$row['id']?>"></a></td>
          		</tr>
          		
          		<?php 

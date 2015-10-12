@@ -23,7 +23,7 @@
 	        
 	        $addSalesOrderItems=addSalesOrderItems($conn1, $item_code, $quantity, $price, $discount, $sales_order_id);
 	        
-	        $bawas=bawas($conn1, $item_code, $quantity);
+	        //$bawas=bawas($conn1, $item_code, $quantity);
 	        
 	        
 	        
