@@ -16,7 +16,7 @@
         $getitem=mysqli_fetch_assoc(getitem($conn1, $_GET['id']));
         
         if(isset($_POST['add'])){
-          edititem($conn1, $_POST['ei']['name'], $_POST['ei']['description'],$_POST['ei']['category'],$_POST['ei']['tax_type'], $_POST['ei']['item_type'], $_POST['ei']['unit_measure'],$_POST['ei']['dimension'],$_POST['ei']['item_status'],$_GET['id']);
+          edititem($conn1, $_POST['ei']['description'],$_POST['ei']['category'],$_POST['ei']['tax_type'], $_POST['ei']['item_type'], $_POST['ei']['unit_measure'],$_POST['ei']['dimension'],$_POST['ei']['item_status'],$_GET['id']);
           echo "<script>window.location = 'items.php'</script>";
         }
         
