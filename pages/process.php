@@ -1,4 +1,9 @@
 <?php
+
+function getaddressloc($connect, $address){
+	$sql="SELECT * FROM opt_inventory_location WHERE name='$address'";
+	return mysqli_query($connect, $sql);
+}
 function getunitprice($connect, $supplier, $item){
 	$sql="SELECT * FROM purchase_pricing WHERE item_code='$item' && supplier = '$supplier'";
 	return mysqli_query($connect, $sql);
@@ -548,6 +553,12 @@ function viewInventoryLocationTransfer($conn){
    $sql="SELECT * FROM inventory_location_transfers";
    $result=mysqli_query($conn, $sql);
    return $result;
+}
+
+function updateInventoryLocation($conn, $code, $location){
+	$sql="UPDATE item_status set location='$location' where code='$code'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
 }
 
 function addInventoryLocationTransfer($conn, $item, $from, $to, $date, $transfer_type){

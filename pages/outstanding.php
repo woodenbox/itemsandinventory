@@ -32,11 +32,11 @@ include('header.php');
          		?>
          		
          		<tr>
-         			<td><a href="viewList.php?id=<?=$row['id']?>"><?=$row["supplier"]?></a></td>
+         			<td><?=$row["supplier"]?></a></td>
          			<td><?=$row["order_date"]?></td>
          			<td><?=$row["currency"]?></td>
          			<td><?=$row["receive_into"]?></td>
-         			<td><?=$row["deliver_to"]?></td>
+         			<td><?php $getaddressloc=mysqli_fetch_assoc(getaddressloc($conn1, $row["receive_into"])); echo $getaddressloc['address']; ?></td>
          			<td>In Process</td>
          			<td><a class="glyphicon glyphicon-log-in" href="viewpurchaseorder.php?id=<?=$row['id']?>"></a></td>
          		</tr>

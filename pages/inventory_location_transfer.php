@@ -1,5 +1,5 @@
 <?php
- include('header.php');
+ //include('header.php');
  include('process.php');
  $conn1 = connect();
  $result = viewTransferType($conn1);
@@ -27,8 +27,10 @@
    }
    else{
 	if($earl[0]>=0){
+   addInventoryLocationTransfer($conn1, $item, $from, $to, $date, $transfer);
+   echo $item;
+   updateInventoryLocation($conn1, $item, $to);
      echo "<script>alert('Transfer of Location Successfully Initiated');</script>";	
-	 addInventoryLocationTransfer($conn1, $item, $from, $to, $date, $transfer);
 	}
 	else{
 	 echo "<script>alert('Date Could Only Be Either Today or The Coming Days');</script>";	
@@ -78,7 +80,7 @@
          <?php
           while($row3=mysqli_fetch_assoc($result3)){
          ?>
-          <option value="[<?=$row3['item_code']?>] - <?=$row3['name']?>">[<?=$row3['item_code']?>] - <?=$row3['name']?></option>
+          <option value="<?=$row3['name']?>">[<?=$row3['item_code']?>] - <?=$row3['name']?></option>
          <?php
           }
          ?>
@@ -89,7 +91,7 @@
          <?php
           while($row4=mysqli_fetch_assoc($result4)){
          ?>
-          <option value="[<?=$row4['code']?>] - <?=$row4['name']?>">[<?=$row4['code']?>] - <?=$row4['name']?></option>
+          <option value="<?=$row4['name']?>">[<?=$row4['code']?>] - <?=$row4['name']?></option>
          <?php
           }
          ?>
@@ -100,7 +102,7 @@
          <?php
           while($row5=mysqli_fetch_assoc($result5)){
          ?>
-          <option value="[<?=$row5['code']?>] - <?=$row5['name']?>">[<?=$row5['code']?>] - <?=$row5['name']?></option>
+          <option value="<?=$row5['name']?>">[<?=$row5['code']?>] - <?=$row5['name']?></option>
          <?php
           }
          ?>
