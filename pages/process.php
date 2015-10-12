@@ -651,6 +651,8 @@ function bawas($conn, $item_code, $quantity){
 
 
 
+
+
 //////
 
 

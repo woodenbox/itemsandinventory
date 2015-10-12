@@ -25,6 +25,8 @@
 	        
 	        $bawas=bawas($conn1, $item_code, $quantity);
 	        
+	        
+	        
 	        header('Location: salesorderentry2.php');
 	    	
         }
