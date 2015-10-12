@@ -40,7 +40,7 @@ function showUser(str) {
 </script>
 
 <div id="page-wrapper">
-    <label>Foreign Item Codes</label>
+    <label><h1><b><center>Foreign Item Codes</center></b></h1></label>
     <select name="items" class="form-control" onchange="showUser(this.value)">
         <option>Please select an item</option>
 <?php $listitems=listitems($connect); while($row=mysqli_fetch_assoc($listitems)){ ?>   
@@ -50,10 +50,9 @@ function showUser(str) {
 <div id="txtHint"></div>
 
 
-    
-    </br>
+    <hr>
 
-    <label>Add New Foreign Item Code</label>  	
+    <label><h3>Add New Foreign Item Code</h3></label>  	
     <form method="POST">
         <label>Item</label>
         <select class="form-control" name="fic[item]">
@@ -80,6 +79,7 @@ function showUser(str) {
         <select class="form-control" name="fic[category]">
             <option value="Cat">Category</option>
         </select>        
+        <br>
         <input type="submit" class="btn btn-success" value="Add" name="add">
     </form>
 </div> 

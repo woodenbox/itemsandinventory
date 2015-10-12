@@ -129,7 +129,6 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Transactions <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="inventory_location_transfer.php">Inventory Location Transfers</a></li>
-                                            <li><a href="inventory_adjustments.php">Inventory Adjustments</a></li>
                                         </ul>
                                 </li>
                             

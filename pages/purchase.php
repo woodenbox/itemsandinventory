@@ -74,13 +74,13 @@
     </select>
         
          <input type="hidden" class="form-control" name="deliver_to">
-        <hr>
+        <br>
         
         
         
    
         
-        <input type="submit" name="add" value="Proceed to Step 2">
+        <input class="btn btn-success" type="submit" name="add" value="Proceed to Step 2">
         
         
         

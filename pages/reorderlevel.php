@@ -17,6 +17,7 @@
 
 <div id="page-wrapper">
     <table class="table">
+        <caption><b><center><h1>Re-Order Levels</h1></center></b></caption>
         <tr>
             <td>Item</td>
             <td>Location</td>
@@ -52,12 +53,13 @@
         }
 ?>
         </select>
-        <label>Re-order Level</label>
+        <label>Re-Order Level</label>
         <input type="text" class="form-control" name="reorder[level]" pattern="[0-9]+" required>
         <label>Location</label>
         <select class="form-control" name="reorder[location]">
             <option value="Mandaluyong">Mandaluyong</option>
         </select>
+        <br>
         <input type="submit" class="btn btn-success" value="Add" name="add">
     </form>
 </div> 

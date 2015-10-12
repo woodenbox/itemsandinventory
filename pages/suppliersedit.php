@@ -50,6 +50,7 @@
         
          <div class="table-responsive">
             <table class="table">
+            <caption><center><h1><b>Suppliers</b></h1></center></caption>
                 <tr>
                     <td>Name</td>
                     <td>Short name</td>
@@ -93,7 +94,7 @@
             </table>
          </div>
         
-        
+        <hr>
         
          <legend><label>Edit Supplier Information</label></legend>       
         
@@ -158,7 +159,7 @@
          <label>Fax</label>
          <input type="text" class="form-control" value="<?=$editSupplier['fax']?>"name="fax">
         
-         
+         <br>
          <input type="submit" class="btn btn-success" value="Save" name="add">
         
         </form>

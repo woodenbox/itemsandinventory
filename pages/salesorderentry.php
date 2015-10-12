@@ -55,8 +55,8 @@
         -->
         
    
-        
-        <input type="submit" name="add" value="Proceed to Step 2">
+        <br>
+        <input class="btn btn-success" type="submit" name="add" value="Proceed to Step 2">
         
         
         

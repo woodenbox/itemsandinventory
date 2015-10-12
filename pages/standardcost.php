@@ -35,6 +35,7 @@
         
          <div class="table-responsive">
          	<table class="table">
+         	    <caption><b><center><h1>Standard Costs</h1></center></b></caption>
          		<tr>
          			<td>Item Code</td>
          			<td>Standard Cost</td>
@@ -62,6 +63,7 @@
          		
          	</table>
          </div>
+         <hr>
         
         
         
@@ -92,7 +94,7 @@
          <input type="text" class="form-control" name="overhead_cost_per_unit">
        
     
-         
+         <br>
          <input type="submit" class="btn btn-success" value="Add" name="add">
         
         </form>

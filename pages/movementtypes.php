@@ -11,7 +11,7 @@
 ?>
 
 <div id="page-wrapper">
-    <label>Movement Types</label>
+    <label><h1><center><b>Inventory Movement Types</b></center></h1></label>
     <div class="table-responsive">
         <table class="table">
             <tr>
@@ -28,6 +28,7 @@
         <form method="POST">
     <label>Add New Movement Type</label>
     <input type="text" class="form-control" name="name" required>
+    <br>
     <input type="submit" class="btn btn-success" value="Add" name="add">
     </form>
 </div> 

@@ -42,7 +42,7 @@ function showUser(str) {
 </script>
 
 <div id="page-wrapper">
-    <label>Sales Kits</label>
+    <label><h1><b><center>Sales Kits</h1></b></center></label>
     <select name="saleskits" class="form-control" onchange="showUser(this.value)">
         <option>Please select a sales kit</option>
 <?php $listsaleskits=listsaleskits($connect); while($row=mysqli_fetch_assoc($listsaleskits)){ ?>   
@@ -50,9 +50,9 @@ function showUser(str) {
 <?php } ?>
     </select>
     <div id="txtHint"></div>
-    </br>
-
-    <label>Add New Sales Kit</label>    
+    <hr>
+ 
+    <label><h3>Add New Sales Kit</h3></label>    
     <form method="POST">
         <label>Sales Kit Name</label>
         <input type="text" class="form-control" name="sk[name]" required>
@@ -61,7 +61,8 @@ function showUser(str) {
         <label>Category</label>
         <select name="sk[category]" class="form-control">
             <option value="Category">Category</option>
-        </select>        
+        </select>
+        <br>        
         <input type="submit" class="btn btn-success" value="Add" name="add">
     </form>
 </div> 

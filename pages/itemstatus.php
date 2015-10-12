@@ -8,13 +8,14 @@
 <div id="page-wrapper">
     <div class="table-responsive">
          <table class="table">
+         <caption><h1><b><center>Item Status</center></b></h1></caption>
          		<tr>
-         			<td>Item</td>
-         			<td>Location</td>
-         			<td>Reorder Level</td>
-                    <td>Demand</td>
-                    <td>Available</td>
-                    <td>On Order</td>
+         			<th>Item</th>
+         			<th>Location</th>
+         			<th>Reorder Level</th>
+                    <th>Demand</th>
+                    <th>Available</th>
+                    <th>On Order</th>
          		</tr>
          	
          		<?php

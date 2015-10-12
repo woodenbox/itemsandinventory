@@ -46,20 +46,21 @@
         
          <div class="table-responsive">
          	<table class="table">
+         	<caption><center><h1><b>Suppliers</b></h1></center></caption>
          		<tr>
-         			<td>Name</td>
-         			<td>Short Name</td>
-         			<td>Website</td>
-         			<td>Currency</td>
-         			<td>Bank</td>
-         			<td>Credit Limit</td>
-         			<td>Email</td>
-         			<td>Address</td>
-         			<td>Memo</td>
-         			<td>Status</td>
-         			<td>Phone</td>
-         			<td>Fax</td>
-                    <td>Edit</td>
+         			<th>Name</th>
+         			<th>Short Name</th>
+         			<th>Website</th>
+         			<th>Currency</th>
+         			<th>Bank</th>
+         			<th>Credit Limit</th>
+         			<th>Email</th>
+         			<th>Address</th>
+         			<th>Memo</th>
+         			<th>Status</th>
+         			<th>Phone</th>
+         			<th>Fax</th>
+                    <th>Edit</th>
          		</tr>
          		
          		<?php
@@ -160,7 +161,7 @@
          <label>Fax</label>
          <input type="text" class="form-control" name="fax">
         
-         
+         <br>
          <input type="submit" class="btn btn-success" value="Add Supplier" name="add">
         
         </form>

@@ -16,6 +16,7 @@ if(isset($_POST['add'])){
 ?>
  <div id="page-wrapper">
   <table class="table table-hover">
+  <caption><b><h1><center>Unit of Measure</center></h1></b></caption>
   <tr>
    <th>Unit</th>
    <th>Description</th>

@@ -31,12 +31,13 @@
 
         <div id="page-wrapper">
             <table class="table">
+            <caption><h1><b>Customers</b></h1></caption>
                 <tr>
-                    <td>Name</td>
-                    <td>Short name</td>
-                    <td>Mailing Address</td>
-                    <td>Biling Address</td>                    
-                    <td>Status</td>
+                    <th>Name</th>
+                    <th>Short name</th>
+                    <th>Mailing Address</th>
+                    <th>Biling Address</th>                    
+                    <th>Status</td>
                 </tr>
                 <?php
                     $listcustomers=listcustomers($conn1);
@@ -55,7 +56,6 @@
                 <?php
                     }
                 ?>
-                
             </table>
     </br>
         
@@ -81,6 +81,7 @@
             </select> 
             <label>Memo</label></legend>
             <input type="text" class="form-control" name="memo">
+            <br>
             <input type="submit" class="btn btn-success" value="Add" name="add">
         </form>
  

@@ -16,13 +16,12 @@
     
     	<div class="table-responsive">
          	<table class="table">
-         		
          		<tr>
-         			<td>Costumer</td>
-         			<td>Date</td>
-         			<td>Shipping Charge</td>
-         			<td>Status</td>
-         			<td>Deliver<td>
+         			<th>Costumer</th>
+         			<th>Date</th>
+         			<th>Shipping Charge</th>
+         			<th>Status</th>
+         			<th>Deliver<th>
          		</tr>
          		
          		<?php 

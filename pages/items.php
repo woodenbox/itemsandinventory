@@ -45,10 +45,10 @@
         
         <div class="table-responsive">
          	<table class="table">
-         	
+         	    <caption><h1><center><b>Items</b></center></h1></caption>
          		<tr>
-         			<td>Item code</td>
-         			<td>Item name</td>
+         			<td>Item Code</td>
+         			<td>Item Name</td>
          			<td>Description</td>
          			<td>Category</td>
          			<td>Tax Type</td>
@@ -166,7 +166,7 @@
 		 }
    		?>
         </select>  
-        
+        <br>
         <input type="submit" class="btn btn-success" value="Add" name="add">
         
         

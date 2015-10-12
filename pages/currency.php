@@ -33,7 +33,7 @@
        
         <form method="POST">
         
-        <legend>Setup Currencies</legend>
+        <legend><center></h1><b>Setup Currencies</b></h1></center></legend>
         
         <label>Currency name</label>
          <input type="text" class="form-control" name="name">
@@ -43,10 +43,11 @@
          
          <label>Rate</label>
          <input type="text" class="form-control" name="rate">
-         
+         <br>
          <input type="submit" class="btn btn-success" value="Add" name="add">
          
          </form>
+         <hr>
         
          
         <table class="table table-sttripped">

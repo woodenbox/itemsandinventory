@@ -61,7 +61,7 @@
         
 
     	
-        <input type="submit" name="edit" value="Edit This Category">
+        <input class="btn btn-success" type="submit" name="edit" value="Edit This Category">
     	
         </form>
         

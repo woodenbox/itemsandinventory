@@ -108,7 +108,7 @@
          
       	 <label>Discount</label>
          <input type="text" class="form-control" name="discount">
-        
+        <br>
         <input type="submit" class="btn btn-success" value="Cancel" name="cancel">
         
         <input type="submit" class="btn btn-success" value="Add" name="add">

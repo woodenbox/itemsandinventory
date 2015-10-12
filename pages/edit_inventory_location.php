@@ -43,6 +43,7 @@
     
       <div class="table-responsive">
          	<table class="table table-hover"  width="100%" style="margin:auto">
+         	<caption><center><h1><b>Inventory Locations</b></h1></center></caption>
          		<tr>
          			<td>Location Code</td>
          			<td>Location Name</td>

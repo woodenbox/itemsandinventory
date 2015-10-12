@@ -34,6 +34,7 @@
 
         <div id="page-wrapper">
             <table class="table">
+            <caption><h1><b>Customers</b></h1></caption>
                 <tr>
                     <td>Name</td>
                     <td>Short name</td>
@@ -84,6 +85,7 @@
             </select> 
             <label>Memo</label></legend>
             <input type="text" class="form-control" value="<?=$editCustomer['memo']?>" name="memo">
+            <br>
             <input type="submit" class="btn btn-success" value="Save" name="save">
         </form>
  

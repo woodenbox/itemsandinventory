@@ -67,7 +67,7 @@
         <hr>
         
         <form method="POST">
-         <legend>Inventory Location Transfer</legend>
+         <legend><b><h1></center>Inventory Location Transfer</center></h1></b></legend>
          
          <label>Item Code/Name</label>
          <select class="form-control" name="item">

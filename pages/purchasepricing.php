@@ -44,6 +44,7 @@
         
          <div class="table-responsive">
          	<table class="table">
+         	    <caption><b><center><h1>Purchase Pricing</h1></center></b></caption>
          		<tr>
          			<td>Item Code</td>
          			<td>Supplier</td>
@@ -77,7 +78,7 @@
          		
          	</table>
          </div>
-        
+        <hr>
         
         
          <legend><label>Purchase Pricing Information</label></legend>    	
@@ -124,7 +125,7 @@
          <input type="text" class="form-control" name="supplier_code">
         
         
-         
+         <br>
          <input type="submit" class="btn btn-success" value="Add" name="add">
         
         </form>
