@@ -66,7 +66,7 @@ function showUser(str) {
 ?>
         </select>
         <label>European Article Number</label>
-        <input type="text" class="form-control" name="fic[ean]" pattern="[0-9]+" required>
+        <input type="text" class="form-control" name="fic[ean]" pattern="[0-9]{6}" required>
         <label>Quantity</label>
         <input type="text" class="form-control" name="fic[quantity]" pattern="[0-9]+" required>
         <label>Unit of Measure</label>

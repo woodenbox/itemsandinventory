@@ -6,8 +6,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Items and Inventory System</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -44,40 +42,14 @@ if (!$con) {
 }
 
 mysqli_select_db($con,"ajax_demo");
-$sql="SELECT * FROM foreign_item_codes WHERE item = '".$q."'";
+$sql="SELECT price FROM sales_pricing WHERE item_code = '".$q."'";
 $result = mysqli_query($con,$sql);
+$price=mysqli_fetch_assoc($result);
 
 
-echo "
-<table class='table'>
-    <tr>
-        <td>EAN/UPC</td>
-        <td>Bar Code</td>
-        <td>Quantity</td>
-        <td>Unit of Measure</td>
-        <td>Description</td>
-        <td>Category</td>
-        <td>Edit</td>
-    </tr>";
-$listfic = "SELECT * FROM foreign_item_codes WHERE item = '".$q."'";
-$result = mysqli_query($con,$listfic); 
-        while($row=mysqli_fetch_assoc($result)){
-echo "            
-    <tr>
-        <td>".$row['ean']."</td>
-        <td><IMG SRC='barcode.php?barcode=".$row['ean']."&width=280&height=80'></td>
-        <td>".$row['quantity']."</td>
-        <td>".$row['uom']."</td>
-        <td>".$row['description']."</td>
-        <td>".$row['category']."</td>";
-        $link = "editfic.php?id=".$row['id'];
-echo    "<td><a class='glyphicon glyphicon-log-in' href=".$link."></a></td>
-    </tr>";
-        }
-echo "
-</table>";
 
 mysqli_close($con);
 ?>
+<input readonly id="product_price" class="form-control" name="product_price" value="<?=$price['price']?>" disabled>
 </body>
 </html>

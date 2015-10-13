@@ -16,7 +16,6 @@
         
         if(isset($_POST['add'])){
 	        
-	        $item_code = $_POST['item_code'];
 	        $name = $_POST['name'];
 	        $description = $_POST['description'];
 	        $category = $_POST['category'];
@@ -26,8 +25,8 @@
 	        $dimension = $_POST['dimension'];
 	        $item_status = $_POST['item_status'];
 	        
-	        $addItems = addItems($conn1, $item_code, $name, $description, $category, $tax_type, $item_type, $unit_measure, $dimension, $item_status);
-	        
+	        $addItems = addItems($conn1, $name, $description, $category, $tax_type, $item_type, $unit_measure, $dimension, $item_status);
+	        echo "<script>window.location='items.php';</script>";
 	        if($addItems){
 		        echo "New Item Added!";
 	        }else{
@@ -47,7 +46,6 @@
          	<table class="table">
          	    <caption><h1><center><b>Items</b></center></h1></caption>
          		<tr>
-         			<td>Item Code</td>
          			<td>Item Name</td>
          			<td>Description</td>
          			<td>Category</td>
@@ -63,7 +61,6 @@
          			while($row=mysqli_fetch_assoc($result)){
          		?>
          		<tr>
-         			<td><?=$row['item_code']?></td>
          			<td><?=$row['name']?></td>
          			<td><?=$row['description']?></td>
          			<td><?=$row['category']?></td>
@@ -89,10 +86,6 @@
     <form method="POST">    
         <legend><label>Add Item Information</label></legend>
         
-        
-        <label>Item Code</label>
-         <input type="text" class="form-control" name="item_code">
-        
          <label>Item Name</label>
          <input type="text" class="form-control" name="name">
         
@@ -106,7 +99,7 @@
   		<?php
   		 while($row=mysqli_fetch_assoc($result2)){
   		?>
-   		       <option value="<?=$row['id']?>"> <?=$row['id']?> - <?=$row['name']?></option>
+   		       <option value="<?=$row['name']?>"> <?=$row['id']?> - <?=$row['name']?></option>
    		<?php
 		 }
    		?>

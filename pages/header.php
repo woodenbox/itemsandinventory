@@ -141,7 +141,8 @@
                                             <li><a href="printip.php">Print Inventory Planning Reports</a></li>
                                             <li><a href="printipr.php">Print Inventory Purchasing Report</a></li>
                                             <li><a href="printim.php">Print Inventory Location Transfer Report</a></li>
-                                            
+                                            <li><a href="printisr.php">Print Inventory Sales Report</a></li>
+                                            <li><a href="printiss.php">Print Inventory Sales Summary</a></li>
                                         </ul>
                                 </li>
                                 

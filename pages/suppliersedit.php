@@ -47,7 +47,7 @@
 
         <div id="page-wrapper">
        
-        
+<?php /*        
          <div class="table-responsive">
             <table class="table">
             <caption><center><h1><b>Suppliers</b></h1></center></caption>
@@ -93,7 +93,7 @@
                 
             </table>
          </div>
-        
+        <?php */?>
         <hr>
         
          <legend><label>Edit Supplier Information</label></legend>       

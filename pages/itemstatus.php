@@ -4,6 +4,7 @@
         
         $connect = connect();
         $result = viewItemsstatus($connect);
+
 ?>        
 <div id="page-wrapper">
     <div class="table-responsive">
@@ -26,9 +27,9 @@
          			<td><?=$row['code']?></td>
          			<td><?=$row['location']?></td>
          			<td><?php $getreorderlevel=mysqli_fetch_assoc(getreorderlevel($connect, $row['code'])); echo $getreorderlevel['reorder_level'];?></td>
-         			<td></td>
+         			<td><?php $getSumDemand=mysqli_fetch_assoc(getSumDemand($connect, $row['code'])); echo $getSumDemand['Demand'];?></td>
                     <td><?=$row['value']?></td>
-         			<td></td>
+         			<td><?php $getSumOrder=mysqli_fetch_assoc(getSumOrder($connect, $row['code'])); echo $getSumOrder['Demand'];?></td>
          		</tr>
 					
          		<?php

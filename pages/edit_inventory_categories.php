@@ -31,7 +31,7 @@
     	
         <div class="form-group">
          <label>Category Name</label>
-         <input type="text" class="form-control" name="name" value="<?=$row['name']?>">
+         <input type="text" class="form-control" name="name" value="<?=$row['name']?>" disabled>
         </div> 
         
         <label>Item Tax Type</label>

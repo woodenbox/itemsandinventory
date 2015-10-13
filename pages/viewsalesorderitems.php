@@ -56,8 +56,7 @@
          			<td>Item </td>
          			<td>Quantity</td>
          			<td>Price</td>
-         			<td>Discount</td>
-         			<td>Remove</td>
+         			<td>Discount</td>   
          		</tr>
          	
          		<?php
@@ -69,7 +68,6 @@
          			<td><?=$row['quantity']?></td>
          			<td><?=$row['price']?></td>
          			<td><?=$row['discount']?></td>
-         			<td><a href="viewsalesorderitems.php?remove=<?=$row["id"]?>">Delete</a></td>
          		</tr>
 					
          		<?php

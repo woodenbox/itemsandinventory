@@ -2,11 +2,11 @@
 
 include('process.php');
 $conn1 = connect();
-
-
-
-$printoutdate="09/19/2015";
-$printouttime="12:00 pm";
+    date_default_timezone_set("Asia/Manila");
+    $date=date("Y/m/d");
+    $connect = connect();
+$printoutdate=date("Y/m/d");
+$printouttime=date("h:i:sa");
 $period="09/19/2015";
 $category="All";
 
@@ -14,14 +14,13 @@ $category="All";
 $all=getItemNameQuantityPrice($conn1);
 
 
+
+
 ?>
 
 <div>
 	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Item Sales Summary Report</a></br>
-	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda;"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
-	<a>Period:</a><a style="margin-left: 66px; font-family: Vrinda;"> <?php echo $period?></a></br>
-	<a>Category:</a><a style="margin-left: 66px; font-family: Vrinda;"> <?php echo $category?></a></br>
-	
+	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda;"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>	
 </div>
 <div>
 <table style="width:100%; font-family: Vrinda;">
@@ -45,10 +44,14 @@ while($row=mysqli_fetch_assoc($all)){
 	<?php
 	}
 	?>
+
+	<?php
+		$sales=$row['quantity'] * $row['price'];
+	?>
 	<td><?=$row['item_code']?></th>
 	<td><?=$row['quantity']?></th>
 	<td><?=$row['price']?></th>
-	<td>Di ko pa alam</th>
+	<td><?php echo $sales;?></th>
 	</tr>
 	
 <?php
@@ -61,7 +64,6 @@ while($row=mysqli_fetch_assoc($all)){
 
 <div>
 </br></br>
-<a>Total:</a>
 <a style="margin-left: 574px; font-family: Vrinda;"><?php echo "total itu?";?></a>
 </div>
 
@@ -74,4 +76,5 @@ while($row=mysqli_fetch_assoc($all)){
     		window.print();
 		});
 	});
+	window.history.back();
 </script>

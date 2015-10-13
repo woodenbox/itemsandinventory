@@ -1,4 +1,7 @@
 <?php
+function checkquantity($conn, $name){
+	$sql="SELECT SUM(value) as quantity FROM item_status WHERE code = '$name'";
+}
 function checkilt($connect, $code, $location){
 	$sql="SELECT 1 FROM item_status WHERE code = '$code' && location = '$location'";
 	return mysqli_query($connect, $sql);
@@ -196,10 +199,14 @@ function deletecurrency($conn, $id){
 	return $result;
 }
 
-function addItems($conn, $item_code, $name, $description, $category, $tax_type, $item_type, $unit_measure, $dimension, $item_status){
-	$sql="INSERT INTO item VALUES('', '$item_code', '$name', '$description', '$category', '$tax_type', '$item_type', '$unit_measure', '$dimension', '', '$item_status')";
-	$result=mysqli_query($conn, $sql);
-	return $result;
+function addItems($conn, $name, $description, $category, $tax_type, $item_type, $unit_measure, $dimension, $item_status){
+	$sql="INSERT INTO item VALUES('', '', '$name', '$description', '$category', '$tax_type', '$item_type', '$unit_measure', '$dimension', '', '$item_status')";
+	mysqli_query($conn, $sql);
+	$cut=substr($category, 0, 3);
+	$last_id = mysqli_insert_id($conn);
+	$item_code=$cut."-".$last_id;
+	$sql="UPDATE item SET item_code = '$item_code' WHERE id = $last_id";
+	return mysqli_query($conn, $sql);
 }
 
 function viewItems($conn){
@@ -642,6 +649,53 @@ function bawas($conn, $item_code, $quantity){
 
 
 
+// printi sr
+
+
+function allCostumers($conn){
+	$sql="SELECT * FROM sales_order_entry";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+
+
+function selectProductQuantityPrice($conn, $id){
+	$sql="SELECT * FROM sales_order_items WHERE sales_order_id='$id'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
+function allItem($conn, $item_code){
+	$sql="SELECT * FROM item WHERE name='$item_code'";
+	$result = mysqli_query($conn, $sql);
+	return $result;
+}
+
+function getsaleslist($connect, $id){
+	$sql="SELECT * FROM sales_order_items WHERE sales_order_id = $id";
+	return mysqli_query($connect, $sql);
+}
+
+function getitemdata($connect, $name){
+	$sql="SELECT * FROM item WHERE name = '$name'";
+	return mysqli_query($connect, $sql);
+}
+	
+function getPrice($connect, $item_code){
+	$sql="SELECT price FROM sales_pricing WHERE item_code='item_code'";
+}
+
+
+function getitemprice($connect, $name){
+	$sql="SELECT * FROM sales_pricing WHERE item_code = '$name'";
+	return mysqli_query($connect, $sql);
+}
+
+function getitemcost($connect, $name){
+	$sql="SELECT * FROM standard_cost WHERE item_code = '$name'";
+	return mysqli_query($connect, $sql);
+}
 
 //Item Sales Summary Report
 
@@ -658,8 +712,19 @@ function getItemNameQuantityPrice($conn){
 	return $result;
 }
 
+function getSumDemand($conn, $name){
+	$sql="SELECT sum(quantity) as 'Demand' FROM sales_order_items where item_code='$name'";
+	return mysqli_query($conn, $sql);
+	}
 
+
+function getSumOrder($conn, $name){
+	$sql="SELECT sum(quantity) as 'Demand' FROM list_order_items where item_id='$name'";
+	return mysqli_query($conn, $sql);
+	}
 //
+
+
 
 
 
