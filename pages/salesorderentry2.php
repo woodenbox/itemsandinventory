@@ -21,12 +21,15 @@
 
                 $item_code=$_POST['item_code'];
                 $quantity=$_POST['quantity'];
-               $price=$_POST['price'] * $_POST['quantity'];
+                $sql="SELECT price FROM sales_pricing WHERE item_code = '$item_code'";
+                $result = mysqli_query($conn1, $sql);
+                $pricepro=mysqli_fetch_assoc($result);
+               $price=$pricepro['price'] * $_POST['quantity'];
                $sales_order_id=$getSOEid['id'];
             
                $addSalesOrderItems=addSalesOrderItems($conn1, $item_code, $quantity, $price, 0, $sales_order_id);
             }           
-	        header('salesorderentry2.php');
+	        echo "<script>window.location='salesorderentry2.php;</script>";
 	    	
         }
         
