@@ -734,6 +734,14 @@ function getSumOrder($conn, $name){
 	$sql="SELECT sum(quantity) as 'Demand' FROM list_order_items where item_id='$name'";
 	return mysqli_query($conn, $sql);
 	}
+	
+function checkItems($conn, $name){
+    $sql="SELECT * from item where name='$name'";
+    return mysqli_query($conn, $sql);
+}
+
+function checkForeignItem($conn, $name){
+}
 //
 
 

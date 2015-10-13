@@ -33,6 +33,7 @@
         
 
         <div id="page-wrapper">
+            <!--
             <table class="table">
             <caption><h1><b>Customers</b></h1></caption>
                 <tr>
@@ -62,6 +63,7 @@
                 
             </table>
     </br>
+    -->
         
         <legend><label>Edit Customer</label></legend>    	
         <form method="POST">
