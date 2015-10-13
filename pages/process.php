@@ -304,6 +304,11 @@ function cancelOrderEntry($conn, $purchaseId){
 	return $result;
 }
 
+function getkwantiforinventory($conn1, $item, $from){
+	$sql="SELECT * from item_status WHERE code='$item' && location='$from'";
+	return mysqli_query($conn1, $sql);
+}
+
 function viewOrderList($conn, $id){
 	$sql="SELECT * FROM list_order_items WHERE p_o_reference='$id'";
 	$result=mysqli_query($conn, $sql);
