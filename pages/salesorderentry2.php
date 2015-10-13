@@ -105,7 +105,7 @@
         
     	<form method="POST">    
         
-    	<legend><label>Purchase Order Entry : Step 2</label></legend>
+    	<legend><label>Sales Order Entry : Step 2</label></legend>
         
         
         <script>
