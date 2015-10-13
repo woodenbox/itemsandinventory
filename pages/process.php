@@ -1,6 +1,15 @@
 <?php
+function getcurrentstocks($conn1, $name){
+	$sql="SELECT * FROM item_status WHERE code = '$name'";
+	return mysqli_query($conn1, $sql);
+}
+function recorddemand($conn1, $name, $quantity, $date, $stock){
+	$sql="INSERT INTO item_status2 (name, demand, dates, stock) VALUES ('$name', $quantity, '$date', $stock)";
+	return mysqli_query($conn1, $sql);
+}
 function checkquantity($conn, $name){
 	$sql="SELECT SUM(value) as quantity FROM item_status WHERE code = '$name'";
+	return mysqli_query($conn, $sql);
 }
 function checkilt($connect, $code, $location){
 	$sql="SELECT 1 FROM item_status WHERE code = '$code' && location = '$location'";
@@ -421,7 +430,10 @@ function editSalesPricing($conn, $id){
 }
 
 
-
+function checklistifexist($connect, $name, $id){
+	$sql="SELECT 1 FROM sales_order_items WHERE sales_order_id = '$id' && item_code='$name'";
+	return mysqli_query($connect, $sql);
+}
 
 
 
@@ -606,7 +618,7 @@ function viewSalesOrderEntry($conn){
 }
 
 function addSalesOrderItems($conn, $item_code, $quantity, $price, $discount, $sales_order_id){
-	$sql="INSERT INTO sales_order_items VALUES('$item_code', '$quantity', '$price', '$discount', '$sales_order_id')";
+	$sql="INSERT INTO sales_order_items VALUES('','$item_code', '$quantity', '$price', '$discount', '$sales_order_id')";
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }

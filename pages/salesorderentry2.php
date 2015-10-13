@@ -7,6 +7,8 @@
 
         $getLastId=getSOEid($conn1);
         $getSOEid=mysqli_fetch_assoc($getLastId);
+        date_default_timezone_set("Asia/Manila");//timezone
+        $dates=date('Y-m-d');//current date
         
         
         
@@ -14,34 +16,46 @@
         $showSalesOrderItems=showSalesOrderItems($conn1, $getSOEid['id']);
         
         if(isset($_POST['add'])){
+
             $checkquantity=mysqli_fetch_assoc(checkquantity($conn1, $_POST['item_code']));
-            if($checkquantity['quantity']>$quantity){
-                echo "<scrip>alert('Quantity is more than the available units');</script>";
+            if($checkquantity['quantity']<$_POST['quantity']){
+            echo "<script>alert('Quantity is more than the available units');</script>";
+            $getcurrentstocks=mysqli_fetch_assoc(getcurrentstocks($conn1, $_POST['item_code']));
+            recorddemand($conn1, $_POST['item_code'], $_POST['quantity'], $dates, $getcurrentstocks['value']);
             } else {
-
-
-	     
-	        $item_code=$_POST['item_code'];
-	        $quantity=$_POST['quantity'];
-	        $price=$_POST['price'];
-	        $discount=$_POST['discount'];
-	        $sales_order_id=$getSOEid['id'];
-	        
-	        $addSalesOrderItems=addSalesOrderItems($conn1, $item_code, $quantity, $price, 0, $sales_order_id);
-	        
-	        //$bawas=bawas($conn1, $item_code, $quantity);
-	        
-	        
-}	        
-	        header('Location: salesorderentry2.php');
+                $checklistifexist=mysqli_fetch_assoc(checklistifexist($conn1, $_POST['item_code'], $getSOEid['id']));
+                if($checklistifexist['1']==1){
+                    echo "<script>alert('Item is already present. Delete or select another item');</script>";
+                } else {
+                $item_code=$_POST['item_code'];
+                $quantity=$_POST['quantity'];
+                $sql="SELECT price FROM sales_pricing WHERE item_code = '$item_code'";
+                $result = mysqli_query($conn1, $sql);
+                $pricepro=mysqli_fetch_assoc($result);
+               $price=$pricepro['price'] * $_POST['quantity'];
+               $sales_order_id=$getSOEid['id'];
+            
+               $addSalesOrderItems=addSalesOrderItems($conn1, $item_code, $quantity, $price, 0, $sales_order_id);
+                echo "<script>window.location = 'salesorderentry2.php';</script>";
+            }
+            }           
+	        echo "<script>window.location = 'salesorderentry2.php';</script>";
 	    	
+        }
+
+        if(isset($_GET['remove'])){
+            $deletee=$_GET['remove'];
+            $sql="DELETE FROM sales_order_items WHERE id=$deletee";
+            $result=mysqli_query($conn1, $sql);
+            echo "<script>window.location='salesorderentry2.php';</script>";
+            //tinatamad na akoooooo
         }
         
         if(isset($_POST['cancel'])){
 	        
 	        $removeSalesOrderEntry=removeSalesOrderEntry($conn1, $getSOEid['id']);
 	        
-	        header('Location: salesorderentry.php');
+	        echo "<script>window.location='salesorderentry.php';</script>";
 	        
         }
 	        
@@ -62,6 +76,7 @@
          			<td>Item</td>
          			<td>Quantity</td>
          			<td>Price</td>
+                    <td>Remove</td>
          		</tr>
          	
          		<?php
@@ -72,6 +87,7 @@
          			<td><?=$row['item_code']?></td>
          			<td><?=$row['quantity']?></td>
          			<td><?=$row['price']?></td>
+                    <td><a href="salesorderentry2.php?remove=<?=$row['id']?>">Remove</a></td>
          		</tr>
 					
          		<?php
