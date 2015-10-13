@@ -63,11 +63,33 @@
  }
 ?>
      <div id="page-wrapper">
-
+        <div class="table table-responsive">
+         <table class="table">
+         <caption><center><h3><b>Inventory Location Transfers</b></h3></center></caption>
+          <tr>
+           <th>Item Code</th>
+           <th>Location</th>
+          </tr>
+          
+          <?php
+         			while($row=mysqli_fetch_assoc($result2)){
+         		?>
+         		
+         		<tr>
+         			<td><?=$row['item']?></td>
+         			<td><?=$row['to_location']?></td>
+         		</tr>
+         		
+         		<?php
+     				}
+         ?>
+         
+         </table>
+        </div>
         <hr>
         
         <form method="POST">
-         <legend><b><h1></center>Inventory Location Transfer</center></h1></b></legend>
+
          
          <label>Item Code/Name</label>
          <select class="form-control" name="item">
