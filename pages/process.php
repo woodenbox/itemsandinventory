@@ -422,7 +422,10 @@ function editSalesPricing($conn, $id){
 }
 
 
-
+function checklistifexist($connect, $name, $id){
+	$sql="SELECT 1 FROM sales_order_items WHERE sales_order_id = '$id' && item_code='$name'";
+	return mysqli_query($connect, $sql);
+}
 
 
 
@@ -607,7 +610,7 @@ function viewSalesOrderEntry($conn){
 }
 
 function addSalesOrderItems($conn, $item_code, $quantity, $price, $discount, $sales_order_id){
-	$sql="INSERT INTO sales_order_items VALUES('$item_code', '$quantity', '$price', '$discount', '$sales_order_id')";
+	$sql="INSERT INTO sales_order_items VALUES('','$item_code', '$quantity', '$price', '$discount', '$sales_order_id')";
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }
