@@ -15,25 +15,18 @@
         
         if(isset($_POST['add'])){
             $checkquantity=mysqli_fetch_assoc(checkquantity($conn1, $_POST['item_code']));
-            if($checkquantity['quantity']>$quantity){
-                echo "<scrip>alert('Quantity is more than the available units');</script>";
+            if($checkquantity['quantity']<$_POST['quantity']){
+            echo "<script>alert('Quantity is more than the available units');</script>";
             } else {
 
-
-	     
-	        $item_code=$_POST['item_code'];
-	        $quantity=$_POST['quantity'];
-	        $price=$_POST['price'];
-	        $discount=$_POST['discount'];
-	        $sales_order_id=$getSOEid['id'];
-	        
-	        $addSalesOrderItems=addSalesOrderItems($conn1, $item_code, $quantity, $price, 0, $sales_order_id);
-	        
-	        //$bawas=bawas($conn1, $item_code, $quantity);
-	        
-	        
-}	        
-	        header('Location: salesorderentry2.php');
+                $item_code=$_POST['item_code'];
+                $quantity=$_POST['quantity'];
+               $price=$_POST['price'] * $_POST['quantity'];
+               $sales_order_id=$getSOEid['id'];
+            
+               $addSalesOrderItems=addSalesOrderItems($conn1, $item_code, $quantity, $price, 0, $sales_order_id);
+            }           
+	        header('salesorderentry2.php');
 	    	
         }
         
@@ -41,7 +34,7 @@
 	        
 	        $removeSalesOrderEntry=removeSalesOrderEntry($conn1, $getSOEid['id']);
 	        
-	        header('Location: salesorderentry.php');
+	        echo "<script>window.location='salesorderentry.php';</script>";
 	        
         }
 	        

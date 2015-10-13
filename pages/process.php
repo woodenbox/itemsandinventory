@@ -1,6 +1,7 @@
 <?php
 function checkquantity($conn, $name){
 	$sql="SELECT SUM(value) as quantity FROM item_status WHERE code = '$name'";
+	return mysqli_query($conn, $sql);
 }
 function checkilt($connect, $code, $location){
 	$sql="SELECT 1 FROM item_status WHERE code = '$code' && location = '$location'";
