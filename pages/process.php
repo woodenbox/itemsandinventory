@@ -60,7 +60,7 @@ function getquan($connect, $name){
 }
 
 function viewItemsstatus($connect){
-	$sql="SELECT * FROM item_status";
+	$sql="SELECT *, sum(demand)as demands, sum(sales) as saless FROM item_status2 GROUP BY name, dates ORDER BY dates";
 	return mysqli_query($connect, $sql);
 }
 function getreorderlevel($connect, $name){
