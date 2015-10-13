@@ -351,6 +351,12 @@ function cancelPO($connect, $id){
 	return mysqli_query($connect, $sql);
 }
 
+function getPriceFrom($conn, $item_code){														/////ITOOO
+	$sql="SELECT price FROM sales_pricing WHERE item_code='$item_code'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
 
 
 

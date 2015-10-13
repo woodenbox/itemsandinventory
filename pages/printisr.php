@@ -1,27 +1,26 @@
 <?php 
     date_default_timezone_set("Asia/Manila");
     $date=date("Y/m/d");
-    $connect = connect();
 $printoutdate=date("Y/m/d");
 $printouttime=date("h:i:sa");
 $enddate="09/19/2015";
-$category="All";
-$location="All";
-$customer="All";
 
 
 
-include('process.php');
 
-$conn1 = connect();
+
+	include('process.php');
+
+	$conn1 = connect();
 
 
 
 ?>
 
 <div>
-	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Inventory Sales Report</a></br>
-	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda;"> <?php echo $printoutdate?>&nbsp<?php echo $printouttime?></a></br>
+	<a style="font-weight: bold; font-size: 30; font-family: Vrinda;">Inventory Sales Report</a><br>
+	<a>Print Out Date:</a><a style="margin-left: 30px; font-family: Vrinda;"> <?=$printoutdate?> </a><br>
+	<a>Time:</a> <a style="margin-left: 30pxl; font-family: Vrinda;"> <?=$printouttime?></a><br>
 </div>
 
 <div>
@@ -29,12 +28,14 @@ $conn1 = connect();
 <tr>
 	<th>Product</th>
 	<th>Quantity</th>
-	<th>Sales</th>
 	<th>Price</th>
+	<td></td>
 	<th>Cost<th>
 	<th>Costumer</th>
 	<th>Contribution</th>
 </tr>
+
+<!--
 <?php /*
 <tr style="text-align: center; font-family: Vrinda;">
 
@@ -48,25 +49,28 @@ $conn1 = connect();
 </tr>
 
 <?php */ ?>
+
+-->
+
 <tr style="text-align: center; font-family: Vrinda;">
 
 	<?php
 	$allCostumers=allCostumers($conn1);
-	while($rowcostumers=mysqli_fetch_assoc($allCostumers)){
-		$selectProductQuantityPrice=selectProductQuantityPrice($conn1, $rowcostumers['id']); //done
-
-			while($rowselectPQP=mysqli_fetch_assoc($selectProductQuantityPrice)){
+	while($rowcostumers=mysqli_fetch_assoc($allCostumers)){	//id ng costumer
+		$selectProductQuantityPrice=selectProductQuantityPrice($conn1, $rowcostumers['id']); 
+			while($rowselectPQP=mysqli_fetch_assoc($selectProductQuantityPrice)){		//item code, quantity, price
 
 				?>
 
 				<td><?=$rowselectPQP['item_code']?></td>
 				<td><?php echo $rowselectPQP['quantity']; $quantityty= $rowselectPQP['quantity'];?></td>
 				<td><?=$rowselectPQP['price']?></td>
+				
 		<td><?php $getitemprice=mysqli_fetch_assoc(getitemprice($conn1, $rowselectPQP['item_code'])); echo $getitemprice['price']; $priceprice = $getitemprice['price'];?></td>
 		<td><?php $getitemcost=mysqli_fetch_assoc(getitemcost($conn1, $rowselectPQP['item_code'])); echo $getitemcost['standard_cost_per_unit']; $cost = $getitemcost['standard_cost_per_unit'];?></td>
 		
-
-				<?php
+			
+				<?php /*
 				$allItem=allItem($conn1, $rowselectPQP['sales_order_id']);
 
 					while($rowallitem=mysqli_fetch_assoc($allItem)){
@@ -78,23 +82,23 @@ $conn1 = connect();
 						<?php
 
 					}
+					*/
 					?>	
+					
 					<?php
 			}
 			?>
 
 			?>
-				<td></td>
+			
 		<td><?=$rowcostumers['costumer']?></td>
 		<?php
-
-
 
 	}
 
 	?>
 
-<td><?php echo ($quantityty * $priceprice) - ($quantityty * $cost);?></td>
+	<td><?php echo ($quantityty * $priceprice) - ($quantityty * $cost);?></td> 
 	
 
 </tr>
