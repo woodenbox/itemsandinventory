@@ -3,6 +3,8 @@
         $conn1 = connect();
         
         $showSalesOrderItems=showSalesOrderItems($conn1, $_GET['id']);
+        date_default_timezone_set("Asia/Manila");//timezone
+        $dates=date('Y-m-d');//current date
         
         
         $showCostumer=showCostumer($conn1, $_GET['id']);
@@ -11,10 +13,12 @@
         if(isset($_POST['deliver'])){
 	     	
 	        while($show=mysqli_fetch_assoc($showSalesOrderItems)){
+                $getcurrentstocks=mysqli_fetch_assoc(getcurrentstocks($conn1, $show['item_code']));
 		        $item_code=$show['item_code'];
 		        $quantity=$show['quantity'];
-		        
+		        recordsales($conn1, $item_code, $quantity, $dates, $getcurrentstocks['value']);
 		        $bawas=bawas($conn1, $item_code, $quantity);
+
 	        }
 	        
         }

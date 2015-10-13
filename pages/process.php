@@ -3,6 +3,10 @@ function getcurrentstocks($conn1, $name){
 	$sql="SELECT * FROM item_status WHERE code = '$name'";
 	return mysqli_query($conn1, $sql);
 }
+function recordsales($conn1, $name, $quantity, $date, $stock){
+	$sql="INSERT INTO item_status2 (name, sales, dates, stock) VALUES ('$name', $quantity, '$date', $stock)";
+	return mysqli_query($conn1, $sql);
+}
 function recorddemand($conn1, $name, $quantity, $date, $stock){
 	$sql="INSERT INTO item_status2 (name, demand, dates, stock) VALUES ('$name', $quantity, '$date', $stock)";
 	return mysqli_query($conn1, $sql);
