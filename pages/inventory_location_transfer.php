@@ -7,6 +7,7 @@
  $result3 = getItems($conn1);
  $result4 = viewInventoryLocation($conn1);
  $result5 = viewInventoryLocation($conn1);
+ $result6= getiitem($conn1);
  
  if(isset($_POST['add'])){
 	 
@@ -87,12 +88,12 @@
           </tr>
           
           <?php
-         			while($row=mysqli_fetch_assoc($result2)){
+         			while($row=mysqli_fetch_assoc($result6)){
          		?>
          		
          		<tr>
-         			<td><?=$row['item']?></td>
-         			<td><?=$row['to_location']?></td>
+         			<td><?=$row['code']?></td>
+         			<td><?=$row['location']?></td>
          		</tr>
          		
          		<?php
