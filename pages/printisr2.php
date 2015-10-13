@@ -6,8 +6,16 @@ $printouttime=date("h:i:sa");
 $enddate="09/19/2015";
 
 
+
+
+
 	include('process.php');
+
 	$conn1 = connect();
+
+	$costumerName=allCostumers($conn1);
+	
+
 
 ?>
 
@@ -23,43 +31,47 @@ $enddate="09/19/2015";
 	<th>Costumer</th>
 	<th>Product</th>
 	<th>Quantity</th>
-	<th>Price</th>
-	<th></th>
+	<th>Price<th>
 	<th>Cost</th>
 	<th>Contribution</th>
 </tr>
 
 
+
+<tr style="text-align: center; font-family: Vrinda;">
+
 	<?php 
 	$allCostumers=allCostumers($conn1);
 	while($rowcostumers=mysqli_fetch_assoc($allCostumers)){	
 		?> 
-		<tr style="text-align: center; font-family: Vrinda;">
 		<td><?=$rowcostumers['costumer']?></td>
 		
+		<?php } ?>
+		
 		<?php 
-		$selectProductQuantityPrice=selectProductQuantityPrice($conn1, $rowcostumers['id']); 
-			while($rowselectPQP=mysqli_fetch_assoc($selectProductQuantityPrice)){		//item code, quantity, price
+		while($costumer=mysqli_fetch_assoc($costumerName)){
+		$costumerId=costumerId($conn1, $costumer['costumer']);
+		while($id=mysqli_fetch_assoc($costumerId)){
+		$selectProductQuantityPrice=selectProductQuantityPrice($conn1, $id['id']); //item_code quantity, price
+			while($rowselectPQP=mysqli_fetch_assoc($selectProductQuantityPrice)){		
 
 				?>
 
 				<td><?=$rowselectPQP['item_code']?></td>
 				<td><?php echo $rowselectPQP['quantity']; $quantityty= $rowselectPQP['quantity'];?></td>
-				<td><?=$rowselectPQP['price']?></td>
 				
-		<td> <?php $getitemprice=mysqli_fetch_assoc(getitemprice($conn1, $rowselectPQP['item_code'])); echo $getitemprice['price']; $priceprice = $getitemprice['price'];?> </td>
-		<td> <?php $getitemcost=mysqli_fetch_assoc(getitemcost($conn1, $rowselectPQP['item_code'])); echo $getitemcost['standard_cost_per_unit']; $cost = $getitemcost['standard_cost_per_unit'];?> </td>
+		<td><?php $getitemprice=mysqli_fetch_assoc(getitemprice($conn1, $rowselectPQP['item_code'])); echo $getitemprice['price']; $priceprice = $getitemprice['price'];?></td>
+		<td><?php $getitemcost=mysqli_fetch_assoc(getitemcost($conn1, $rowselectPQP['item_code'])); echo $getitemcost['standard_cost_per_unit']; $cost = $getitemcost['standard_cost_per_unit'];?></td>
 		
-			
-				
-					
-					<?php
-			}
+		<?php
 	}
+		}
+	}
+			?>	
+					
+			
 
-	?>
-
-	<td> <?php echo ($quantityty * $priceprice) - ($quantityty * $cost);?> </td> 
+	<td><?php echo ($quantityty * $priceprice) - ($quantityty * $cost);?></td> 
 	
 
 </tr>

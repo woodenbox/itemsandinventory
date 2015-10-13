@@ -676,6 +676,12 @@ function allCostumers($conn){
 	return $result;
 }
 
+function costumerId($conn, $costumer){
+	$sql="SELECT id FROM sales_order_entry WHERE costumer='$costumer'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
+}
+
 
 
 function selectProductQuantityPrice($conn, $id){
