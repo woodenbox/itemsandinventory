@@ -44,6 +44,7 @@
               updateInventoryLocation($conn1, $item, $to);
             }
           echo "<script>alert('Transfer of Location Successfully Initiated');</script>";   
+          echo "<script>window.location='inventory_location_transfer.php';</script>";
         } else {
           echo "<script>alert('No item could be found in that location');</script>";
         }
