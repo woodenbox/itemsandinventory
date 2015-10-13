@@ -64,7 +64,7 @@ while($row=mysqli_fetch_assoc($all)){
 
 <div>
 </br></br>
-<a style="margin-left: 574px; font-family: Vrinda;"><?php echo "total itu?";?></a>
+<!--<a style="margin-left: 574px; font-family: Vrinda;"><?php echo "total itu?";?></a>-->
 </div>
 
 

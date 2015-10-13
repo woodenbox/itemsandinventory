@@ -11,12 +11,12 @@
          <table class="table">
          <caption><h1><b><center>Item Status</center></b></h1></caption>
          		<tr>
+                    <th>Date</th>
          			<th>Item</th>
-         			<th>Location</th>
-         			<th>Reorder Level</th>
-                    <th>Demand</th>
-                    <th>Available</th>
-                    <th>On Order</th>
+         			<th>Demand</th>
+         			<th>Sales</th>
+                    <th>Stock</th>
+                    <th>Remaining Stock</th>
          		</tr>
          	
          		<?php
@@ -24,12 +24,12 @@
          		?>
          		
          		<tr>
-         			<td><?=$row['code']?></td>
-         			<td><?=$row['location']?></td>
-         			<td><?php $getreorderlevel=mysqli_fetch_assoc(getreorderlevel($connect, $row['code'])); echo $getreorderlevel['reorder_level'];?></td>
-         			<td><?php $getSumDemand=mysqli_fetch_assoc(getSumDemand($connect, $row['code'])); echo $getSumDemand['Demand'];?></td>
-                    <td><?=$row['value']?></td>
-         			<td><?php $getSumOrder=mysqli_fetch_assoc(getSumOrder($connect, $row['code'])); echo $getSumOrder['Demand'];?></td>
+                    <td><?=$row['dates']?></td>
+         			<td><?=$row['name']?></td>
+         			<td><?=$row['demands']?></td>
+         			<td><?=$row['sales']?></td>
+                    <td><?=$row['stock']?></td>
+         			<td><?php echo $row['stock'] - $row['sales']; ?></td>
          		</tr>
 					
          		<?php

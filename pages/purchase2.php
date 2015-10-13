@@ -29,11 +29,14 @@
 	    	$item_id=$_POST["item_id"];
 	    	$quantity=$_POST["quantity"];
 	    	$delivery_date=date("Y/m/d");
-	    	$pbt=$_POST["pbt"];
+	    	//$pbt=$_POST["pbt"];
 	    	$memo=$_POST["memo"];
 	    	$p_o_reference=$row["id"];
 	    	
-	    	$addListOrderItems=addListOrderItems($conn1, $item_id, $quantity, $delivery_date, $pbt, $memo, $p_o_reference);
+	    	$getPrice=getPriceFrom($conn1, $item_id);
+	    	$pbt=mysqli_fetch_assoc($getPrice);
+	    	
+	    	$addListOrderItems=addListOrderItems($conn1, $item_id, $quantity, $delivery_date, $pbt['price'], $memo, $p_o_reference);
 	    	echo "<script>widow.location = 'purchase2.php';</script>";
 	    	
 	    	header('Location: purchase2.php');
@@ -60,7 +63,7 @@
          			<td>Item Id</td>
          			<td>Quantity</td>
          			<!--<td>Delivery Date</td>!-->
-         			<td>Price</td>
+         			<!--<td>Price</td>-->
          			<td>Memo</td>
          		</tr>
          	
@@ -72,7 +75,7 @@
          			<td><?=$row['item_id']?></td>
          			<td><?=$row['quantity']?></td>
          			<!--<td><?=$row['delivery_date']?></td>!-->
-         			<td><?=$row['pbt']?></td>
+         			<!--<td><?=$row['pbt']?></td> -->
          			<td><?=$row['memo']?></td>
          		</tr>
 					
@@ -111,8 +114,10 @@
        <!--  <label>Order Date</label>
          <input type="date" class="form-control" name="delivery_date">!-->
          
+         <!--
          <label>Price</label>
          <input type="text" class="form-control" name="pbt">
+         -->
          
       	 <label>Memo</label>
          <input type="text" class="form-control" name="memo">

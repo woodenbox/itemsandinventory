@@ -3,6 +3,10 @@ function getcurrentstocks($conn1, $name){
 	$sql="SELECT * FROM item_status WHERE code = '$name'";
 	return mysqli_query($conn1, $sql);
 }
+function recordsales($conn1, $name, $quantity, $date, $stock){
+	$sql="INSERT INTO item_status2 (name, sales, dates, stock) VALUES ('$name', $quantity, '$date', $stock)";
+	return mysqli_query($conn1, $sql);
+}
 function recorddemand($conn1, $name, $quantity, $date, $stock){
 	$sql="INSERT INTO item_status2 (name, demand, dates, stock) VALUES ('$name', $quantity, '$date', $stock)";
 	return mysqli_query($conn1, $sql);
@@ -56,7 +60,7 @@ function getquan($connect, $name){
 }
 
 function viewItemsstatus($connect){
-	$sql="SELECT * FROM item_status";
+	$sql="SELECT *, sum(demand)as demands, sum(sales) as saless FROM item_status2 GROUP BY name, dates ORDER BY dates";
 	return mysqli_query($connect, $sql);
 }
 function getreorderlevel($connect, $name){
@@ -349,6 +353,12 @@ function receivePO($conn1, $id){
 function cancelPO($connect, $id){
 	$sql="UPDATE purchase_order_entry SET order_status = 0 WHERE id = $id";
 	return mysqli_query($connect, $sql);
+}
+
+function getPriceFrom($conn, $item_code){														/////ITOOO
+	$sql="SELECT price FROM sales_pricing WHERE item_code='$item_code'";
+	$result=mysqli_query($conn, $sql);
+	return $result;
 }
 
 
