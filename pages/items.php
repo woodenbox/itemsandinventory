@@ -25,13 +25,12 @@
 	        $dimension = $_POST['dimension'];
 	        $item_status = $_POST['item_status'];
 	        
-	        $addItems = addItems($conn1, $name, $description, $category, $tax_type, $item_type, $unit_measure, $dimension, $item_status);
-	        echo "<script>window.location='items.php';</script>";
-	        if($addItems){
-		        echo "New Item Added!";
-	        }else{
-		        echo "Failed to Add!";
-	        }
+	        if(mysqli_num_rows(checkItems($conn1, $name))==0){
+	         addItems($conn1, $name, $description, $category, $tax_type, $item_type, $unit_measure, $dimension, $item_status);
+            }
+            else{
+	        echo "<script>alert('Item Name Already Exists')</script>";    
+            }
 	        
         }
         

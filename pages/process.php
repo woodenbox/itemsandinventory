@@ -3,6 +3,10 @@ function getcurrentstocks($conn1, $name){
 	$sql="SELECT * FROM item_status WHERE code = '$name'";
 	return mysqli_query($conn1, $sql);
 }
+function recordsales($conn1, $name, $quantity, $date, $stock){
+	$sql="INSERT INTO item_status2 (name, sales, dates, stock) VALUES ('$name', $quantity, '$date', $stock)";
+	return mysqli_query($conn1, $sql);
+}
 function recorddemand($conn1, $name, $quantity, $date, $stock){
 	$sql="INSERT INTO item_status2 (name, demand, dates, stock) VALUES ('$name', $quantity, '$date', $stock)";
 	return mysqli_query($conn1, $sql);
@@ -56,7 +60,7 @@ function getquan($connect, $name){
 }
 
 function viewItemsstatus($connect){
-	$sql="SELECT * FROM item_status";
+	$sql="SELECT *, sum(demand)as demands, sum(sales) as saless FROM item_status2 GROUP BY name, dates ORDER BY dates";
 	return mysqli_query($connect, $sql);
 }
 function getreorderlevel($connect, $name){
@@ -746,6 +750,16 @@ function getSumOrder($conn, $name){
 	$sql="SELECT sum(quantity) as 'Demand' FROM list_order_items where item_id='$name'";
 	return mysqli_query($conn, $sql);
 	}
+	
+function checkItems($conn, $name){
+    $sql="SELECT * from item where name='$name'";
+    return mysqli_query($conn, $sql);
+}
+
+function checkForeignItem($conn, $name){
+	$sql="SELECT * from foreign_item_codes where item='$name'";
+    return mysqli_query($conn, $sql);
+}
 //
 
 
