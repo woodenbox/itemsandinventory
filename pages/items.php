@@ -144,11 +144,6 @@
          
         <label>Dimenstion</label>
         <input type="text" class="form-control" name="dimension">
-        <label>Dimension</label>
-  		<select class="form-control" name="dimension">
-   		       <option>Support</option>
-    	       <option>Development</option>
-        </select>
         <label>Item Status</label>
   		<select class="form-control" name="item_status">
   		<?php
