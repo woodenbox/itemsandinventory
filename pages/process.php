@@ -1,4 +1,12 @@
 <?php
+function getcurrentstocks($conn1, $name){
+	$sql="SELECT * FROM item_status WHERE code = '$name'";
+	return mysqli_query($conn1, $sql);
+}
+function recorddemand($conn1, $name, $quantity, $date, $stock){
+	$sql="INSERT INTO item_status2 (name, demand, dates, stock) VALUES ('$name', $quantity, '$date', $stock)";
+	return mysqli_query($conn1, $sql);
+}
 function checkquantity($conn, $name){
 	$sql="SELECT SUM(value) as quantity FROM item_status WHERE code = '$name'";
 	return mysqli_query($conn, $sql);

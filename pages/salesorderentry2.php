@@ -7,6 +7,8 @@
 
         $getLastId=getSOEid($conn1);
         $getSOEid=mysqli_fetch_assoc($getLastId);
+        date_default_timezone_set("Asia/Manila");//timezone
+        $dates=date('Y-m-d');//current date
         
         
         
@@ -14,9 +16,12 @@
         $showSalesOrderItems=showSalesOrderItems($conn1, $getSOEid['id']);
         
         if(isset($_POST['add'])){
+
             $checkquantity=mysqli_fetch_assoc(checkquantity($conn1, $_POST['item_code']));
             if($checkquantity['quantity']<$_POST['quantity']){
             echo "<script>alert('Quantity is more than the available units');</script>";
+            $getcurrentstocks=mysqli_fetch_assoc(getcurrentstocks($conn1, $_POST['item_code']));
+            recorddemand($conn1, $_POST['item_code'], $_POST['quantity'], $dates, $getcurrentstocks['value']);
             } else {
                 $checklistifexist=mysqli_fetch_assoc(checklistifexist($conn1, $_POST['item_code'], $getSOEid['id']));
                 if($checklistifexist['1']==1){
