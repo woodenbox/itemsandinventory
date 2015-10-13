@@ -751,6 +751,8 @@ function checkItems($conn, $name){
 }
 
 function checkForeignItem($conn, $name){
+	$sql="SELECT * from foreign_item_codes where item='$name'";
+    return mysqli_query($conn, $sql);
 }
 //
 
