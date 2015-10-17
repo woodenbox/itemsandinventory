@@ -760,6 +760,12 @@ function checkForeignItem($conn, $name){
 	$sql="SELECT * from foreign_item_codes where item='$name'";
     return mysqli_query($conn, $sql);
 }
+
+function viewItemStatus($conn){
+    $sql="SELECT * from item_status";
+    return mysqli_query($conn, $sql);
+}
+
 //
 
 

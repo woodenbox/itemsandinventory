@@ -7,6 +7,7 @@
  $result3 = getItems($conn1);
  $result4 = viewInventoryLocation($conn1);
  $result5 = viewInventoryLocation($conn1);
+ $result6= getiitem($conn1);
  
  if(isset($_POST['add'])){
 	 
@@ -25,9 +26,25 @@
       }else{
           $checkilt=mysqli_fetch_assoc(checkilt($conn1, $item, $from));
         if($checkilt['1']==1){
-          addInventoryLocationTransfer($conn1, $item, $from, $to, $_POST['date'], $transfer);
-          updateInventoryLocation($conn1, $item, $to);
+            $pangalan=$item;
+            $lokasyon=$to;
+            $lokasyon2=$from;
+            $kwanti2=mysqli_fetch_assoc(getkwantiforinventory($conn1, $item, $from));
+            $kwanti=$kwanti2['value'];
+            $sql="SELECT 1 FROM item_status WHERE code = '$pangalan' && location = '$lokasyon'";
+            $checkmoito=mysqli_query($conn1, $sql);
+            $checkmoito2=mysqli_fetch_assoc($checkmoito);
+            if($checkmoito2['1']==1){
+                $sql="UPDATE item_status set value = value + $kwanti where code = '$pangalan' && location = '$lokasyon'";
+                mysqli_query($conn1, $sql);
+                $sql="DELETE FROM item_status where code = '$pangalan' && location = '$lokasyon2'";
+                mysqli_query($conn1, $sql);
+            } else {
+              addInventoryLocationTransfer($conn1, $item, $from, $to, $_POST['date'], $transfer);
+              updateInventoryLocation($conn1, $item, $to);
+            }
           echo "<script>alert('Transfer of Location Successfully Initiated');</script>";   
+          echo "<script>window.location='inventory_location_transfer.php';</script>";
         } else {
           echo "<script>alert('No item could be found in that location');</script>";
         }
@@ -72,12 +89,12 @@
           </tr>
           
           <?php
-         			while($row=mysqli_fetch_assoc($result2)){
+         			while($row=mysqli_fetch_assoc($result6)){
          		?>
          		
          		<tr>
-         			<td><?=$row['item']?></td>
-         			<td><?=$row['to_location']?></td>
+         			<td><?=$row['code']?></td>
+         			<td><?=$row['location']?></td>
          		</tr>
          		
          		<?php
