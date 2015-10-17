@@ -297,11 +297,19 @@ function addListOrderItems($conn, $item_id, $quantity, $delivery_date, $pbt, $me
 	$result=mysqli_query($conn, $sql);
 	return $result;
 }
-
+function getiitem($conn1){
+	$sql="SELECT * FROM item_status";
+	return mysqli_query($conn1, $sql);
+}
 function cancelOrderEntry($conn, $purchaseId){
 	$sql="DELETE FROM purchase_order_entry WHERE id='$purchaseId'";
 	$result=mysqli_query($conn, $sql);
 	return $result;
+}
+
+function getkwantiforinventory($conn1, $item, $from){
+	$sql="SELECT * from item_status WHERE code='$item' && location='$from'";
+	return mysqli_query($conn1, $sql);
 }
 
 function viewOrderList($conn, $id){

@@ -17,7 +17,18 @@
     if(isset($_POST['receive'])){
         $viewOrderList=vieworderList($conn1, $id);
         while($row=mysqli_fetch_assoc($viewOrderList)){
-            receiveItems($conn1, $row['item_id'], $processPurchaseOrder['receive_into'], $row['quantity'], $date, $id);
+            $pangalan=$row['item_id'];
+            $lokasyon=$processPurchaseOrder['receive_into'];
+            $kwanti=$row['quantity'];
+            $sql="SELECT 1 FROM item_status WHERE code = '$pangalan' && location = '$lokasyon'";
+            $checkmoito=mysqli_query($conn1, $sql);
+            $checkmoito2=mysqli_fetch_assoc($checkmoito);
+            if($checkmoito2['1']==1){
+                $sql="UPDATE item_status set value = value + $kwanti where code = '$pangalan' && location = '$lokasyon'";
+                mysqli_query($conn1, $sql);
+            } else {
+                receiveItems($conn1, $row['item_id'], $processPurchaseOrder['receive_into'], $row['quantity'], $date, $id);
+            }
             receivePO($conn1, $id);
             echo "<script>window.location = 'outstanding.php'</script>";
         }
