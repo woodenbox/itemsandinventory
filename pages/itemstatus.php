@@ -3,7 +3,7 @@
         include('header.php');
         
         $connect = connect();
-        $result = viewItemsstatus($connect);
+        $result = viewItemFinal($connect);
 
 ?>        
 <div id="page-wrapper">
@@ -11,12 +11,12 @@
          <table class="table">
          <caption><h1><b><center>Item Status</center></b></h1></caption>
          		<tr>
-                    <th>Date</th>
-         			<th>Item</th>
+                    <th>Item</th>
          			<th>Demand</th>
-         			<th>Sales</th>
-                    <th>Stock</th>
-                    <th>Remaining Stock</th>
+         			<th>Maximum Tolerance</th>
+         			<th>In Demand</th>
+         			<th>Remaining Stock/s</th>
+                    <th>Out Demand For Supplier</th>
          		</tr>
          	
          		<?php
@@ -24,12 +24,12 @@
          		?>
          		
          		<tr>
-                    <td><?=$row['dates']?></td>
-         			<td><?=$row['name']?></td>
-         			<td><?=$row['demands']?></td>
-         			<td><?=$row['sales']?></td>
-                    <td><?=$row['stock']?></td>
-         			<td><?php echo $row['stock'] - $row['sales']; ?></td>
+                    <td><?=$row['name']?></td>
+         			<td><?=$row['demand']?></td>
+         			<td><?=$row['stock']?></td>
+         			<td><?=$row['indemand']?></td>
+         			<td><?=$row['remaining']?></td>
+                    <td><?=$row['outdemand']?></td>
          		</tr>
 					
          		<?php
