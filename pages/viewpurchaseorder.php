@@ -24,10 +24,26 @@
             $checkmoito=mysqli_query($conn1, $sql);
             $checkmoito2=mysqli_fetch_assoc($checkmoito);
             if($checkmoito2['1']==1){
-                $sql="UPDATE item_status set value = value + $kwanti where code = '$pangalan' && location = '$lokasyon'";
+                $sql="UPDATE item_status_final set demand = demand + $kwanti where name = '$pangalan'";
                 mysqli_query($conn1, $sql);
             } else {
-                receiveItems($conn1, $row['item_id'], $processPurchaseOrder['receive_into'], $row['quantity'], $date, $id);
+	            if ($kwanti>100){
+		         if ($kwanti>200){
+			      echo "<script> alert('Quantity Could Only Be at Maximum of 200'); </script>";
+		         }
+		         else{
+		        $out=$kwanti-100;
+		        $in=100;
+                $sql="INSERT INTO item_status_final VALUES('', '$pangalan', '$kwanti', '100', '$in', '0', '$out')";
+                mysqli_query($conn1, $sql);
+                 }
+                }
+                
+                else {
+	            $sukli=100-$kwanti;
+	            $sql="INSERT INTO item_status_final VALUES('', '$pangalan', '$kwanti', '100', '$kwanti', '$sukli', '0')";
+	            mysqli_query($conn1, $sql);    
+                }
             }
             receivePO($conn1, $id);
             echo "<script>window.location = 'outstanding.php'</script>";

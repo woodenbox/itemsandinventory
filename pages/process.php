@@ -348,8 +348,8 @@ function getItems($conn){
 	return $result;
 }
 
-function receiveItems($conn1, $item_id, $receive_into, $quantity, $date, $id){
-	$sql="INSERT INTO item_status VALUES ('','$item_id','$receive_into','','$quantity','$date', '$id')";
+function receiveItems($conn1, $item_id, $date, $demand, $sales, $stock){
+	$sql="INSERT INTO item_status2 VALUES ('','$item_id', '$date', '$demand', '$sales', '$stock')";
 	return mysqli_query($conn1, $sql);
 }
 
@@ -768,6 +768,17 @@ function checkForeignItem($conn, $name){
 	$sql="SELECT * from foreign_item_codes where item='$name'";
     return mysqli_query($conn, $sql);
 }
+
+function viewItemStatus($conn){
+    $sql="SELECT * from item_status";
+    return mysqli_query($conn, $sql);
+}
+
+function viewItemFinal($conn){
+	$sql="SELECT * from item_status_final";
+	return mysqli_query($conn, $sql);
+}
+
 //
 
 
