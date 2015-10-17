@@ -772,7 +772,75 @@ function checkForeignItem($conn, $name){
 
 
 
+//search for Item
 
+function searchItem($conn, $search){
+	$sql="SELECT * FROM item WHERE name LIKE '%$search%' OR description LIKE '%$search%' OR category LIKE '%$search%' OR dimension LIKE '$search'";
+	return mysqli_query($conn, $sql);
+}
+
+function viewPageItem($conn,$page,$rows){
+	$start=($page-1)*$rows;
+	$sql="SELECT * FROM item LIMIT $start,$rows";
+	$result=mysqli_query($conn,$sql);
+	return $result;
+}
+
+
+//search for supplier
+
+function searchSupplier($conn, $search){
+	$sql="SELECT * FROM supplier WHERE name LIKE '%$search%' OR short_name LIKE '%$search%' OR website LIKE '%$search%' OR email LIKE '%$search%' OR address LIKE '%$search%' OR status LIKE '%$search%'";
+	return mysqli_query($conn, $sql);
+}
+
+function viewPageSuppliers($conn,$page,$rows){
+	$start=($page-1)*$rows;
+	$sql="SELECT * FROM supplier LIMIT $start,$rows";
+	$result=mysqli_query($conn,$sql);
+	return $result;
+}
+
+//search for Costumers
+
+
+function searchCostumer($conn, $search){
+	$sql="SELECT * FROM customers WHERE name LIKE '%$search%' OR shortname LIKE '%$search%' OR mailaddress LIKE '%$search%' OR billaddress LIKE '%$search%'";
+	return mysqli_query($conn, $sql);
+}
+
+//for inventory location
+
+function searchLocation($conn, $search){
+	$sql="SELECT * FROM opt_inventory_location WHERE name LIKE '%$search%' OR contact LIKE '%$search%'";	
+	return mysqli_query($conn, $sql);
+}
+
+//for sales pricing
+
+function searchSales($conn, $search){
+	$sql="SELECT * FROM sales_pricing WHERE item_code LIKE '%$search%' OR sale_type LIKE '%$search%'";
+	return mysqli_query($conn, $sql);
+}
+
+//for purchase pricing
+
+function searchPricing($conn, $search){
+	$sql="SELECT * FROM purchase_pricing WHERE item_code LIKE '%$search%' OR supplier LIKE '%$search%' OR price='$search' OR supplier_code LIKE '%$search%'";
+	return mysqli_query($conn, $sql);
+}
+
+//for standard cost
+
+function searchCost($conn, $search){
+	$sql="SELECT * FROM standard_cost WHERE item_code LIKE '%$search%'";
+	return mysqli_query($conn, $sql);
+}
+
+
+
+
+//
 
 
 

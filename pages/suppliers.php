@@ -8,6 +8,16 @@
         	$result = viewSuppliers($conn1);
         	$result2 = viewCurrencies($conn1);
         	$result3 = viewStatusType($conn1);
+        	
+        	
+        	if(!isset($_GET['page'])){
+ 					$_GET['page']=1;
+				}
+            	
+            	$total=mysqli_num_rows($result);
+				$rows=5;
+				$pages=ceil($total/$rows);
+				$result=viewPageSuppliers($conn1,$_GET['page'],$rows);
 
         	        	
         	if(isset($_POST['add'])){
@@ -35,6 +45,11 @@
 	        	}
 	        	
         	}
+        	
+        	if(isset($_GET['search'])){
+	        	$result=searchSupplier($conn1, $_GET['search']);
+	        	$searchSupplier = $_GET['search'];
+        	}
         
         
         ?>
@@ -43,6 +58,14 @@
 
         <div id="page-wrapper">
        
+        
+        <form method="GET" style="position: absolute; left: 85%; top: 10%;">
+								<div class="form-group" >
+									<label style="margin-right: 158px; width: 200px;">Search:</label><br>
+									<input type="text" name="search" style="color: black;" placeholder="Enter to search">
+									
+								</div>
+							</form>
         
          <div class="table-responsive">
          	<table class="table">
@@ -88,6 +111,42 @@
          		?>
          		
          	</table>
+         	
+         	<center>
+							<nav>
+  							<ul class="pagination">
+  								  <li>
+  									    <a href="#" aria-label="Previous">
+  									      <span aria-hidden="true">&laquo;</span>
+  									    </a>
+  								  </li>
+  								  
+  								   <?php
+										if($total>1){
+	 										for($cnt=1;$cnt<=$pages;$cnt++){
+									?>  
+ 								  <li><a href="suppliers.php?page=<?=$cnt?>"><?=$cnt?></a>	</li>
+ 								  
+ 								   <?php
+										 }
+										}
+ 									 ?>
+  								  
+   									 <li>
+    									 <a href="#" aria-label="Next">
+       										 <span aria-hidden="true">&raquo;</span>
+     									 </a>
+    								</li>
+ 							 </ul>
+						</nav>
+						</center>
+         	
+         	
+         	
+         	
+         	
+         	
+         	
          </div>
         
          <hr>

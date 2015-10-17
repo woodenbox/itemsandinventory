@@ -8,11 +8,23 @@
         $conn1 = connect();
         
         $result = listallitems($conn1);
+        
         $result2 = viewItemCategory($conn1);
         $result3 = viewTaxType($conn1);
         $result4 = viewItemType($conn1);
         $result5 = viewUnitOfMeasure($conn1);
         $result6 = viewStatusType($conn1);
+        
+        
+        if(!isset($_GET['page'])){
+ 					$_GET['page']=1;
+				}
+            	
+            	$total=mysqli_num_rows($result);
+				$rows=5;
+				$pages=ceil($total/$rows);
+				$result=viewPageItem($conn1,$_GET['page'],$rows);
+        
         
         if(isset($_POST['add'])){
 	        
@@ -34,12 +46,26 @@
 	        
         }
         
+        if(isset($_GET['search'])){
+	     	$result=searchItem($conn1, $_GET['search']); 
+	     	
+	     	$searchItem=$_GET['search'];  
+        }
+        
         ?>
         
         
 
         <div id="page-wrapper">
-            	
+         
+        
+        <form method="GET" style="position: absolute; left: 85%; top: 10%;">
+								<div class="form-group" >
+									<label style="margin-right: 158px; width: 200px;">Search:</label><br>
+									<input type="text" name="search" style="color: black;" placeholder="Enter to search">
+									
+								</div>
+							</form>
         
         <div class="table-responsive">
          	<table class="table">
@@ -77,6 +103,36 @@
          		?>
          	
          	</table>
+         	
+         	<center>
+							<nav>
+  							<ul class="pagination">
+  								  <li>
+  									    <a href="#" aria-label="Previous">
+  									      <span aria-hidden="true">&laquo;</span>
+  									    </a>
+  								  </li>
+  								  
+  								   <?php
+										if($total>1){
+	 										for($cnt=1;$cnt<=$pages;$cnt++){
+									?>  
+ 								  <li><a href="items.php?page=<?=$cnt?>"><?=$cnt?></a>	</li>
+ 								  
+ 								   <?php
+										 }
+										}
+ 									 ?>
+  								  
+   									 <li>
+    									 <a href="#" aria-label="Next">
+       										 <span aria-hidden="true">&raquo;</span>
+     									 </a>
+    								</li>
+ 							 </ul>
+						</nav>
+						</center>
+						
          </div>
         
         

@@ -24,6 +24,12 @@
             }
 	        	
         	}
+        	
+        	 if(isset($_GET['search'])){
+	     	$result=searchCost($conn1, $_GET['search']); 
+	     	
+	     	$searchCost=$_GET['search'];  
+        }
         
         
         ?>
@@ -32,6 +38,15 @@
 
         <div id="page-wrapper">
        
+        <form method="GET" style="position: absolute; left: 85%; top: 10%;">
+								<div class="form-group" >
+									<label style="margin-right: 158px; width: 200px;">Search:</label><br>
+									<input type="text" name="search" style="color: black;" placeholder="Enter to search">
+									
+								</div>
+							</form>
+        
+        
         
          <div class="table-responsive">
          	<table class="table">

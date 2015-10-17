@@ -4,6 +4,7 @@
        
         	$conn1 = connect();
         	
+        	$listcustomers=listcustomers($conn1);
         	$result = viewSuppliers($conn1);
         	$result2 = viewCurrencies($conn1);
         	        	
@@ -23,6 +24,12 @@
 	        	}
 	        	
         	}
+        	
+        	
+        	if(isset($_GET['search'])){
+	        	$listcustomers=searchCostumer($conn1, $_GET['search']);
+	        	$searchCostumer = $_GET['search'];
+        	}
         
         
         ?>
@@ -30,9 +37,23 @@
         
 
         <div id="page-wrapper">
+        
+        <form method="GET" style="position: absolute; left: 85%; top: 10%;">
+								<div class="form-group" >
+									<label style="margin-right: 158px; width: 200px;">Search:</label><br>
+									<input type="text" name="search" style="color: black;" placeholder="Enter to search">
+									
+								</div>
+							</form>
+        
+        
+        
             <table class="table">
-            <caption><h1><b>Customers</b></h1></caption>
-                <tr>
+            
+            <caption><center><h1><b>Customers</b></h1><center></caption>
+            
+       
+               <tr>
                     <th>Name</th>
                     <th>Short name</th>
                     <th>Mailing Address</th>
@@ -40,7 +61,7 @@
                     <th>Status</td>
                 </tr>
                 <?php
-                    $listcustomers=listcustomers($conn1);
+                    
                     while($row=mysqli_fetch_assoc($listcustomers)){
                 ?>
                 
@@ -57,6 +78,7 @@
                     }
                 ?>
             </table>
+             	
     </br>
         
         <legend><label>Add New Customer</label></legend>    	

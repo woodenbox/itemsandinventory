@@ -38,8 +38,28 @@
   }
   
  }
+ 
+ if(isset($_GET['search'])){
+	     	$result=searchLocation($conn1, $_GET['search']); 
+	     	
+	     	$searchLocation=$_GET['search'];  
+        }
+ 
+ 
+ 
 ?>
     <div id="page-wrapper">
+    
+    
+    <form method="GET" style="position: absolute; left: 85%; top: 10%;">
+								<div class="form-group" >
+									<label style="margin-right: 158px; width: 200px;">Search:</label><br>
+									<input type="text" name="search" style="color: black;" placeholder="Enter to search">
+									
+								</div>
+							</form>
+    
+    
     
       <div class="table-responsive">
          	<table class="table table-hover"  width="100%" style="margin:auto">
