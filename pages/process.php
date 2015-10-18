@@ -786,7 +786,7 @@ function viewItemFinal($conn){
 //search for Item
 
 function searchItem($conn, $search){
-	$sql="SELECT * FROM item WHERE name LIKE '%$search%' OR description LIKE '%$search%' OR category LIKE '%$search%' OR dimension LIKE '$search'";
+	$sql="SELECT * FROM item WHERE name LIKE '%$search%' OR description LIKE '%$search%' OR category LIKE '%$search%' OR dimension LIKE '$search' OR item_code LIKE '$search'";
 	return mysqli_query($conn, $sql);
 }
 
