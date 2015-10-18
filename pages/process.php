@@ -848,6 +848,15 @@ function searchCost($conn, $search){
 	return mysqli_query($conn, $sql);
 }
 
+function checkItemOrder($conn, $name){
+    $sql="SELECT * FROM item_status_final where name='$name'";
+    return mysqli_query($conn, $sql);
+}
+
+function checkItemShuhada($conn, $name){
+    $sql = "SELECT * FROM item_status_final where name='$name'";
+    return mysqli_query($conn, $sql);
+}
 
 
 

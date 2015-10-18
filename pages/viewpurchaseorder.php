@@ -16,39 +16,64 @@
 
     if(isset($_POST['receive'])){
         $viewOrderList=vieworderList($conn1, $id);
+        $pangalan;
+        $lokasyon;
+        $kwanti;
         while($row=mysqli_fetch_assoc($viewOrderList)){
             $pangalan=$row['item_id'];
             $lokasyon=$processPurchaseOrder['receive_into'];
             $kwanti=$row['quantity'];
-            $sql="SELECT 1 FROM item_status WHERE code = '$pangalan' && location = '$lokasyon'";
-            $checkmoito=mysqli_query($conn1, $sql);
-            $checkmoito2=mysqli_fetch_assoc($checkmoito);
-            if($checkmoito2['1']==1){
-                $sql="UPDATE item_status_final set demand = demand + $kwanti where name = '$pangalan'";
-                mysqli_query($conn1, $sql);
-            } else {
-	            if ($kwanti>100){
-		         if ($kwanti>200){
-			      echo "<script> alert('Quantity Could Only Be at Maximum of 200'); </script>";
-		         }
-		         else{
-		        $out=$kwanti-100;
-		        $in=100;
-                $sql="INSERT INTO item_status_final VALUES('', '$pangalan', '$kwanti', '100', '$in', '0', '$out')";
-                mysqli_query($conn1, $sql);
-                 }
-                }
-                
-                else {
-	            $sukli=100-$kwanti;
-	            $sql="INSERT INTO item_status_final VALUES('', '$pangalan', '$kwanti', '100', '$kwanti', '$sukli', '0')";
-	            mysqli_query($conn1, $sql);    
-                }
-            }
-            receivePO($conn1, $id);
-            echo "<script>window.location = 'outstanding.php'</script>";
         }
+            
+            if(mysqli_num_rows(checkItemOrder($conn1, $pangalan))==0){
+	         if($kwanti>200){
+		      echo "<script>alert('Quantity Could Not Be Greater Than 200')</script>";
+	         }
+	         else{
+		      if($kwanti>100){
+			   $out=$kwanti-100;
+			   $in=100;
+			   $sql="INSERT INTO item_status_final VALUES ('','$pangalan', '$kwanti', '100', '$in', '0', '$out')";
+			   mysqli_query($conn1, $sql);
+		      }
+		      else{
+			   $out=0;
+			   $tira=100-$kwanti;
+			   $sql="INSERT INTO item_status_final VALUES ('', '$pangalan', '$kwanti', '100', '$kwanti', '$tira', '0')";
+			   mysqli_query($conn1, $sql);
+		      }
+	         }
+            }
+            
+            else{
+	        $b=mysqli_fetch_assoc(checkItemShuhada($conn1, $pangalan));
+	         $shuhada[0]=$b['demand'];
+  
+            $shuhadamadafaka=$shuhada[0]+$kwanti;
+	         if($shuhadamadafaka>200){
+		      echo "<script>alert('Tolerance Level Cannot Be Greater Than 200')</script>";
+	         }
+	         else{
+		         
+		       if($shuhadamadafaka>100){
+			   $out=$shuhadamadafaka-100;
+			   $in=100;
+			   $sql="UPDATE item_status_final set demand='$shuhadamadafaka', indemand='$in', remaining='0', outdemand='$out' where name='$pangalan'";
+			   mysqli_query($conn1, $sql);
+		      }
+		      else{
+			   $out=0;
+			   $tira=100-$kwanti;
+			   $sql="UPDATE item_status_final set demand='$shuhadamadafaka', indemand='$kwanti', remaining='$tira', outdemand='$out' where name='$pangalan'";
+			   mysqli_query($conn1, $sql);
+		      } 
+		       
+	         }
+            }
+            
+
     }
+    
     if(isset($_POST['back'])){
         echo "<script>window.location = 'outstanding.php'</script>";
     }
