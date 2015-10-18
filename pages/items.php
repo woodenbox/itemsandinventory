@@ -29,6 +29,7 @@
         if(isset($_POST['add'])){
 	        
 	        $name = $_POST['name'];
+	        
 	        $description = $_POST['description'];
 	        $category = $_POST['category'];
 	        $tax_type = $_POST['tax_type'];
@@ -71,6 +72,7 @@
          	<table class="table">
          	    <caption><h1><center><b>Items</b></center></h1></caption>
          		<tr>
+         			<td>Item Code</td>
          			<td>Item Name</td>
          			<td>Description</td>
          			<td>Category</td>
@@ -86,6 +88,7 @@
          			while($row=mysqli_fetch_assoc($result)){
          		?>
          		<tr>
+         			<td><?=$row['item_code']?></td>
          			<td><?=$row['name']?></td>
          			<td><?=$row['description']?></td>
          			<td><?=$row['category']?></td>
