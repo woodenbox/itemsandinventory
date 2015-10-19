@@ -863,6 +863,11 @@ function viewItemShuhada($conn){
     return mysqli_query($conn, $sql);
 }
 
+function Ou($conn, $name){
+	$sql = "SELECT * FROM item_status_final where name='$name'";
+	return mysqli_query($conn, $sql);
+}
+
 function viewShuhadaItem($conn, $id){
     $sql = "SELECT * FROM item_status_final where id='$id'";
     return mysqli_query($conn, $sql);

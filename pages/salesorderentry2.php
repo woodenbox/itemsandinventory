@@ -1,74 +1,76 @@
-      <?php
+<?php
+      
+    include('header.php');
+    include('process.php');
+    $conn1 = connect();
+    $result = viewItemShuhada($conn1);
 
-        include('process.php');
-        
-        $conn1 = connect();
-        $result = viewItems($conn1);
-
-        $getLastId=getSOEid($conn1);
-        $getSOEid=mysqli_fetch_assoc($getLastId);
-        date_default_timezone_set("Asia/Manila");//timezone
-        $dates=date('Y-m-d');//current date
-        
-        
-        
-        
-        $showSalesOrderItems=showSalesOrderItems($conn1, $getSOEid['id']);
-        
-        if(isset($_POST['add'])){
-
-            $checkquantity=mysqli_fetch_assoc(checkquantity($conn1, $_POST['item_code']));
-            if($checkquantity['quantity']<$_POST['quantity']){
-            echo "<script>alert('Quantity is more than the available units');</script>";
-            $getcurrentstocks=mysqli_fetch_assoc(getcurrentstocks($conn1, $_POST['item_code']));
-            recorddemand($conn1, $_POST['item_code'], $_POST['quantity'], $dates, $getcurrentstocks['value']);
-            } else {
-                $checklistifexist=mysqli_fetch_assoc(checklistifexist($conn1, $_POST['item_code'], $getSOEid['id']));
-                if($checklistifexist['1']==1){
-                    echo "<script>alert('Item is already present. Delete or select another item');</script>";
-                } else {
-                $item_code=$_POST['item_code'];
-                $quantity=$_POST['quantity'];
-                $sql="SELECT price FROM sales_pricing WHERE item_code = '$item_code'";
-                $result = mysqli_query($conn1, $sql);
-                $pricepro=mysqli_fetch_assoc($result);
-               $price=$pricepro['price'] * $_POST['quantity'];
-               $sales_order_id=$getSOEid['id'];
-            
-               $addSalesOrderItems=addSalesOrderItems($conn1, $item_code, $quantity, $price, 0, $sales_order_id);
-                echo "<script>window.location = 'salesorderentry2.php';</script>";
-            }
-            }           
-	        echo "<script>window.location = 'salesorderentry2.php';</script>";
-	    	
-        }
-
-        if(isset($_GET['remove'])){
-            $deletee=$_GET['remove'];
-            $sql="DELETE FROM sales_order_items WHERE id=$deletee";
-            $result=mysqli_query($conn1, $sql);
-            echo "<script>window.location='salesorderentry2.php';</script>";
-            //tinatamad na akoooooo
-        }
-        
-        if(isset($_POST['cancel'])){
-	        
-	        $removeSalesOrderEntry=removeSalesOrderEntry($conn1, $getSOEid['id']);
-	        
-	        echo "<script>window.location='salesorderentry.php';</script>";
-	        
-        }
-	        
-        include('header.php');
-        
-        
+    if(isset($_POST['add'])){
+        $pangalan=$_POST['item_code'];
+        $lokasyon;
+        $kwanti=$_POST['quantity'];
+        $resulta=mysqli_fetch_assoc(Ou($conn1, $pangalan));
+        $limit=$resulta['stock'];
         ?>
+         <h1><?=$limit?></h1>
+        <?php
+        $totallimit=$limit*2;  
+          
+            if(mysqli_num_rows(checkItemOrder($conn1, $pangalan))==0){
+	         if($kwanti>$totallimit){
+		      echo "<script>alert('Quantity Exceeded Tolerance Level')</script>";
+	         }
+	         else{
+		      if($kwanti>$limit){
+			   $out=$kwanti-$limit;
+			   $in=$limit;
+			   $sql="INSERT INTO item_status_final VALUES ('','$pangalan', '$kwanti', '100', '$in', '0', '$out')";
+			   mysqli_query($conn1, $sql);
+		      }
+		      else{
+			   $out=0;
+			   $tira=$limit-$kwanti;
+			   $sql="INSERT INTO item_status_final VALUES ('', '$pangalan', '$kwanti', '100', '$kwanti', '$tira', '0')";
+			   mysqli_query($conn1, $sql);
+		      }
+	         }
+            }
+            
+            else{
+	        $b=mysqli_fetch_assoc(checkItemShuhada($conn1, $pangalan));
+	         $shuhada[0]=$b['demand'];
+  
+            $shuhadamadafaka=$shuhada[0]+$kwanti;
+	         if($shuhadamadafaka>$totallimit){
+		      echo "<script>alert('Quantity Exceeded Tolerance Level')</script>";
+	         }
+	         else{
+		         
+		       if($shuhadamadafaka>$limit){
+			   $out=$shuhadamadafaka-$limit;
+			   $in=$limit;
+			   $sql="UPDATE item_status_final set demand='$shuhadamadafaka', indemand='$in', remaining='0', outdemand='$out' where name='$pangalan'";
+			   mysqli_query($conn1, $sql);
+		      }
+		      else{
+			   $out=0;
+			   $tira=$limit-$kwanti;
+			   $sql="UPDATE item_status_final set demand='$shuhadamadafaka', indemand='$kwanti', remaining='$tira', outdemand='$out' where name='$pangalan'";
+			   mysqli_query($conn1, $sql);
+		      }  
+	         }
+            }
+    }
+    
+        
+        
+?>
         
          
         
         <div id="page-wrapper">
         
-        
+        <!--
         <div class="table-responsive">
          	<table class="table">
          	
@@ -97,6 +99,8 @@
          	
          	</table>
          </div>
+         
+         -->
         
         
         
@@ -138,7 +142,7 @@ function getprice(str) {
   		<?php
   		while($row=mysqli_fetch_assoc($result)){
   		?>
-   		       <option value="<?=$row['name']?>">[<?=$row['item_code']?>] - <?=$row['name']?></option>
+   		       <option value="<?=$row['name']?>"><?=$row['name']?></option>
     	 <?php } 
     	       ?>
         </select> 
