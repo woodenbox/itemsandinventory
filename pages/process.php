@@ -858,6 +858,21 @@ function checkItemShuhada($conn, $name){
     return mysqli_query($conn, $sql);
 }
 
+function viewItemShuhada($conn){
+    $sql = "SELECT * FROM item_status_final";
+    return mysqli_query($conn, $sql);
+}
+
+function viewShuhadaItem($conn, $id){
+    $sql = "SELECT * FROM item_status_final where id='$id'";
+    return mysqli_query($conn, $sql);
+}
+
+function editShuhada($conn, $level, $id){
+    $sql = "UPDATE item_status_final SET stock='$level' where id='$id'";
+    return mysqli_query($conn, $sql);
+}
+
 
 
 //
