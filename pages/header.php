@@ -103,7 +103,7 @@
                                             <li><a href="saleskits.php">Sales Kits</a></li>
                                             <li><a href="inventory_locations.php">Inventory Locations</a></li>
                                             <li><a href="movementtypes.php">Inventory Movement Types</a></li>
-                                            <li><a href="reorderlevel.php">Reorder Levels</a></li>
+                                            <li><a href="reorderlevel.php">Tolerance Levels</a></li>
                                             <li><a href="currency.php">Currencies</a></li>
                                             <li><a href="unitofmeasure.php">Unit of Measure</a></li>
                                         </ul>
