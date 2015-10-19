@@ -15,7 +15,6 @@
          			<th>Demand</th>
          			<th>Maximum Tolerance</th>
          			<th>In Demand</th>
-         			<th>Remaining Stock/s</th>
                     <th>Out Demand For Supplier</th>
          		</tr>
          	
@@ -28,7 +27,6 @@
          			<td><?=$row['demand']?></td>
          			<td><?=$row['stock']?></td>
          			<td><?=$row['indemand']?></td>
-         			<td><?=$row['remaining']?></td>
                     <td><?=$row['outdemand']?></td>
          		</tr>
 					

@@ -4,18 +4,19 @@
     include('process.php');
     $conn1 = connect();
     $result = viewItemShuhada($conn1);
+    $finalresult = viewItems($conn1);
 
     if(isset($_POST['add'])){
         $pangalan=$_POST['item_code'];
         $lokasyon;
         $kwanti=$_POST['quantity'];
+       if(mysqli_num_rows(checkShuhada($conn1, $pangalan))!=0){
         $resulta=mysqli_fetch_assoc(Ou($conn1, $pangalan));
         $limit=$resulta['stock'];
         ?>
-         <h1><?=$limit?></h1>
         <?php
         $totallimit=$limit*2;  
-          
+        
             if(mysqli_num_rows(checkItemOrder($conn1, $pangalan))==0){
 	         if($kwanti>$totallimit){
 		      echo "<script>alert('Quantity Exceeded Tolerance Level')</script>";
@@ -62,6 +63,61 @@
             }
     }
     
+    else{
+	 $putangina=mysqli_fetch_assoc(Shuhada($conn1));
+     $limit=$putangina['stock'];
+        ?>
+        <?=$limit?>
+        <?php
+        $totallimit=$limit*2;  
+        
+            if(mysqli_num_rows(checkItemOrder($conn1, $pangalan))==0){
+	         if($kwanti>$totallimit){
+		      echo "<script>alert('Quantity Exceeded Tolerance Level')</script>";
+	         }
+	         else{
+		      if($kwanti>$limit){
+			   $out=$kwanti-$limit;
+			   $in=$limit;
+			   $sql="INSERT INTO item_status_final VALUES ('','$pangalan', '$kwanti', '100', '$in', '0', '$out')";
+			   mysqli_query($conn1, $sql);
+		      }
+		      else{
+			   $out=0;
+			   $tira=$limit-$kwanti;
+			   $sql="INSERT INTO item_status_final VALUES ('', '$pangalan', '$kwanti', '100', '$kwanti', '$tira', '0')";
+			   mysqli_query($conn1, $sql);
+		      }
+	         }
+            }
+            
+            else{
+	        $b=mysqli_fetch_assoc(checkItemShuhada($conn1, $pangalan));
+	         $shuhada[0]=$b['demand'];
+  
+            $shuhadamadafaka=$shuhada[0]+$kwanti;
+	         if($shuhadamadafaka>$totallimit){
+		      echo "<script>alert('Quantity Exceeded Tolerance Level')</script>";
+	         }
+	         else{
+		         
+		       if($shuhadamadafaka>$limit){
+			   $out=$shuhadamadafaka-$limit;
+			   $in=$limit;
+			   $sql="UPDATE item_status_final set demand='$shuhadamadafaka', indemand='$in', remaining='0', outdemand='$out' where name='$pangalan'";
+			   mysqli_query($conn1, $sql);
+		      }
+		      else{
+			   $out=0;
+			   $tira=$limit-$kwanti;
+			   $sql="UPDATE item_status_final set demand='$shuhadamadafaka', indemand='$kwanti', remaining='$tira', outdemand='$out' where name='$pangalan'";
+			   mysqli_query($conn1, $sql);
+		      }  
+	         }
+            }
+	 
+    }
+   }
         
         
 ?>
@@ -140,7 +196,7 @@ function getprice(str) {
   		<select class="form-control" name="item_code" onchange="getprice(this.value)">
             <option>Select Item</option>
   		<?php
-  		while($row=mysqli_fetch_assoc($result)){
+  		while($row=mysqli_fetch_assoc($finalresult)){
   		?>
    		       <option value="<?=$row['name']?>"><?=$row['name']?></option>
     	 <?php } 
